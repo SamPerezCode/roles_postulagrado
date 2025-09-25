@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostulaGrado — Programa Academico</title>
+    <!-- CSS compilado por Tailwind CLI -->
+    <link rel="stylesheet" href="../../dist/output.css" />
+</head>
+
+<body class="min-h-screen bg-gray-100 text-gray-900">
+
+    <!-- DASHBOARD -->
+    <div class="min-h-[100dvh] md:flex">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 translate-x-[-100%]  /* drawer cerrado en móvil */
+            bg-blue-900 text-white flex flex-col justify-between
+            transition-transform duration-300 ease-out
+            md:static md:z-auto md:w-64 md:translate-x-0 md:shrink-0 md:overflow-hidden">
+            <!-- Overlay del drawer en móviles -->
+            <div id="overlay" class="hidden fixed inset-0 z-[40] bg-black/40 md:hidden"></div>
+
+            <div class="p-6">
+                <a href="#" class="flex items-center gap-2">
+                    <span class="text-xl font-semibold tracking-tight">PostulaGrado</span>
+                </a>
+
+                <nav class="mt-6">
+                    <ul class="space-y-1">
+                        <!-- Dashboard ACTIVO -->
+                        <li>
+                            <a href="./estudiante_index.html"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <!-- Icono Home -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M3 9.75 12 3l9 6.75V21a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V9.75Z" />
+                                    <path d="M9 21V12h6v9H9Z" class="fill-blue-100" />
+                                </svg>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <!-- Procesos -->
+
+                        <li>
+                            <a href="./procesos.html"
+                                class="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/15 font-semibold ring-white/40 focus:outline-none focus:ring-4"
+                                aria-current="page">
+                                <span
+                                    class="absolute left-0 top-0 h-full w-1 bg-white rounded-tl-full rounded-bl-full"></span>
+                                <!-- Icono procesos -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M3 4.5A1.5 1.5 0 0 1 4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15Z" />
+                                </svg>
+                                <span>Procesos</span>
+                            </a>
+                        </li>
+
+                        <!-- Reportes -->
+                        <!-- <li>
+                            <a href="./reportes.html"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M4 5h16v2H4V5Zm0 6h10v2H4v-2Zm0 6h16v2H4v-2Z" />
+                                </svg>
+                                <span>Reportes</span>
+                            </a>
+                        </li>
+                    </ul> -->
+                </nav>
+            </div>
+
+
+        </aside>
+
+        <!-- Main -->
+        <!-- 3 filas: header-local/toolbar (auto) | contenido (1fr) | footer (auto) -->
+        <main class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4 p-4 sm:p-6">
+            <!-- Header -->
+            <header class="relative z-30 flex items-center justify-between rounded-2xl border bg-white p-4 shadow-sm">
+                <div class="flex min-w-0 items-center gap-2 sm:gap-3">
+                    <button id="btnSidebar" class="rounded-lg p-2 text-blue-900 hover:bg-blue-50 focus:outline-none"
+                        aria-label="Abrir menú">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z" />
+                        </svg>
+                    </button>
+                    <h2 class="truncate text-base font-semibold text-blue-900 sm:text-lg">
+                        Seguimiento a Procesos de Grado
+                    </h2>
+                </div>
+
+                <div class="flex shrink-0 items-center gap-2 sm:gap-4">
+                    <!-- Campana + dropdown -->
+                    <div class="relative"> <button id="btnBell" aria-expanded="false"
+                            class="relative rounded-full p-2 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
+                            </svg> <span
+                                class="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">7</span>
+                        </button>
+
+                        <div id="menuBell"
+                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-80 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
+                            role="menu" aria-label="Notificaciones" tabindex="-1">
+                            <div class="mb-2 flex items-center justify-between">
+                                <h3 class="text-sm font-semibold text-gray-900">Últimas notificaciones</h3>
+                                <span class="text-xs text-gray-500">hoy</span>
+                            </div>
+                            <ul class="max-h-64 space-y-2 overflow-y-auto text-sm">
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📌 Nueva convocatoria abierta <span
+                                        class="ml-2 text-xs text-gray-500">08:20</span></li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">⚠️ Actualiza tus datos antes del 10
+                                    de marzo</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">✅ Revisión de postulaciones
+                                    completada</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔄 Mantenimiento programado el 15 de
+                                    marzo</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📅 Cierre de postulaciones el 20 de
+                                    marzo</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">🚀 Nueva actualización disponible
+                                </li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔔 Recordatorio: Verificar documentos
+                                </li>
+                            </ul>
+                            <div class="mt-2 text-right">
+                                <button class="text-xs font-medium text-blue-700 hover:underline">Ver todas</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Avatar + dropdown -->
+                    <div class="relative">
+                        <button id="btnUser" aria-expanded="false"
+                            class="flex items-center gap-2 rounded-full bg-gray-100 p-1 pl-1 pr-1 sm:pl-1 sm:pr-3 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <span
+                                class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-blue-900 text-white font-semibold">A</span>
+                            <span class="hidden md:block text-sm font-medium text-gray-800">Abimelec Enoc</span>
+                        </button>
+
+                        <div id="menuUser"
+                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-64 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
+                            role="menu" aria-label="Cuenta" tabindex="-1">
+                            <div class="mb-2">
+                                <p class="text-sm font-semibold text-gray-900">Abimelec Enoc</p>
+                                <p class="text-xs text-gray-500">Rol: Admisiones</p>
+                            </div>
+
+                            <div class="my-2 h-px bg-gray-200"></div>
+                            <button
+                                class="inline-flex w-full items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-left text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300">
+                                Cerrar sesión
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+            <!-- Contenido -->
+            <main class="max-w-6xl mx-auto px-3 sm:px-6 py-6 grid gap-6">
+
+                <!-- Encabezado -->
+                <header class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <div class="min-w-0">
+                            <h1 class="text-lg sm:text-xl font-semibold text-blue-900">Mi proceso de grado</h1>
+                            <p class="text-sm text-gray-600">Aquí verás tus pendientes, notificaciones y la información
+                                del acto de grado.</p>
+                        </div>
+                        <!-- anclas rápidas dentro de la misma página -->
+                        <nav class="flex flex-wrap gap-2">
+                            <a href="#notificaciones"
+                                class="px-3 py-1.5 rounded-xl text-sm bg-blue-50 text-blue-700 hover:bg-blue-100">Notificaciones</a>
+                            <a href="#pago"
+                                class="px-3 py-1.5 rounded-xl text-sm bg-indigo-50 text-indigo-700 hover:bg-indigo-100">Pago</a>
+                            <a href="#fechas"
+                                class="px-3 py-1.5 rounded-xl text-sm bg-emerald-50 text-emerald-700 hover:bg-emerald-100">Fecha
+                                y lugar</a>
+                            <a href="#contacto"
+                                class="px-3 py-1.5 rounded-xl text-sm bg-purple-50 text-purple-700 hover:bg-purple-100">Contacto</a>
+                        </nav>
+                    </div>
+
+                    <!-- Estado general -->
+                    <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                        <div class="rounded-xl border bg-gray-50 p-4">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-semibold text-gray-800">Avance del proceso</h3>
+                                <span id="lbl-avance" class="text-xs text-gray-500">45% completado</span>
+                            </div>
+                            <div class="mt-1 h-2.5 w-full rounded-full bg-gray-200 overflow-hidden" role="progressbar"
+                                aria-valuemin="0" aria-valuemax="100" aria-valuenow="45">
+                                <div id="bar-avance" class="h-full bg-blue-600" style="width:45%"></div>
+                            </div>
+                        </div>
+                        <div class="rounded-xl border bg-gray-50 p-4">
+                            <h3 class="text-sm font-semibold text-gray-800">Mi estado</h3>
+                            <div class="mt-2 flex flex-wrap gap-2 text-sm">
+                                <span
+                                    class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-emerald-700">
+                                    <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span> Datos actualizados
+                                </span>
+                                <span
+                                    class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1 text-amber-700">
+                                    <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span> Pago pendiente
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- NOTIFICACIONES -->
+                <section id="notificaciones" class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-lg font-semibold text-gray-900">Notificaciones</h2>
+                        <button id="btnMarcarTodo" class="text-sm text-blue-700 hover:underline">Marcar todo como
+                            leído</button>
+                    </div>
+
+                    <ul id="listaNotif" class="mt-3 space-y-2">
+                        <!-- item -->
+                        <li class="rounded-xl border p-3 bg-gray-50 flex items-start gap-3">
+                            <div class="shrink-0 mt-0.5 h-2.5 w-2.5 rounded-full bg-blue-500"></div>
+                            <div class="min-w-0">
+                                <p class="text-sm text-gray-800">
+                                    📄 Sube tu <span class="font-semibold">certificado de asistencia a inducción</span>.
+                                    <a href="#" class="text-blue-700 underline">Abrir formulario</a>
+                                </p>
+                                <p class="text-xs text-gray-500 mt-0.5">Hoy, 08:20</p>
+                            </div>
+                            <button
+                                class="ml-auto text-xs rounded-lg px-2 py-1 bg-white border hover:bg-gray-100">Marcar
+                                leído</button>
+                        </li>
+
+                        <li class="rounded-xl border p-3 bg-gray-50 flex items-start gap-3">
+                            <div class="shrink-0 mt-0.5 h-2.5 w-2.5 rounded-full bg-amber-500"></div>
+                            <div class="min-w-0">
+                                <p class="text-sm text-gray-800">
+                                    💳 Descarga tu recibo de <span class="font-semibold">derechos de grado</span> y
+                                    realiza el pago.
+                                    <a href="#pago" class="text-blue-700 underline">Ir al pago</a>
+                                </p>
+                                <p class="text-xs text-gray-500 mt-0.5">Ayer, 16:10</p>
+                            </div>
+                            <button
+                                class="ml-auto text-xs rounded-lg px-2 py-1 bg-white border hover:bg-gray-100">Marcar
+                                leído</button>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- PAGO DERECHO DE GRADO -->
+                <section id="pago" class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-900">Pago de derecho de grado</h2>
+
+                    <div class="mt-3 grid gap-4 md:grid-cols-2">
+                        <!-- tarjeta estado -->
+                        <article class="rounded-2xl border bg-gray-50/60 p-5">
+                            <header class="flex items-start gap-3">
+                                <span
+                                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700 text-lg">💳</span>
+                                <div class="min-w-0">
+                                    <h3 class="text-base font-semibold text-gray-900 leading-5">Recibo y estado</h3>
+                                    <p class="text-xs text-gray-500">Descarga el recibo o valida si ya está pagado.</p>
+                                </div>
+                            </header>
+
+                            <dl class="mt-4 grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
+                                <div>
+                                    <dt class="text-gray-600">Número de recibo</dt>
+                                    <dd id="pago-numero" class="font-semibold text-gray-900">RG-2025-001234</dd>
+                                </div>
+                                <div>
+                                    <dt class="text-gray-600">Estado</dt>
+                                    <dd id="pago-estado" class="inline-flex items-center gap-2 font-semibold">
+                                        <span class="h-2.5 w-2.5 rounded-full bg-red-500"></span>
+                                        Pendiente
+                                    </dd>
+                                </div>
+                            </dl>
+
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <button id="btnDescargarRecibo"
+                                    class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200">Descargar
+                                    recibo</button>
+                                <button id="btnVerificarPago"
+                                    class="rounded-xl bg-gray-800 px-4 py-2 text-sm font-semibold text-white hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-gray-300">Verificar
+                                    pago</button>
+                                <a href="#"
+                                    class="rounded-xl border px-4 py-2 text-sm font-semibold hover:bg-gray-100">¿Cómo
+                                    pagar?</a>
+                            </div>
+                        </article>
+
+                        <!-- ayuda pago -->
+                        <article class="rounded-2xl border bg-gray-50/60 p-5">
+                            <h3 class="text-base font-semibold text-gray-900">Ayuda rápida</h3>
+                            <ol class="mt-2 list-decimal pl-5 text-sm text-gray-700 space-y-1">
+                                <li>Descarga tu recibo y paga por PSE o en bancos autorizados.</li>
+                                <li>Espera 24–48 horas para el registro automático del pago.</li>
+                                <li>Si ya pagaste y no aparece, adjunta el soporte en el formulario de ayuda.</li>
+                            </ol>
+                            <a href="#contacto" class="mt-3 inline-block text-sm text-blue-700 underline">Reportar pago
+                                no aplicado</a>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- FECHAS Y LUGAR -->
+                <section id="fechas" class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-900">Fecha y lugar del acto de grado</h2>
+
+                    <div class="mt-3 grid gap-4 lg:grid-cols-2">
+                        <article class="rounded-2xl border bg-gray-50 p-5">
+                            <div class="flex items-start gap-3">
+                                <span
+                                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 text-lg">🎓</span>
+                                <div class="min-w-0">
+                                    <h3 class="text-base font-semibold text-gray-900">Ceremonia 2025-1</h3>
+                                    <p class="text-sm text-gray-700 mt-1">
+                                        <span class="font-medium">Fecha:</span> 22 de noviembre de 2025 — 10:00 a.
+                                        m.<br />
+                                        <span class="font-medium">Lugar:</span> Auditorio Principal, Sede 28 #5B-02,
+                                        Bogotá D.C.
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="mt-3 text-sm text-gray-600">Preséntate 60 minutos antes con tu documento de
+                                identidad.</p>
+                        </article>
+
+                        <article class="rounded-2xl border bg-gray-50 p-5">
+                            <h3 class="text-base font-semibold text-gray-900">Observaciones</h3>
+                            <ul class="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
+                                <li>El acceso de acompañantes está sujeto al aforo del auditorio.</li>
+                                <li>El código de vestimenta será informado por tu programa.</li>
+                                <li>Revisa tu correo institucional para indicaciones finales.</li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- CONTACTO (dudas) -->
+                <section id="contacto" class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-900">¿Tienes dudas? Escríbele a tu programa</h2>
+                    <p class="text-sm text-gray-600">Tu mensaje se enviará por correo al coordinador del programa.
+                        También recibirás una copia.</p>
+
+                    <form id="frmContacto" class="mt-4 grid gap-3">
+                        <div class="grid gap-3 sm:grid-cols-2">
+                            <div>
+                                <label class="text-sm text-gray-700">Nombre</label>
+                                <input required
+                                    class="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-300"
+                                    placeholder="Tu nombre completo" />
+                            </div>
+                            <div>
+                                <label class="text-sm text-gray-700">Correo</label>
+                                <input required type="email"
+                                    class="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-300"
+                                    placeholder="tucorreo@universidad.edu.co" />
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-700">Asunto</label>
+                            <input required
+                                class="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-300"
+                                placeholder="Ej. Soporte de pago no aplicado" />
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-700">Mensaje</label>
+                            <textarea required rows="5"
+                                class="mt-1 w-full rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-300"
+                                placeholder="Describe tu solicitud o duda con el mayor detalle posible."></textarea>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs text-gray-500">Tiempo de respuesta estimado: 1–2 días hábiles.</p>
+                            <button
+                                class="rounded-xl bg-blue-600 px-5 py-2 text-sm font-semibold text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-purple-300">
+                                Enviar mensaje
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </main>
+
+            <!-- MODALES simples -->
+            <div id="md-ok" class="fixed inset-0 hidden items-start justify-center pt-10 z-[10000]">
+                <div class="absolute inset-0 bg-black/40" data-close="md-ok"></div>
+                <div class="relative mx-auto w-[min(32rem,92vw)] rounded-xl bg-white p-6 shadow-xl text-center">
+                    <button class="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
+                        data-close="md-ok">✕</button>
+                    <div class="mb-4 grid h-20 w-20 mx-auto place-items-center rounded-full border-4 border-green-100">
+                        <svg viewBox="0 0 24 24" class="h-10 w-10 text-green-600">
+                            <path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                        </svg>
+                    </div>
+                    <h3 id="md-ok-title" class="text-xl font-semibold text-gray-800">Listo</h3>
+                    <p id="md-ok-text" class="mt-2 text-gray-700">Acción realizada correctamente.</p>
+                    <div class="mt-4">
+                        <button class="rounded-md bg-indigo-600 px-5 py-2 text-white font-semibold hover:bg-indigo-700"
+                            data-close="md-ok">OK</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="rounded-2xl border bg-white p-4 text-center text-xs text-gray-600 shadow-sm">
+                © 2025 Universidad Colegio Mayor de Cundinamarca - Todos los derechos reservados
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- JS mínimo para dropdowns y cierre por click fuera -->
+
+    <script src="../../src/assets/app.js" defer></script>
+    <script src="../assets/sidebar-active.js"></script>
+    <script src="../assets/rol_estudiantes_seguimiento.js"></script>
+    <script>
+        document.getElementById("proceso").addEventListener("change", function () {
+            // Redirige siempre al mismo documento
+            window.location.href = "seguimiento_proceso.html";
+        });
+    </script>
+
+
+</body>
+
+</html>
