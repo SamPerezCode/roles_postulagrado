@@ -940,6 +940,18 @@ video {
   max-height: 90vh;
 }
 
+.max-h-32 {
+  max-height: 8rem;
+}
+
+.max-h-44 {
+  max-height: 11rem;
+}
+
+.max-h-\[60vh\] {
+  max-height: 60vh;
+}
+
 .min-h-\[100dvh\] {
   min-height: 100dvh;
 }
@@ -1066,6 +1078,14 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[22rem\] {
+  width: 22rem;
+}
+
+.w-\[min\(44rem\2c 92vw\)\] {
+  width: min(44rem,92vw);
 }
 
 .min-w-0 {
@@ -1399,6 +1419,10 @@ video {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.text-clip {
+  text-overflow: clip;
 }
 
 .whitespace-nowrap {
@@ -1962,6 +1986,10 @@ video {
 
 .text-right {
   text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .align-top {

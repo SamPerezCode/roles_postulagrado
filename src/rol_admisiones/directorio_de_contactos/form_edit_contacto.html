@@ -252,44 +252,7 @@
             </section>
 
 
-            <script>
-                // Buscador para el <select> de programas (sin librerías)
-                (function () {
-                    const filter = document.getElementById('programFilter');
-                    const select = document.getElementById('programa');
-                    if (!filter || !select) return;
 
-                    // Guarda todas las opciones originales
-                    const original = Array.from(select.options).map(o => o.text);
-
-                    filter.addEventListener('input', () => {
-                        const q = filter.value.toLowerCase()
-                            .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-                        // Limpia
-                        select.innerHTML = '';
-                        // Filtra y vuelve a renderizar
-                        original
-                            .filter(txt => txt.toLowerCase()
-                                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                                .includes(q))
-                            .forEach(txt => {
-                                const opt = document.createElement('option');
-                                opt.text = txt;
-                                select.add(opt);
-                            });
-                        // Selecciona la primera visible para comodidad
-                        if (select.options.length) select.selectedIndex = 0;
-                    });
-
-                    // Demo de guardado (evita navegación). Integra con tu backend.
-                    document.getElementById('frmContacto')?.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        // Aquí iría el POST/PUT real…
-                        alert('Cambios guardados (demo).');
-                        // window.location.href = './ver_datos.html';
-                    });
-                })();
-            </script>
 
 
 
@@ -302,8 +265,46 @@
     </div>
 
     <!-- JS base (sidebar + menús del header) -->
-    <script src="../../src/assets/app.js" defer></script>
-    <script src="../assets/sidebar-active.js" defer></script>
+    <script src="../../assets/app.js" defer></script>
+    <script src="../../assets/sidebar-nav.js" defer></script>
+    <script>
+        // Buscador para el <select> de programas (sin librerías)
+        (function () {
+            const filter = document.getElementById('programFilter');
+            const select = document.getElementById('programa');
+            if (!filter || !select) return;
+
+            // Guarda todas las opciones originales
+            const original = Array.from(select.options).map(o => o.text);
+
+            filter.addEventListener('input', () => {
+                const q = filter.value.toLowerCase()
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                // Limpia
+                select.innerHTML = '';
+                // Filtra y vuelve a renderizar
+                original
+                    .filter(txt => txt.toLowerCase()
+                        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                        .includes(q))
+                    .forEach(txt => {
+                        const opt = document.createElement('option');
+                        opt.text = txt;
+                        select.add(opt);
+                    });
+                // Selecciona la primera visible para comodidad
+                if (select.options.length) select.selectedIndex = 0;
+            });
+
+            // Demo de guardado (evita navegación). Integra con tu backend.
+            document.getElementById('frmContacto')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Aquí iría el POST/PUT real…
+                alert('Cambios guardados (demo).');
+                // window.location.href = './ver_datos.html';
+            });
+        })();
+    </script>
 </body>
 
 </html>
