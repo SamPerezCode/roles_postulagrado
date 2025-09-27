@@ -30,12 +30,11 @@
                     <ul class="space-y-1">
                         <!-- Dashboard ACTIVO -->
                         <li>
-                            <a href="./index.html"
+                            <a href="./index_principal.html"
                                 class="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/15 font-semibold ring-white/40 focus:outline-none focus:ring-4"
                                 aria-current="page">
                                 <span
                                     class="absolute left-0 top-0 h-full w-1 bg-white rounded-tl-full rounded-bl-full"></span>
-
                                 <!-- Icono Home -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
                                     fill="currentColor">
@@ -46,14 +45,12 @@
                             </a>
                         </li>
 
+
                         <!-- Procesos -->
-
                         <li>
-                            <a href="./seguimiento_proceso_estudiante.html"
+                            <a href="./index_procesos.html"
                                 class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
-
-
-                                <!-- Icono procesos -->
+                                <!-- Icono Reloj -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
                                     fill="currentColor">
                                     <path
@@ -61,20 +58,20 @@
                                 </svg>
                                 <span>Procesos</span>
                             </a>
-                            <!-- </li> -->
+                        </li>
 
-                            <!-- Reportes -->
-                            <!-- <li>
+                        <!-- Reportes -->
+                        <li>
                             <a href="./reportes.html"
                                 class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
-                                
+                                <!-- Icono Lista -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
                                     fill="currentColor">
                                     <path d="M4 5h16v2H4V5Zm0 6h10v2H4v-2Zm0 6h16v2H4v-2Z" />
                                 </svg>
                                 <span>Reportes</span>
                             </a>
-                        </li> -->
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -85,7 +82,7 @@
         <!-- Main -->
         <!-- 3 filas: header-local/toolbar (auto) | contenido (1fr) | footer (auto) -->
         <main class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4 p-4 sm:p-6">
-            <!-- Header --> <!-- Header -->
+            <!-- Header -->
             <header class="relative z-30 flex items-center justify-between rounded-2xl border bg-white p-4 shadow-sm">
                 <div class="flex min-w-0 items-center gap-2 sm:gap-3">
                     <button id="btnSidebar" class="rounded-lg p-2 text-blue-900 hover:bg-blue-50 focus:outline-none"
@@ -169,136 +166,34 @@
 
 
             <!-- Contenido -->
-            <!-- Bienvenida + ficha del estudiante -->
+            <!-- Información del programa académico -->
+            <section class="rounded-2xl border bg-white p-6 shadow-sm">
+                <h3 class="text-base font-semibold text-gray-900 mb-4">Programa académico</h3>
 
+                <!-- Card -->
+                <article class="rounded-2xl border bg-white p-5 shadow-sm">
+                    <!-- Título -->
+                    <h2 class="text-xl sm:text-2xl font-semibold leading-snug text-blue-900">
+                        Especialización Derecho Internacional Público
+                    </h2>
 
+                    <!-- Detalles -->
+                    <div class="mt-3 space-y-2 text-sm sm:text-base">
+                        <p class="text-gray-800">
+                            <span class="font-medium text-gray-600">Unidad Regional:</span>
+                            <span class="ml-1">
+                                <span class="font-semibold">Sede Principal</span> - Bogotá D.C. -
+                                Calle 28 Nº 5B - 02
+                            </span>
+                        </p>
 
-            <!-- Atajos -->
-
-
-
-            <main class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4 p-4 sm:p-6">
-
-                <!-- Contenido -->
-                <div class="space-y-6">
-
-                    <!-- Selección de proceso y programa -->
-                    <section class="rounded-2xl border bg-white p-5 shadow-sm">
-                        <h2 class="text-lg font-semibold text-gray-900">Áreas de Paz y Salvo</h2>
-                        <p class="text-sm text-gray-600">Elige el proceso y programa para revisar estudiantes.</p>
-
-                        <form class="mt-4 grid gap-4 md:grid-cols-3">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Proceso</label>
-                                <select
-                                    class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option>Seleccionar...</option>
-                                    <option>Grados 2025-1</option>
-                                    <option>Grados 2025-2</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Programa</label>
-                                <select
-                                    class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option>Seleccionar...</option>
-                                    <option>Derecho Internacional</option>
-                                    <option>Contaduría</option>
-                                </select>
-                            </div>
-                            <div class="flex items-end">
-                                <button type="submit"
-                                    class="w-full rounded-lg bg-blue-600 px-4 py-2 text-white font-semibold hover:bg-blue-700">
-                                    Buscar
-                                </button>
-                            </div>
-                        </form>
-                    </section>
-
-                    <!-- Listado de estudiantes -->
-                    <section class="rounded-2xl border bg-white p-5 shadow-sm">
-                        <h2 class="text-lg font-semibold text-gray-900">Estudiantes</h2>
-                        <p class="text-sm text-gray-600">Revisa la información y da el OK correspondiente.</p>
-
-                        <div class="mt-4 overflow-x-auto">
-                            <table class="min-w-full border divide-y divide-gray-200 text-sm">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-4 py-2 text-left font-semibold text-gray-700">Documento</th>
-                                        <th class="px-4 py-2 text-left font-semibold text-gray-700">Nombre</th>
-                                        <th class="px-4 py-2 text-left font-semibold text-gray-700">Programa</th>
-                                        <th class="px-4 py-2 text-center font-semibold text-gray-700">Estado</th>
-                                        <th class="px-4 py-2 text-center font-semibold text-gray-700">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-100">
-                                    <tr>
-                                        <td class="px-4 py-2">1073721918</td>
-                                        <td class="px-4 py-2">Estudiante Ejemplo</td>
-                                        <td class="px-4 py-2">Derecho Internacional</td>
-                                        <td class="px-4 py-2 text-center">
-                                            <span
-                                                class="rounded-lg bg-yellow-100 px-2 py-1 text-xs font-semibold text-yellow-700">Pendiente</span>
-                                        </td>
-                                        <td class="px-4 py-2 text-center space-x-2">
-                                            <button
-                                                class="rounded-md bg-green-600 px-3 py-1 text-xs text-white font-semibold hover:bg-green-700">
-                                                Dar OK
-                                            </button>
-                                            <button
-                                                class="rounded-md bg-gray-200 px-3 py-1 text-xs text-gray-700 font-medium hover:bg-gray-300">
-                                                Ver
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
-
-                    <!-- Subida de archivo -->
-                    <section class="rounded-2xl border bg-white p-5 shadow-sm">
-                        <h2 class="text-lg font-semibold text-gray-900">Subir archivo de Paz y Salvo</h2>
-                        <p class="text-sm text-gray-600">Adjunta el documento correspondiente al área.</p>
-
-                        <form class="mt-4 space-y-4">
-                            <div>
-                                <input type="file" class="block w-full text-sm text-gray-600 file:mr-4 file:rounded-lg
-              file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-white hover:file:bg-blue-700" />
-                            </div>
-                            <button type="submit"
-                                class="rounded-lg bg-blue-600 px-5 py-2 text-white font-semibold hover:bg-blue-700">
-                                Subir archivo
-                            </button>
-                        </form>
-                    </section>
-
-                </div>
-            </main>
-
-
-
-
-
-            <!-- MODALES simples -->
-            <div id="md-ok" class="fixed inset-0 hidden items-start justify-center pt-10 z-[10000]">
-                <div class="absolute inset-0 bg-black/40" data-close="md-ok"></div>
-                <div class="relative mx-auto w-[min(32rem,92vw)] rounded-xl bg-white p-6 shadow-xl text-center">
-                    <button class="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
-                        data-close="md-ok">✕</button>
-                    <div class="mb-4 grid h-20 w-20 mx-auto place-items-center rounded-full border-4 border-green-100">
-                        <svg viewBox="0 0 24 24" class="h-10 w-10 text-green-600">
-                            <path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
-                        </svg>
+                        <p class="text-gray-800">
+                            <span class="font-medium text-gray-600">Código SNIES:</span>
+                            <span class="ml-1 font-semibold">109908</span>
+                        </p>
                     </div>
-                    <h3 id="md-ok-title" class="text-xl font-semibold text-gray-800">Listo</h3>
-                    <p id="md-ok-text" class="mt-2 text-gray-700">Acción realizada correctamente.</p>
-                    <div class="mt-4">
-                        <button class="rounded-md bg-indigo-600 px-5 py-2 text-white font-semibold hover:bg-indigo-700"
-                            data-close="md-ok">OK</button>
-                    </div>
-                </div>
-            </div>
+                </article>
+            </section>
 
 
             <!-- Footer -->
@@ -313,6 +208,9 @@
 
     <script src="../../src/assets/app.js" defer></script>
     <script src="../assets/sidebar-active.js"></script>
+
+
+
 
 
 </body>

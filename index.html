@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PostulaGrado — Programa Academico</title>
+    <title>PostulaGrado — Navegación de roles</title>
     <!-- CSS compilado por Tailwind CLI -->
     <link rel="stylesheet" href="../../dist/output.css" />
 </head>
@@ -30,7 +30,7 @@
                     <ul class="space-y-1">
                         <!-- Dashboard ACTIVO -->
                         <li>
-                            <a href="./index.html"
+                            <a href="./src/procesos/index_principal.html"
                                 class="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/15 font-semibold ring-white/40 focus:outline-none focus:ring-4"
                                 aria-current="page">
                                 <span
@@ -41,37 +41,10 @@
                                     <path d="M3 9.75 12 3l9 6.75V21a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V9.75Z" />
                                     <path d="M9 21V12h6v9H9Z" class="fill-blue-100" />
                                 </svg>
-                                <span>Dashboard</span>
+                                <span>ROLES</span>
                             </a>
                         </li>
 
-
-                        <!-- Procesos -->
-                        <li>
-                            <a href="./src/procesos/index_procesos.html"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
-                                <!-- Icono Reloj -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path
-                                        d="M3 4.5A1.5 1.5 0 0 1 4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15Z" />
-                                </svg>
-                                <span>Procesos</span>
-                            </a>
-                        </li>
-
-                        <!-- Reportes -->
-                        <li>
-                            <a href="./reportes.html"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
-                                <!-- Icono Lista -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path d="M4 5h16v2H4V5Zm0 6h10v2H4v-2Zm0 6h16v2H4v-2Z" />
-                                </svg>
-                                <span>Reportes</span>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -93,106 +66,59 @@
                         </svg>
                     </button>
                     <h2 class="truncate text-base font-semibold text-blue-900 sm:text-lg">
-                        Dashboard
+                        ROLES
                     </h2>
                 </div>
 
-                <div class="flex shrink-0 items-center gap-2 sm:gap-4">
-                    <!-- Campana + dropdown -->
-                    <div class="relative"> <button id="btnBell" aria-expanded="false"
-                            class="relative rounded-full p-2 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-200">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
-                            </svg> <span
-                                class="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">7</span>
-                        </button>
 
-                        <div id="menuBell"
-                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-80 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
-                            role="menu" aria-label="Notificaciones" tabindex="-1">
-                            <div class="mb-2 flex items-center justify-between">
-                                <h3 class="text-sm font-semibold text-gray-900">Últimas notificaciones</h3>
-                                <span class="text-xs text-gray-500">hoy</span>
-                            </div>
-                            <ul class="max-h-64 space-y-2 overflow-y-auto text-sm">
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">📌 Nueva convocatoria abierta <span
-                                        class="ml-2 text-xs text-gray-500">08:20</span></li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">⚠️ Actualiza tus datos antes del 10
-                                    de marzo</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">✅ Revisión de postulaciones
-                                    completada</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔄 Mantenimiento programado el 15 de
-                                    marzo</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">📅 Cierre de postulaciones el 20 de
-                                    marzo</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">🚀 Nueva actualización disponible
-                                </li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔔 Recordatorio: Verificar documentos
-                                </li>
-                            </ul>
-                            <div class="mt-2 text-right">
-                                <button class="text-xs font-medium text-blue-700 hover:underline">Ver todas</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Avatar + dropdown -->
-                    <div class="relative">
-                        <button id="btnUser" aria-expanded="false"
-                            class="flex items-center gap-2 rounded-full bg-gray-100 p-1 pl-1 pr-1 sm:pl-1 sm:pr-3 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
-                            <span
-                                class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-blue-900 text-white font-semibold">A</span>
-                            <span class="hidden md:block text-sm font-medium text-gray-800">Abimelec Enoc</span>
-                        </button>
-
-                        <div id="menuUser"
-                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-64 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
-                            role="menu" aria-label="Cuenta" tabindex="-1">
-                            <div class="mb-2">
-                                <p class="text-sm font-semibold text-gray-900">Abimelec Enoc</p>
-                                <p class="text-xs text-gray-500">Rol: Admisiones</p>
-                            </div>
-
-                            <div class="my-2 h-px bg-gray-200"></div>
-                            <button
-                                class="inline-flex w-full items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-left text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300">
-                                Cerrar sesión
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </header>
 
-
             <!-- Contenido -->
-            <!-- Información del programa académico -->
+            <!-- Botones Navegación de roles -->
             <section class="rounded-2xl border bg-white p-6 shadow-sm">
-                <h3 class="text-base font-semibold text-gray-900 mb-4">Programa académico</h3>
+                <h3 class="text-base font-semibold text-blue-900 mb-4">Navegación Roles</h3>
 
-                <!-- Card -->
-                <article class="rounded-2xl border bg-white p-5 shadow-sm">
-                    <!-- Título -->
-                    <h2 class="text-xl sm:text-2xl font-semibold leading-snug text-blue-900">
-                        Especialización Derecho Internacional Público
-                    </h2>
+                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    <!-- Card Admisiones -->
+                    <a href="./src/rol_admisiones/admisiones/index.html"
+                        class="flex flex-col items-center justify-center rounded-xl border bg-gradient-to-r from-blue-50 to-blue-100 p-6 text-center shadow-sm hover:shadow-md hover:scale-[1.02] transition-transform">
+                        <span
+                            class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-md">
+                            🎓
+                        </span>
+                        <span class="font-semibold text-blue-800">Admisiones</span>
+                    </a>
 
-                    <!-- Detalles -->
-                    <div class="mt-3 space-y-2 text-sm sm:text-base">
-                        <p class="text-gray-800">
-                            <span class="font-medium text-gray-600">Unidad Regional:</span>
-                            <span class="ml-1">
-                                <span class="font-semibold">Sede Principal</span> - Bogotá D.C. -
-                                Calle 28 Nº 5B - 02
-                            </span>
-                        </p>
+                    <!-- Card Programa Académico -->
+                    <a href="./src/procesos/index_principal.html"
+                        class="flex flex-col items-center justify-center rounded-xl border bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 text-center shadow-sm hover:shadow-md hover:scale-[1.02] transition-transform">
+                        <span
+                            class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-white shadow-md">
+                            📚
+                        </span>
+                        <span class="font-semibold text-emerald-800">Programa Académico</span>
+                    </a>
 
-                        <p class="text-gray-800">
-                            <span class="font-medium text-gray-600">Código SNIES:</span>
-                            <span class="ml-1 font-semibold">109908</span>
-                        </p>
-                    </div>
-                </article>
+                    <!-- Card Estudiantes -->
+                    <a href="./src/rol_estudiante/estudiante_index.html"
+                        class="flex flex-col items-center justify-center rounded-xl border bg-gradient-to-r from-amber-50 to-amber-100 p-6 text-center shadow-sm hover:shadow-md hover:scale-[1.02] transition-transform">
+                        <span
+                            class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-amber-500 text-white shadow-md">
+                            👨‍🎓
+                        </span>
+                        <span class="font-semibold text-amber-800">Estudiantes</span>
+                    </a>
+
+                    <!-- Card Paz y Salvo -->
+                    <a href="./src/rol_paz_y_salvo/paz_salvo_index.html"
+                        class="flex flex-col items-center justify-center rounded-xl border bg-gradient-to-r from-purple-50 to-purple-100 p-6 text-center shadow-sm hover:shadow-md hover:scale-[1.02] transition-transform">
+                        <span
+                            class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-purple-600 text-white shadow-md">
+                            ✅
+                        </span>
+                        <span class="font-semibold text-purple-800">Paz y Salvo</span>
+                    </a>
+                </div>
             </section>
 
 

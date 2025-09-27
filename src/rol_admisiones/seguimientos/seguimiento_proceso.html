@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostulaGrado — Admisiones</title>
+    <link rel="stylesheet" href="../../../dist/output.css" />
+</head>
+
+<body class="min-h-screen bg-gray-100 text-gray-900 overflow-x-auto">
+    <div class="min-h-[100dvh] md:flex">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 translate-x-[-100%]
+        bg-blue-900 text-white flex flex-col justify-between
+        transition-transform duration-300 ease-out
+        md:static md:z-auto md:w-64 md:translate-x-0 md:shrink-0 md:overflow-hidden">
+
+            <div class="p-6">
+                <a href="#" class="flex items-center gap-2">
+                    <span class="text-xl font-semibold tracking-tight">PostulaGrado</span>
+                </a>
+
+                <nav class="mt-6">
+                    <ul class="space-y-1">
+                        <!-- Procesos -->
+                        <li>
+                            <a href="../admisiones/index.html"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M3 4.5A1.5 1.5 0 0 1 4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15Z" />
+                                </svg>
+                                <span>Procesos</span>
+                            </a>
+                        </li>
+
+                        <!-- Seguimientos (ACTIVO) -->
+                        <li>
+                            <a href="./seguimientos.html"
+                                class="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/15 font-semibold ring-white/40 focus:outline-none focus:ring-4"
+                                aria-current="page">
+                                <span
+                                    class="absolute left-0 top-0 h-full w-1 bg-white rounded-tl-full rounded-bl-full"></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 10.59 3.29 3.3-1.42 1.41L11 13.41V7h2v5.59Z" />
+                                </svg>
+                                <span>Seguimientos</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm3 0v12h12V6H6Zm2 2h8v2H8V8Zm0 4h8v2H8v-2Z" />
+                                </svg>
+                                <span>Directorio de contactos</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
+                                </svg>
+                                <span>Notificaciones</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M4 5h16v2H4V5Zm0 6h10v2H4v-2Zm0 6h16v2H4v-2Z" />
+                                </svg>
+                                <span>Reportes</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- <div class="p-6">
+                <button
+                    class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white text-blue-900 px-4 py-2 text-sm font-semibold shadow-sm hover:bg-blue-50 focus:outline-none focus:ring-4 focus:ring-white/40">
+                    Cerrar sesión
+                </button>
+            </div> -->
+        </aside>
+
+        <!-- Overlay móvil (moverlo fuera del <aside> para cubrir todo) -->
+        <div id="overlay" class="hidden fixed inset-0 z-30 bg-black/40 md:hidden"></div>
+
+        <!-- Main -->
+        <main class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4
+                 px-3 py-4 sm:px-6 sm:py-6 max-w-screen-2xl mx-auto">
+            <!-- Header -->
+            <header class="relative z-30 flex flex-wrap items-center gap-2 justify-between
+                     rounded-2xl border bg-white p-3 sm:p-4 shadow-sm">
+                <div class="flex min-w-0 items-center gap-2 sm:gap-3">
+                    <button id="btnSidebar" class="rounded-lg p-2 text-blue-900 hover:bg-blue-50 focus:outline-none"
+                        aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z" />
+                        </svg>
+                    </button>
+                    <h2 class="truncate text-base font-semibold text-blue-900 sm:text-lg">
+                        Seguimiento del Proceso
+                    </h2>
+                </div>
+
+                <div class="flex shrink-0 items-center gap-2 sm:gap-4">
+                    <!-- Campana -->
+                    <div class="relative">
+                        <button id="btnBell" aria-expanded="false"
+                            class="relative rounded-full p-2 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 text-gray-700"
+                                viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
+                            </svg>
+                            <span
+                                class="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">7</span>
+                        </button>
+
+                        <div id="menuBell"
+                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-80 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
+                            role="menu" aria-label="Notificaciones" tabindex="-1">
+                            <div class="mb-2 flex items-center justify-between">
+                                <h3 class="text-sm font-semibold text-gray-900">Últimas notificaciones</h3>
+                                <span class="text-xs text-gray-500">hoy</span>
+                            </div>
+                            <ul class="max-h-64 space-y-2 overflow-y-auto text-sm">
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📌 Nueva convocatoria abierta <span
+                                        class="ml-2 text-xs text-gray-500">08:20</span></li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">⚠️ Actualiza tus datos antes del 10
+                                    de marzo</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">✅ Revisión de postulaciones
+                                    completada</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔄 Mantenimiento programado el 15 de
+                                    marzo</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📅 Cierre de postulaciones el 20 de
+                                    marzo</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">🚀 Nueva actualización disponible
+                                </li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔔 Recordatorio: Verificar documentos
+                                </li>
+                            </ul>
+                            <div class="mt-2 text-right">
+                                <button class="text-xs font-medium text-blue-700 hover:underline">Ver todas</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Avatar -->
+                    <div class="relative">
+                        <button id="btnUser" aria-expanded="false"
+                            class="flex items-center gap-2 rounded-full bg-gray-100 p-1 pl-1 pr-2 sm:pr-3 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <span
+                                class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-blue-900 text-white font-semibold">A</span>
+                            <span
+                                class="hidden md:block text-sm font-medium text-gray-800 max-w-[10rem] truncate">Abimelec
+                                Enoc</span>
+                        </button>
+
+                        <div id="menuUser"
+                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-64 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
+                            role="menu" aria-label="Cuenta" tabindex="-1">
+                            <div class="mb-2">
+                                <p class="text-sm font-semibold text-gray-900">Abimelec Enoc</p>
+                                <p class="text-xs text-gray-500">Rol: Admisiones</p>
+                            </div>
+                            <div class="my-2 h-px bg-gray-200"></div>
+                            <button
+                                class="inline-flex w-full items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-left text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300">
+                                Cerrar sesión
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenido -->
+            <div class="space-y-6">
+                <!-- Card: Información & Avance (responsive) -->
+                <div class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
+                    <!-- Título + metadatos -->
+                    <div class="min-w-0">
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-900 truncate">
+                            Proceso: Proceso de grado 2025-1
+                        </h3>
+
+                        <div class="mt-1 flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                            <span class="text-gray-700">
+                                Nivel Educativo: <span class="font-semibold text-blue-900">POSTGRADO</span>
+                            </span>
+                            <span class="hidden sm:inline text-gray-300">•</span>
+                            <span class="text-gray-700">
+                                Estado: <span class="font-semibold text-green-700">ABIERTO</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Avance del Programa (atrasado) -->
+                    <div class="mt-4">
+                        <div class="mb-1 flex flex-wrap items-center justify-between gap-2">
+                            <h4 class="text-sm font-semibold text-gray-800">Avance del programa</h4>
+                            <span class="text-[11px] sm:text-xs text-gray-500">28% completado</span>
+                        </div>
+
+                        <div class="w-full rounded-full bg-gray-200 h-2 sm:h-3 overflow-hidden" role="progressbar"
+                            aria-valuenow="28" aria-valuemin="0" aria-valuemax="100">
+                            <div class="h-full bg-blue-600" style="width: 28%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Avance -->
+                    <div class="mt-4">
+                        <div class="mb-1 flex flex-wrap items-center justify-between gap-2">
+                            <h4 class="text-sm font-semibold text-gray-800">Avance del Proceso</h4>
+                            <span class="text-[11px] sm:text-xs text-gray-500">41.7% completado</span>
+                        </div>
+
+                        <div class="w-full rounded-full bg-gray-200 h-2 sm:h-3 overflow-hidden" role="progressbar"
+                            aria-valuenow="41.7" aria-valuemin="0" aria-valuemax="100">
+                            <div class="h-full bg-blue-600" style="width: 41.7%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card: Actividades del Proceso -->
+                <div class="rounded-2xl border bg-white shadow-sm overflow-hidden">
+                    <div class="flex items-center justify-between gap-3 p-4 border-b">
+                        <h2 class="text-lg font-semibold text-gray-900">Actividades</h2>
+
+                        <!-- Leyenda -->
+                        <div class="hidden md:flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-700">
+                            <span class="inline-flex items-center gap-1"><span
+                                    class="h-2 w-2 rounded-full bg-gray-400"></span> Finalizadas</span>
+                            <span class="inline-flex items-center gap-1"><span
+                                    class="h-2 w-2 rounded-full bg-emerald-500"></span> En curso</span>
+                            <span class="inline-flex items-center gap-1"><span
+                                    class="h-2 w-2 rounded-full bg-amber-400"></span> Programadas</span>
+                            <span class="inline-flex items-center gap-1"><span
+                                    class="h-2 w-2 rounded-full bg-orange-400"></span> Próximas</span>
+                        </div>
+                    </div>
+
+                    <!-- Grid de tarjetas -->
+                    <div class="p-4 grid gap-4 md:grid-cols-2">
+                        <!-- Finalizadas -->
+                        <section class="rounded-xl border bg-gray-100 p-4">
+                            <button type="button"
+                                class="group inline-flex items-center gap-2 text-sm font-semibold text-gray-800"
+                                data-actividad-toggle="#act-finalizadas">
+                                <span class="h-2 w-2 rounded-full bg-gray-400"></span>
+                                Finalizadas
+                                <span class="text-xs text-gray-500" data-see> (Ver más)</span>
+                            </button>
+
+                            <div id="act-finalizadas"
+                                class="mt-2 overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                                data-actividad-panel data-open="1" style="max-height:9999px;">
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-2">
+                                    <li>Publicación del cronograma y lineamientos <span
+                                            class="text-xs text-gray-600">(finalizó el 06 de agosto de 2025)</span></li>
+                                    <li>Consolidado preliminar de posibles graduandos <span
+                                            class="text-xs text-gray-600">(finalizó el 08 de agosto de 2025)</span></li>
+                                    <li>Apertura de postulación y actualización de datos <span
+                                            class="text-xs text-gray-600">(finalizó el 22 de agosto de 2025)</span></li>
+                                    <li>Verificación de requisitos académicos <span
+                                            class="text-xs text-gray-600">(finalizó el 20 de septiembre de 2025)</span>
+                                    </li>
+                                    <li>Primer corte de elegibilidad y notificación de pendientes <span
+                                            class="text-xs text-gray-600">(finalizó el 05 de septiembre de 2025)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <!-- En Curso -->
+                        <section class="rounded-xl border bg-emerald-50 p-4">
+                            <button type="button"
+                                class="group inline-flex items-center gap-2 text-sm font-semibold text-emerald-800"
+                                data-actividad-toggle="#act-encurso">
+                                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                                En Curso
+                                <span class="text-xs text-emerald-900/70" data-see> (Ver más)</span>
+                            </button>
+
+                            <div id="act-encurso"
+                                class="mt-2 overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                                data-actividad-panel style="max-height:0px;">
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-2">
+                                    <li>Solicitud y arranque de Paz y Salvo institucional <span
+                                            class="text-xs text-emerald-900/80">(finalizará el 30 de septiembre de
+                                            2025)</span></li>
+                                    <li>Saneamiento de inconsistencias de datos y documentos <span
+                                            class="text-xs text-emerald-900/80">(finalizará el 30 de septiembre de
+                                            2025)</span></li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <!-- Programadas -->
+                        <section class="rounded-xl border bg-amber-50 p-4">
+                            <button type="button"
+                                class="group inline-flex items-center gap-2 text-sm font-semibold text-amber-800"
+                                data-actividad-toggle="#act-programadas">
+                                <span class="h-2 w-2 rounded-full bg-amber-400"></span>
+                                Programadas
+                                <span class="text-xs text-amber-900/70" data-see> (Ver más)</span>
+                            </button>
+
+                            <div id="act-programadas"
+                                class="mt-2 overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                                data-actividad-panel style="max-height:0px;">
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-2">
+                                    <li>Cierre de postulaciones y pago de derechos de grado <span
+                                            class="text-xs text-amber-900/80">(iniciará el 10/10/2025)</span></li>
+                                    <li>Consolidado final de elegibles y envío a Secretaría/Consejo <span
+                                            class="text-xs text-amber-900/80">(iniciará el 15/10/2025)</span></li>
+                                    <li>Generación y verificación de actas, diplomas y nombres <span
+                                            class="text-xs text-amber-900/80">(iniciará el 27/10/2025)</span></li>
+                                    <li>Citación, logística y ensayo del acto de grado <span
+                                            class="text-xs text-amber-900/80">(iniciará el 17/11/2025)</span></li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <!-- Próximas a Iniciar -->
+                        <section class="rounded-xl border bg-orange-50 p-4">
+                            <button type="button"
+                                class="group inline-flex items-center gap-2 text-sm font-semibold text-orange-800"
+                                data-actividad-toggle="#act-proximas">
+                                <span class="h-2 w-2 rounded-full bg-orange-400"></span>
+                                Próximas a Iniciar
+                                <span class="text-xs text-orange-900/70" data-see> (Ver más)</span>
+                            </button>
+
+                            <div id="act-proximas"
+                                class="mt-2 overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                                data-actividad-panel style="max-height:0px;">
+                                <ul class="list-disc pl-5 text-sm text-gray-800 space-y-2">
+                                    <li>Trámite y cierre de Paz y Salvo (2º corte) <span
+                                            class="text-xs text-orange-900/80">(iniciará el 23/09/2025)</span></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Card: Avance por Programa -->
+                <div class="rounded-2xl border bg-white shadow-sm overflow-hidden">
+                    <div class="flex items-center justify-between gap-3 p-4 border-b">
+                        <h2 class="text-lg font-semibold text-gray-900">Avance por Programa Académico</h2>
+                        <div class="relative w-full sm:w-auto">
+                            <input id="buscarPrograma" type="text" placeholder="Buscar programa..."
+                                class="peer w-full sm:w-64 rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-60">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm11 19-5.2-5.2-1.4 1.4L19.6 22 21 20.6Z" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-[760px] text-sm border-collapse">
+                            <thead class="bg-gray-100 text-gray-700">
+                                <tr>
+                                    <th class="px-4 py-3 text-left font-semibold">Programa Académico</th>
+                                    <th class="px-4 py-3 text-left font-semibold w-48">Avance</th>
+                                    <th class="px-4 py-3 text-left font-semibold w-64">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbProgramas" class="divide-y">
+                                <!-- Fila demo -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 text-gray-900">Especialización Metodología BIM — 410</td>
+                                    <td class="px-4 py-3">
+                                        <div class="w-full rounded-full bg-gray-200 h-2">
+                                            <div class="h-2 bg-blue-600 rounded-full" style="width: 0%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-600">0%</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <button
+                                                class="rounded-md border px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50">Más
+                                                información</button>
+                                            <button
+                                                class="rounded-md border px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50">Omitir</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 text-gray-900">Especialización Derecho Internacional Público —
+                                        605</td>
+                                    <td class="px-4 py-3">
+                                        <div class="w-full rounded-full bg-gray-200 h-2">
+                                            <div class="h-2 bg-blue-600 rounded-full" style="width: 0%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-600">0%</span>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <button
+                                                class="rounded-md border px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50">Más
+                                                información</button>
+                                            <button
+                                                class="rounded-md border px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50">Omitir</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- /demo -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- <div class="p-4">
+                        <button id="btnCargarMas"
+                            class="rounded-xl border px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-200">
+                            Cargar más
+                        </button>
+                    </div> -->
+                </div>
+
+                <!-- Card: Estado de Paz y Salvo -->
+                <div class="rounded-2xl border bg-white p-4 sm:p-6 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Estado de Paz y Salvo</h2>
+
+                    <!-- grid igualando alturas de las tarjetas -->
+                    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 auto-rows-fr">
+
+                        <!-- COMPONENTE: tarjeta de estado -->
+                        <article
+                            class="group h-full rounded-2xl border border-gray-200 bg-gray-50/60 p-4 sm:p-5 shadow-sm transition hover:shadow-md hover:border-gray-300">
+                            <header class="flex items-start gap-3">
+                                <span
+                                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+                                    <!-- banco -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M12 2 2 7v2h20V7L12 2Zm-8 9v8H2v2h20v-2h-2v-8H4Zm10 8H10v-8h4v8Z" />
+                                    </svg>
+                                </span>
+                                <div class="min-w-0">
+                                    <h3 class="text-base font-semibold text-gray-900 truncate">Financiera</h3>
+                                    <p class="text-xs text-gray-500">Paz y Salvo institucional</p>
+                                </div>
+                            </header>
+
+                            <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <div>
+                                    <dt class="text-gray-600">Total estudiantes</dt>
+                                    <dd class="font-semibold text-gray-900">100</dd>
+                                </div>
+                                <div>
+                                    <dt class="text-gray-600">Pendientes</dt>
+                                    <dd class="font-semibold text-red-600">10</dd>
+                                </div>
+                            </dl>
+
+                            <div class="mt-4">
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <span>Progreso</span>
+                                    <span class="font-medium text-gray-700">90%</span>
+                                </div>
+                                <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-indigo-600"
+                                        style="width:90%"></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Admisiones -->
+                        <article
+                            class="group h-full rounded-2xl border border-gray-200 bg-gray-50/60 p-4 sm:p-5 shadow-sm transition hover:shadow-md hover:border-gray-300">
+                            <header class="flex items-start gap-3">
+                                <span
+                                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M12 2 2 7v2h20V7L12 2Zm-8 9v8H2v2h20v-2h-2v-8H4Zm10 8H10v-8h4v8Z" />
+                                    </svg>
+                                </span>
+                                <div class="min-w-0">
+                                    <h3 class="text-base font-semibold text-gray-900 truncate">Admisiones</h3>
+                                    <p class="text-xs text-gray-500">Validación de requisitos</p>
+                                </div>
+                            </header>
+
+                            <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <div>
+                                    <dt class="text-gray-600">Total estudiantes</dt>
+                                    <dd class="font-semibold text-gray-900">100</dd>
+                                </div>
+                                <div>
+                                    <dt class="text-gray-600">Pendientes</dt>
+                                    <dd class="font-semibold text-red-600">5</dd>
+                                </div>
+                            </dl>
+
+                            <div class="mt-4">
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <span>Progreso</span>
+                                    <span class="font-medium text-gray-700">95%</span>
+                                </div>
+                                <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-indigo-600"
+                                        style="width:95%"></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Biblioteca -->
+                        <article
+                            class="group h-full rounded-2xl border border-gray-200 bg-gray-50/60 p-4 sm:p-5 shadow-sm transition hover:shadow-md hover:border-gray-300">
+                            <header class="flex items-start gap-3">
+                                <span
+                                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M12 2 2 7v2h20V7L12 2Zm-8 9v8H2v2h20v-2h-2v-8H4Zm10 8H10v-8h4v8Z" />
+                                    </svg>
+                                </span>
+                                <div class="min-w-0">
+                                    <h3 class="text-base font-semibold text-gray-900 truncate">Biblioteca</h3>
+                                    <p class="text-xs text-gray-500">Devoluciones y multas</p>
+                                </div>
+                            </header>
+
+                            <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <div>
+                                    <dt class="text-gray-600">Total estudiantes</dt>
+                                    <dd class="font-semibold text-gray-900">100</dd>
+                                </div>
+                                <div>
+                                    <dt class="text-gray-600">Pendientes</dt>
+                                    <dd class="font-semibold text-red-600">23</dd>
+                                </div>
+                            </dl>
+
+                            <div class="mt-4">
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <span>Progreso</span>
+                                    <span class="font-medium text-gray-700">77%</span>
+                                </div>
+                                <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-indigo-600"
+                                        style="width:77%"></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Recursos educativos -->
+                        <article
+                            class="group h-full rounded-2xl border border-gray-200 bg-gray-50/60 p-4 sm:p-5 shadow-sm transition hover:shadow-md hover:border-gray-300">
+                            <header class="flex items-start gap-3">
+                                <span
+                                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M12 2 2 7v2h20V7L12 2Zm-8 9v8H2v2h20v-1l-2-2V11H4Z" />
+                                    </svg>
+                                </span>
+                                <div class="min-w-0">
+                                    <h3 class="text-base font-semibold text-gray-900 truncate">Recursos educativos</h3>
+                                    <p class="text-xs text-gray-500">Materiales y equipos</p>
+                                </div>
+                            </header>
+
+                            <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <div>
+                                    <dt class="text-gray-600">Total estudiantes</dt>
+                                    <dd class="font-semibold text-gray-900">100</dd>
+                                </div>
+                                <div>
+                                    <dt class="text-gray-600">Pendientes</dt>
+                                    <dd class="font-semibold text-red-600">15</dd>
+                                </div>
+                            </dl>
+
+                            <div class="mt-4">
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <span>Progreso</span>
+                                    <span class="font-medium text-gray-700">85%</span>
+                                </div>
+                                <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-indigo-600"
+                                        style="width:85%"></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Centro de idiomas -->
+                        <article
+                            class="group h-full rounded-2xl border border-gray-200 bg-gray-50/60 p-4 sm:p-5 shadow-sm transition hover:shadow-md hover:border-gray-300 sm:col-span-2 xl:col-span-1">
+                            <header class="flex items-start gap-3">
+                                <span
+                                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M12 2 2 7v2h20V7L12 2Zm-8 9v8H2v2h20v-2h-2v-8H4Z" />
+                                    </svg>
+                                </span>
+                                <div class="min-w-0">
+                                    <h3 class="text-base font-semibold text-gray-900 truncate">Centro de idiomas</h3>
+                                    <p class="text-xs text-gray-500">Exámenes y certificaciones</p>
+                                </div>
+                            </header>
+
+                            <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <div>
+                                    <dt class="text-gray-600">Total estudiantes</dt>
+                                    <dd class="font-semibold text-gray-900">100</dd>
+                                </div>
+                                <div>
+                                    <dt class="text-gray-600">Pendientes</dt>
+                                    <dd class="font-semibold text-red-600">30</dd>
+                                </div>
+                            </dl>
+
+                            <div class="mt-4">
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <span>Progreso</span>
+                                    <span class="font-medium text-gray-700">70%</span>
+                                </div>
+                                <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-blue-600 to-indigo-600"
+                                        style="width:70%"></div>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+
+                <!-- Card: Notificaciones -->
+                <div class="rounded-2xl border bg-white shadow-sm overflow-hidden">
+                    <div class="p-4 border-b">
+                        <h2 class="text-lg font-semibold text-gray-900">Notificaciones Enviadas</h2>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-[720px] text-sm border-collapse">
+                            <thead class="bg-gray-100 text-gray-700">
+                                <tr>
+                                    <th class="px-4 py-3 text-left font-semibold">Notificación</th>
+                                    <th class="px-4 py-3 text-left font-semibold">Destinatarios</th>
+                                    <th class="px-4 py-3 text-left font-semibold">Fecha de Envío</th>
+                                    <th class="px-4 py-3 text-left font-semibold">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3">Postulagrado: Actualización de datos de estudiante</td>
+                                    <td class="px-4 py-3">
+                                        <a href="#" id="btnDestinatarios" class="text-blue-600 hover:underline">1
+                                            destinatarios</a>
+                                    </td>
+                                    <td class="px-4 py-3">02/09/2025</td>
+                                    <td class="px-4 py-3">
+                                        <span
+                                            class="rounded-full bg-green-500 px-2 py-0.5 text-xs font-semibold text-white">Enviada</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <footer class="rounded-2xl border bg-white p-4 text-center text-xs text-gray-600 shadow-sm">
+                © 2025 Universidad Colegio Mayor de Cundinamarca - Todos los derechos reservados
+            </footer>
+        </main>
+    </div>
+
+    <!-- Modal Destinatarios -->
+    <div id="modalDest" class="fixed inset-0 hidden items-center justify-center bg-black/40 p-4 z-50">
+        <div class="w-full max-w-md rounded-2xl bg-white p-5 shadow-xl">
+            <h3 class="text-base font-semibold text-gray-900">Destinatarios</h3>
+            <ul class="mt-3 list-disc pl-6 text-sm text-gray-700 space-y-1">
+                <li>coordinacion.programa@u.edu.co</li>
+            </ul>
+            <div class="mt-4 text-right">
+                <button id="btnCerrarDest"
+                    class="rounded-xl bg-blue-900 px-4 py-2 text-sm font-semibold text-white hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="../../src/assets/app.js" defer></script>
+    <script src="../assets/sidebar-nav.js"></script>
+    <script>
+
+
+        // Buscar programa (demo)
+        const buscar = document.getElementById('buscarPrograma');
+        const filas = document.querySelectorAll('#tbProgramas tr');
+        buscar?.addEventListener('input', e => {
+            const q = e.target.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            filas.forEach(tr => {
+                const t = tr.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                tr.style.display = t.includes(q) ? '' : 'none';
+            });
+        });
+
+        // Modal destinatarios (demo)
+        const modal = document.getElementById('modalDest');
+        document.getElementById('btnDestinatarios')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        });
+        document.getElementById('btnCerrarDest')?.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        });
+
+        // Toggle "(Ver más)" y expansión
+        document.querySelectorAll('[data-actividad-toggle]').forEach(btn => {
+            const sel = btn.getAttribute('data-actividad-toggle');
+            const panel = document.querySelector(sel);
+            const seeEl = btn.querySelector('[data-see]');
+
+            btn.addEventListener('click', () => {
+                const isOpen = panel.getAttribute('data-open') === '1';
+                if (isOpen) {
+                    panel.style.maxHeight = '0px';
+                    panel.setAttribute('data-open', '0');
+                    if (seeEl) seeEl.textContent = ' (Ver más)';
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + 'px';
+                    panel.setAttribute('data-open', '1');
+                    if (seeEl) seeEl.textContent = ' (Ver menos)';
+                }
+            });
+
+            // Si está abierto por defecto, asegurar altura correcta
+            if (panel.getAttribute('data-open') === '1') {
+                setTimeout(() => panel.style.maxHeight = panel.scrollHeight + 'px', 0);
+                if (seeEl) seeEl.textContent = ' (Ver menos)';
+            }
+        });
+    </script>
+</body>
+
+</html>

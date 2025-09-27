@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.html", "./src/**/*.js"],
+  content: [
+    './index.html',
+    './src/**/*.html',
+    './src/**/*.js',
+  ],
   safelist: [
     'md:w-0',
     'md:w-64',

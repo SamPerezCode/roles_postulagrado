@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostulaGrado — Directorio de contactos</title>
+    <link rel="stylesheet" href="../../../dist/output.css" />
+</head>
+
+<body class="min-h-screen bg-gray-100 text-gray-900">
+    <div class="min-h-[100dvh] md:flex">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 translate-x-[-100%]
+        bg-blue-900 text-white flex flex-col justify-between
+        transition-transform duration-300 ease-out
+        md:static md:z-auto md:w-64 md:translate-x-0 md:shrink-0 md:overflow-hidden">
+
+            <div class="p-6">
+                <a href="#" class="flex items-center gap-2">
+                    <span class="text-xl font-semibold tracking-tight">PostulaGrado</span>
+                </a>
+
+                <nav class="mt-6">
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="../admisiones/index.html"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M3 4.5A1.5 1.5 0 0 1 4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15Z" />
+                                </svg>
+                                <span>Procesos</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="../seguimientos/seguimientos.html"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 10.59 3.29 3.3-1.42 1.41L11 13.41V7h2v5.59Z" />
+                                </svg>
+                                <span>Seguimientos</span>
+                            </a>
+                        </li>
+
+                        <!-- ACTIVO -->
+                        <li>
+                            <a href="./index.html"
+                                class="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/15 font-semibold ring-white/40 focus:outline-none focus:ring-4"
+                                aria-current="page">
+                                <span
+                                    class="absolute left-0 top-0 h-full w-1 bg-white rounded-tl-full rounded-bl-full"></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm3 0v12h12V6H6Zm2 2h8v2H8V8Zm0 4h8v2H8v-2Z" />
+                                </svg>
+                                <span>Directorio de contactos</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="../notificaciones/notificaciones_index.html"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
+                                </svg>
+                                <span>Notificaciones</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M4 5h16v2H4V5Zm0 6h10v2H4v-2Zm0 6h16v2H4v-2Z" />
+                                </svg>
+                                <span>Reportes</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- <div class="p-6">
+                <button
+                    class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white text-blue-900 px-4 py-2 text-sm font-semibold shadow-sm hover:bg-blue-50 focus:outline-none focus:ring-4 focus:ring-white/40">
+                    Cerrar sesión
+                </button>
+            </div> -->
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4 p-4 sm:p-6">
+            <!-- Header -->
+            <header class="relative z-30 flex items-center justify-between rounded-2xl border bg-white p-4 shadow-sm">
+                <div class="flex min-w-0 items-center gap-2 sm:gap-3">
+                    <button id="btnSidebar" class="rounded-lg p-2 text-blue-900 hover:bg-blue-50 focus:outline-none"
+                        aria-label="Abrir menú">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z" />
+                        </svg>
+                    </button>
+                    <h2 class="truncate text-base font-semibold text-blue-900 sm:text-lg">
+                        Listado de Contactos de Programas
+                    </h2>
+                </div>
+
+                <div class="flex shrink-0 items-center gap-2 sm:gap-4">
+                    <!-- Campana (dropdown ya existente) -->
+                    <div class="relative">
+                        <button id="btnBell" aria-expanded="false"
+                            class="relative rounded-full p-2 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
+                            </svg>
+                            <span
+                                class="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">7</span>
+                        </button>
+
+                        <div id="menuBell"
+                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-80 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
+                            role="menu" aria-label="Notificaciones" tabindex="-1">
+                            <div class="mb-2 flex items-center justify-between">
+                                <h3 class="text-sm font-semibold text-gray-900">Últimas notificaciones</h3>
+                                <span class="text-xs text-gray-500">hoy</span>
+                            </div>
+                            <ul class="max-h-64 space-y-2 overflow-y-auto text-sm">
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📌 Nueva convocatoria abierta <span
+                                        class="ml-2 text-xs text-gray-500">08:20</span></li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">✅ Revisión de postulaciones
+                                    completada</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📅 Cierre de postulaciones el 20 de
+                                    marzo</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔔 Recordatorio: Verificar documentos
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Avatar -->
+                    <div class="relative">
+                        <button id="btnUser" aria-expanded="false"
+                            class="flex items-center gap-2 rounded-full bg-gray-100 p-1 pl-1 pr-1 sm:pl-1 sm:pr-3 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <span
+                                class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-blue-900 text-white font-semibold">A</span>
+                            <span class="hidden md:block text-sm font-medium text-gray-800">Abimelec Enoc</span>
+                        </button>
+
+                        <div id="menuUser"
+                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-64 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
+                            role="menu" aria-label="Cuenta" tabindex="-1">
+                            <div class="mb-2">
+                                <p class="text-sm font-semibold text-gray-900">Abimelec Enoc</p>
+                                <p class="text-xs text-gray-500">Rol: Admisiones</p>
+                            </div>
+                            <div class="my-2 h-px bg-gray-200"></div>
+                            <button
+                                class="inline-flex w-full items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-left text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300">
+                                Cerrar sesión
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenido A PANTALLA COMPLETA -->
+            <section class="rounded-2xl border bg-white p-6 shadow-sm">
+                <!-- Toolbar -->
+                <div class="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    <h1 class="text-2xl font-bold tracking-tight">Contactos de Programas</h1>
+
+                    <div class="flex items-center gap-2">
+                        <div class="relative">
+                            <input id="buscarContacto" type="text" placeholder="Buscar contacto..."
+                                class="peer w-full md:w-80 rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200" />
+                            <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-60">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm11 19-5.2-5.2-1.4 1.4L19.6 22 21 20.6Z" />
+                                </svg>
+                            </span>
+                        </div>
+
+                        <button
+                            class="inline-flex items-center gap-2 rounded-xl bg-blue-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6Z" />
+                            </svg>
+                            Nuevo contacto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ====== MÓVIL: TARJETAS ====== -->
+                <div id="cardsContactos" class="grid gap-3 md:hidden">
+                    <!-- Card 1 -->
+                    <article class="rounded-xl border bg-white p-4 shadow-sm">
+                        <h3 class="text-base font-semibold text-gray-900" data-title>Clara Mireya Bonilla</h3>
+                        <p class="mt-1 text-sm text-gray-700">
+                            <span class="font-medium">Email:</span>
+                            clara.bonilla@universidadmayor.edu.co
+                        </p>
+                        <p class="mt-1 text-sm text-gray-700">
+                            <span class="font-medium">Programa:</span>
+                            TECNOLOGÍA EN ADMINISTRACIÓN Y EJECUCIÓN DE CONSTRUCCIONES
+                        </p>
+
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <a href="./ver_datos.html"
+                                class="rounded-md border px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50">Ver
+                                datos</a>
+                            <a href="./form_edit_contacto.html"
+                                class="rounded-md bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100">Editar</a>
+                            <button
+                                class="rounded-md bg-red-50 px-3 py-1 text-xs font-medium text-red-700 hover:bg-red-100">Eliminar</button>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="rounded-xl border bg-white p-4 shadow-sm">
+                        <h3 class="text-base font-semibold text-gray-900" data-title>Luisa Raquel Molina Quintero</h3>
+                        <p class="mt-1 text-sm text-gray-700">
+                            <span class="font-medium">Email:</span>
+                            lrmolina@unicolmayor.edu.co
+                        </p>
+                        <p class="mt-1 text-sm text-gray-700">
+                            <span class="font-medium">Programa:</span>
+                            ESPECIALIZACIÓN DERECHO INTERNACIONAL PÚBLICO
+                        </p>
+
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <a href="./ver_datos.html"
+                                class="rounded-md border px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50">Ver
+                                datos</a>
+                            <a href="./form_edit_contacto.html"
+                                class="rounded-md bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100">Editar</a>
+                            <button
+                                class="rounded-md bg-red-50 px-3 py-1 text-xs font-medium text-red-700 hover:bg-red-100">Eliminar</button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- ====== DESKTOP: TABLA (compacta, estilo Laravel) ====== -->
+                <div class="hidden md:block">
+                    <div class="relative overflow-x-auto overflow-y-visible [scrollbar-gutter:stable]">
+                        <!-- densidad compacta -->
+                        <table class="w-full min-w-[900px] table-auto text-[13px] leading-tight border-collapse">
+                            <thead class="bg-gray-100 text-gray-700 text-[12px]">
+                                <tr>
+                                    <th class="px-4 py-2 text-left font-medium w-[30%]">Nombre</th>
+                                    <th class="px-4 py-2 text-left font-medium w-[30%]">Email</th>
+                                    <th class="px-4 py-2 text-left font-medium w-[30%]">Programa</th>
+                                    <th class="px-4 py-2 text-center font-medium w-[10%]">Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tbContactos" class="border-t">
+                                <!-- Row 1 -->
+                                <tr class="border-b border-gray-200 bg-white hover:bg-gray-50 transition">
+                                    <td class="px-4 py-2 text-gray-900 whitespace-nowrap"
+                                        data-title="Clara Mireya Bonilla">
+                                        Clara Mireya Bonilla
+                                    </td>
+                                    <td class="px-4 py-2 text-gray-900 whitespace-nowrap">
+                                        clara.bonilla@universidadmayor.edu.co
+                                    </td>
+                                    <td class="px-4 py-2 text-gray-900 break-words">
+                                        TECNOLOGÍA EN ADMINISTRACIÓN Y EJECUCIÓN DE CONSTRUCCIONES
+                                    </td>
+                                    <td class="px-2 py-2 align-middle">
+                                        <button type="button" class="menu-btn rounded-lg p-1.5 hover:bg-gray-100"
+                                            aria-haspopup="menu" aria-expanded="false" data-id="1"
+                                            data-view="./ver_datos.html" data-edit="./form_edit_contacto.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600"
+                                                viewBox="0 0 24 24" fill="currentColor">
+                                                <path
+                                                    d="M12 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+                                            </svg>
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                                <!-- Row 2 -->
+                                <tr class="border-b border-gray-200 bg-white hover:bg-gray-50 transition">
+                                    <td class="px-4 py-2 text-gray-900 whitespace-nowrap"
+                                        data-title="Luisa Raquel Molina Quintero">
+                                        Luisa Raquel Molina Quintero
+                                    </td>
+                                    <td class="px-4 py-2 text-gray-900 whitespace-nowrap">
+                                        lrmolina@unicolmayor.edu.co
+                                    </td>
+                                    <td class="px-4 py-2 text-gray-900 break-words">
+                                        ESPECIALIZACIÓN DERECHO INTERNACIONAL PÚBLICO
+                                    </td>
+                                    <td class="px-2 py-2 align-middle">
+                                        <button type="button" class="menu-btn rounded-lg p-1.5 hover:bg-gray-100"
+                                            aria-haspopup="menu" aria-expanded="false" data-id="1"
+                                            data-view="./ver_datos.html" data-edit="./form_edit_contacto.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600"
+                                                viewBox="0 0 24 24" fill="currentColor">
+                                                <path
+                                                    d="M12 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+                                            </svg>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ====== Menú flotante global (una sola vez) ====== -->
+                <div id="contact-menu" class="hidden fixed z-[80] w-40 rounded-2xl border bg-white p-2 shadow-lg">
+                    <a id="cm-view" href="../directorio_de_contactos/ver_datos.html"
+                        class="block rounded-md px-3 py-2 text-sm text-gray-800 hover:bg-gray-50">
+                        Ver datos
+                    </a>
+                    <a id="cm-edit" href="../directorio_de_contactos/form_edit_contacto.html"
+                        class="block rounded-md px-3 py-2 text-sm text-gray-800 hover:bg-gray-50">
+                        Editar
+                    </a>
+                    <button id="cm-delete"
+                        class="block w-full text-left rounded-md px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50">
+                        Eliminar
+                    </button>
+                </div>
+
+
+
+            </section>
+
+
+
+            <!-- Footer -->
+            <footer class="rounded-2xl border bg-white p-4 text-center text-xs text-gray-600 shadow-sm">
+                © 2025 Universidad Colegio Mayor de Cundinamarca - Todos los derechos reservados
+            </footer>
+        </main>
+    </div>
+
+    <!-- JS -->
+    <script src="../../src/assets/app.js" defer></script>
+    <script src="../assets/sidebar-active.js"></script>
+    <script>
+        /* ------- Buscador rápido (desktop y móvil si quieres reutilizar) ------- */
+        const buscarContacto = document.getElementById('buscarContacto');
+        if (buscarContacto) {
+            buscarContacto.addEventListener('input', e => {
+                const q = e.target.value.toLowerCase()
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                document.querySelectorAll('#tbContactos tr').forEach(tr => {
+                    const text = tr.innerText.toLowerCase()
+                        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    tr.style.display = text.includes(q) ? '' : 'none';
+                });
+            });
+        }
+
+        /* ------------- Menú flotante global (fixed, sin saltos) ------------- */
+        (function initContactMenu() {
+            const menu = document.getElementById('contact-menu');
+            const linkV = document.getElementById('cm-view');
+            const linkE = document.getElementById('cm-edit');
+            const btnDel = document.getElementById('cm-delete');
+
+            let openedForBtn = null;
+
+            function openMenuFor(btn) {
+                // Rellenar rutas desde data-* (ajústalas si usas IDs reales)
+                const viewHref = btn.getAttribute('data-view') || '#';
+                const editHref = btn.getAttribute('data-edit') || '#';
+                linkV.href = viewHref;
+                linkE.href = editHref;
+
+                // Posicionar (fixed) pegado al botón
+                const r = btn.getBoundingClientRect();
+                const top = r.bottom + 6 + window.scrollY;
+                const left = r.left + window.scrollX - (menu.offsetWidth - r.width);
+
+                menu.style.top = `${top}px`;
+                menu.style.left = `${Math.max(8, left)}px`; // margen izq mínimo
+                menu.classList.remove('hidden');
+                openedForBtn = btn;
+            }
+
+            function closeMenu() {
+                if (!menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    openedForBtn = null;
+                }
+            }
+
+            document.querySelectorAll('.menu-btn').forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    if (openedForBtn === btn) {
+                        closeMenu();
+                    } else {
+                        openMenuFor(btn);
+                    }
+                });
+            });
+
+            // Cerrar en click fuera / scroll / resize / ESC
+            document.addEventListener('click', closeMenu);
+            window.addEventListener('scroll', closeMenu, { passive: true });
+            window.addEventListener('resize', closeMenu);
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+            // Acción Eliminar (aquí sólo demo; integra tu confirmación/SweetAlert si quieres)
+            btnDel.addEventListener('click', () => {
+                closeMenu();
+                // TODO: engancha tu flujo real de borrado
+                console.log('Eliminar contacto…');
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

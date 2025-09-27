@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostulaGrado — Ver contacto</title>
+    <link rel="stylesheet" href="../../../dist/output.css" />
+</head>
+
+<body class="min-h-screen bg-gray-100 text-gray-900">
+    <div class="min-h-[100dvh] md:flex">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 translate-x-[-100%]
+      bg-blue-900 text-white flex flex-col justify-between
+      transition-transform duration-300 ease-out
+      md:static md:z-auto md:w-64 md:translate-x-0 md:shrink-0 md:overflow-hidden">
+
+            <!-- overlay móvil -->
+            <div id="overlay" class="hidden fixed inset-0 z-[40] bg-black/40 md:hidden"></div>
+
+            <div class="p-6">
+                <a href="#" class="flex items-center gap-2">
+                    <span class="text-xl font-semibold tracking-tight">PostulaGrado</span>
+                </a>
+
+                <nav class="mt-6">
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="../admisiones/index.html"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M3 4.5A1.5 1.5 0 0 1 4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15Z" />
+                                </svg>
+                                <span>Procesos</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="../seguimientos/seguimientos.html"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 10.59 3.29 3.3-1.42 1.41L11 13.41V7h2v5.59Z" />
+                                </svg>
+                                <span>Seguimientos</span>
+                            </a>
+                        </li>
+
+                        <!-- ACTIVO -->
+                        <li>
+                            <a href="./directorio_index.html"
+                                class="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/15 font-semibold ring-white/40 focus:outline-none focus:ring-4"
+                                aria-current="page">
+                                <span
+                                    class="absolute left-0 top-0 h-full w-1 bg-white rounded-tl-full rounded-bl-full"></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm3 0v12h12V6H6Zm2 2h8v2H8V8Zm0 4h8v2H8v-2Z" />
+                                </svg>
+                                <span>Directorio de contactos</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
+                                </svg>
+                                <span>Notificaciones</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M4 5h16v2H4V5Zm0 6h10v2H4v-2Zm0 6h16v2H4v-2Z" />
+                                </svg>
+                                <span>Reportes</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- <div class="p-6">
+                <button
+                    class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white text-blue-900 px-4 py-2 text-sm font-semibold shadow-sm hover:bg-blue-50 focus:outline-none focus:ring-4 focus:ring-white/40">
+                    Cerrar sesión
+                </button>
+            </div> -->
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4 p-4 sm:p-6">
+            <!-- Header -->
+            <header class="relative z-30 flex items-center justify-between rounded-2xl border bg-white p-4 shadow-sm">
+                <div class="flex min-w-0 items-center gap-2 sm:gap-3">
+                    <button id="btnSidebar" class="rounded-lg p-2 text-blue-900 hover:bg-blue-50 focus:outline-none"
+                        aria-label="Abrir menú">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z" />
+                        </svg>
+                    </button>
+                    <h2 class="truncate text-base font-semibold text-blue-900 sm:text-lg">
+                        Editar Contacto
+                    </h2>
+                </div>
+
+                <div class="flex shrink-0 items-center gap-2 sm:gap-4">
+                    <!-- Campana -->
+                    <div class="relative">
+                        <button id="btnBell" aria-expanded="false"
+                            class="relative rounded-full p-2 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
+                            </svg>
+                            <span
+                                class="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">7</span>
+                        </button>
+
+                        <div id="menuBell"
+                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-80 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
+                            role="menu" aria-label="Notificaciones" tabindex="-1">
+                            <div class="mb-2 flex items-center justify-between">
+                                <h3 class="text-sm font-semibold text-gray-900">Últimas notificaciones</h3>
+                                <span class="text-xs text-gray-500">hoy</span>
+                            </div>
+                            <ul class="max-h-64 space-y-2 overflow-y-auto text-sm">
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📌 Nueva convocatoria abierta</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">✅ Revisión de postulaciones
+                                    completada</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📅 Próximo cierre de postulaciones
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Avatar -->
+                    <div class="relative">
+                        <button id="btnUser" aria-expanded="false"
+                            class="flex items-center gap-2 rounded-full bg-gray-100 p-1 pr-3 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <span
+                                class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-blue-900 text-white font-semibold">A</span>
+                            <span class="hidden md:block text-sm font-medium text-gray-800">Abimelec Enoc</span>
+                        </button>
+
+                        <div id="menuUser"
+                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-64 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
+                            role="menu" aria-label="Cuenta" tabindex="-1">
+                            <div class="mb-2">
+                                <p class="text-sm font-semibold text-gray-900">Abimelec Enoc</p>
+                                <p class="text-xs text-gray-500">Rol: Admisiones</p>
+                            </div>
+                            <div class="my-2 h-px bg-gray-200"></div>
+                            <button
+                                class="inline-flex w-full items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-left text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300">
+                                Cerrar sesión
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenido -->
+            <section class="rounded-2xl border bg-white p-6 shadow-sm">
+                <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <h3 class="text-base font-semibold text-gray-900">Editar Contacto</h3>
+
+
+                </div>
+
+                <form id="frmContacto" class="mx-auto max-w-5xl grid gap-5">
+                    <!-- Nombre -->
+                    <div>
+                        <label for="nombre" class="block text-sm font-medium text-gray-800">Nombre</label>
+                        <input id="nombre" name="nombre" type="text" autocomplete="name" required
+                            value="Clara Mireya Bonilla"
+                            class="mt-1 w-full rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200">
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div>
+                        <label for="telefono" class="block text-sm font-medium text-gray-800">Teléfono</label>
+                        <input id="telefono" name="telefono" type="tel" inputmode="numeric" pattern="[0-9\s]+"
+                            value="3001234567"
+                            class="mt-1 w-full rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200">
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-800">Email</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required
+                            value="clara.bonilla@universidadmayor.edu.co"
+                            class="mt-1 w-full rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200">
+                    </div>
+
+                    <!-- Programa (select normal, misma densidad que inputs) -->
+                    <div>
+                        <label for="programa" class="block text-sm font-medium text-gray-800">Programa</label>
+                        <select id="programa" name="programa"
+                            class="mt-1 w-full rounded-xl border bg-white px-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            <option value="" disabled>Seleccione un programa…</option>
+
+                            <!-- opción actual -->
+                            <option selected>
+                                Tecnología en Administración y Ejecución de Construcciones
+                            </option>
+
+                            <!-- demo: agrega aquí tu catálogo real -->
+                            <option>Tecnología en Asistencia Gerencial Presencial - (Funza)</option>
+                            <option>Tecnología en Asistencia Gerencial Presencial - Diurno</option>
+                            <option>Tecnología en Asistencia Gerencial Presencial - Nocturno</option>
+                            <option>Especialización Derecho Internacional Público</option>
+                            <option>Especialización Metodología BIM</option>
+                            <option>Administración de Empresas</option>
+                            <option>Ingeniería de Sistemas</option>
+                            <option>Trabajo Social</option>
+                            <option>Enfermería</option>
+                        </select>
+                    </div>
+
+                    <!-- Observación -->
+                    <div>
+                        <label for="observacion" class="block text-sm font-medium text-gray-800">Observación</label>
+                        <textarea id="observacion" name="observacion" rows="6"
+                            class="mt-1 w-full rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-blue-200">No hay observaciones</textarea>
+                    </div>
+
+                    <!-- Botones (al final también) -->
+                    <div class="mt-1 flex items-center justify-end gap-3">
+                        <a href="./ver_datos.html"
+                            class="rounded-xl border px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-200">
+                            Cancelar
+                        </a>
+                        <button
+                            class="rounded-xl bg-blue-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+
+            <script>
+                // Buscador para el <select> de programas (sin librerías)
+                (function () {
+                    const filter = document.getElementById('programFilter');
+                    const select = document.getElementById('programa');
+                    if (!filter || !select) return;
+
+                    // Guarda todas las opciones originales
+                    const original = Array.from(select.options).map(o => o.text);
+
+                    filter.addEventListener('input', () => {
+                        const q = filter.value.toLowerCase()
+                            .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                        // Limpia
+                        select.innerHTML = '';
+                        // Filtra y vuelve a renderizar
+                        original
+                            .filter(txt => txt.toLowerCase()
+                                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                                .includes(q))
+                            .forEach(txt => {
+                                const opt = document.createElement('option');
+                                opt.text = txt;
+                                select.add(opt);
+                            });
+                        // Selecciona la primera visible para comodidad
+                        if (select.options.length) select.selectedIndex = 0;
+                    });
+
+                    // Demo de guardado (evita navegación). Integra con tu backend.
+                    document.getElementById('frmContacto')?.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        // Aquí iría el POST/PUT real…
+                        alert('Cambios guardados (demo).');
+                        // window.location.href = './ver_datos.html';
+                    });
+                })();
+            </script>
+
+
+
+
+            <!-- Footer -->
+            <footer class="rounded-2xl border bg-white p-4 text-center text-xs text-gray-600 shadow-sm">
+                © 2025 Universidad Colegio Mayor de Cundinamarca - Todos los derechos reservados
+            </footer>
+        </main>
+    </div>
+
+    <!-- JS base (sidebar + menús del header) -->
+    <script src="../../src/assets/app.js" defer></script>
+    <script src="../assets/sidebar-active.js" defer></script>
+</body>
+
+</html>

@@ -4,21 +4,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PostulaGrado — Programa Academico</title>
-    <!-- CSS compilado por Tailwind CLI -->
-    <link rel="stylesheet" href="../../dist/output.css" />
+    <title>PostulaGrado — Ver contacto</title>
+    <link rel="stylesheet" href="../../../dist/output.css" />
 </head>
 
 <body class="min-h-screen bg-gray-100 text-gray-900">
-
-    <!-- DASHBOARD -->
     <div class="min-h-[100dvh] md:flex">
         <!-- Sidebar -->
-        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 translate-x-[-100%]  /* drawer cerrado en móvil */
-            bg-blue-900 text-white flex flex-col justify-between
-            transition-transform duration-300 ease-out
-            md:static md:z-auto md:w-64 md:translate-x-0 md:shrink-0 md:overflow-hidden">
-            <!-- Overlay del drawer en móviles -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 translate-x-[-100%]
+      bg-blue-900 text-white flex flex-col justify-between
+      transition-transform duration-300 ease-out
+      md:static md:z-auto md:w-64 md:translate-x-0 md:shrink-0 md:overflow-hidden">
+
+            <!-- overlay móvil -->
             <div id="overlay" class="hidden fixed inset-0 z-[40] bg-black/40 md:hidden"></div>
 
             <div class="p-6">
@@ -28,33 +26,9 @@
 
                 <nav class="mt-6">
                     <ul class="space-y-1">
-                        <!-- Dashboard ACTIVO -->
                         <li>
-
-                            <a href="./index_principal.html"
+                            <a href="../admisiones/index.html"
                                 class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
-                                <!-- Icono Home -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path d="M3 9.75 12 3l9 6.75V21a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V9.75Z" />
-                                    <path d="M9 21V12h6v9H9Z" class="fill-blue-100" />
-                                </svg>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-
-                        <!-- Procesos -->
-
-                        <li>
-
-
-                            <a href="../../index.html"
-                                class="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/15 font-semibold ring-white/40 focus:outline-none focus:ring-4"
-                                aria-current="page">
-                                <span
-                                    class="absolute left-0 top-0 h-full w-1 bg-white rounded-tl-full rounded-bl-full"></span>
-
-                                <!-- Icono procesos -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
                                     fill="currentColor">
                                     <path
@@ -64,12 +38,50 @@
                             </a>
                         </li>
 
-                        <!-- Reportes -->
                         <li>
-                            <a href="./reportes.html"
+                            <a href="../seguimientos/seguimientos.html"
                                 class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
-                                <!-- Icono Lista -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 10.59 3.29 3.3-1.42 1.41L11 13.41V7h2v5.59Z" />
+                                </svg>
+                                <span>Seguimientos</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="../directorio_de_contactos/directorio_index.html"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm3 0v12h12V6H6Zm2 2h8v2H8V8Zm0 4h8v2H8v-2Z" />
+                                </svg>
+                                <span>Directorio de contactos</span>
+                            </a>
+                        </li>
+
+                        <!-- ACTIVO -->
+                        <li>
+                            <a href="./notificaciones.html"
+                                class="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-white/15 font-semibold ring-white/40 focus:outline-none focus:ring-4"
+                                aria-current="page">
+                                <span
+                                    class="absolute left-0 top-0 h-full w-1 bg-white rounded-tl-full rounded-bl-full"></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
+                                </svg>
+                                <span>Notificaciones</span>
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="#"
+                                class="flex items-center gap-2 px-3 py-2 rounded-lg text-blue-100 hover:bg-white/10 focus:outline-none focus:ring-4 ring-white/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-90" viewBox="0 0 24 24"
                                     fill="currentColor">
                                     <path d="M4 5h16v2H4V5Zm0 6h10v2H4v-2Zm0 6h16v2H4v-2Z" />
                                 </svg>
@@ -80,11 +92,15 @@
                 </nav>
             </div>
 
-
+            <!-- <div class="p-6">
+                <button
+                    class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white text-blue-900 px-4 py-2 text-sm font-semibold shadow-sm hover:bg-blue-50 focus:outline-none focus:ring-4 focus:ring-white/40">
+                    Cerrar sesión
+                </button>
+            </div> -->
         </aside>
 
         <!-- Main -->
-        <!-- 3 filas: header-local/toolbar (auto) | contenido (1fr) | footer (auto) -->
         <main class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4 p-4 sm:p-6">
             <!-- Header -->
             <header class="relative z-30 flex items-center justify-between rounded-2xl border bg-white p-4 shadow-sm">
@@ -97,18 +113,21 @@
                         </svg>
                     </button>
                     <h2 class="truncate text-base font-semibold text-blue-900 sm:text-lg">
-                        Seguimiento a Procesos de Grado
+                        Seleccione un Proceso
                     </h2>
+
                 </div>
 
                 <div class="flex shrink-0 items-center gap-2 sm:gap-4">
-                    <!-- Campana + dropdown -->
-                    <div class="relative"> <button id="btnBell" aria-expanded="false"
+                    <!-- Campana -->
+                    <div class="relative">
+                        <button id="btnBell" aria-expanded="false"
                             class="relative rounded-full p-2 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-200">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" viewBox="0 0 24 24"
                                 fill="currentColor">
                                 <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
-                            </svg> <span
+                            </svg>
+                            <span
                                 class="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">7</span>
                         </button>
 
@@ -120,31 +139,19 @@
                                 <span class="text-xs text-gray-500">hoy</span>
                             </div>
                             <ul class="max-h-64 space-y-2 overflow-y-auto text-sm">
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">📌 Nueva convocatoria abierta <span
-                                        class="ml-2 text-xs text-gray-500">08:20</span></li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">⚠️ Actualiza tus datos antes del 10
-                                    de marzo</li>
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📌 Nueva convocatoria abierta</li>
                                 <li class="rounded-lg border p-2 hover:bg-gray-50">✅ Revisión de postulaciones
                                     completada</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔄 Mantenimiento programado el 15 de
-                                    marzo</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">📅 Cierre de postulaciones el 20 de
-                                    marzo</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">🚀 Nueva actualización disponible
-                                </li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔔 Recordatorio: Verificar documentos
+                                <li class="rounded-lg border p-2 hover:bg-gray-50">📅 Próximo cierre de postulaciones
                                 </li>
                             </ul>
-                            <div class="mt-2 text-right">
-                                <button class="text-xs font-medium text-blue-700 hover:underline">Ver todas</button>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Avatar + dropdown -->
+                    <!-- Avatar -->
                     <div class="relative">
                         <button id="btnUser" aria-expanded="false"
-                            class="flex items-center gap-2 rounded-full bg-gray-100 p-1 pl-1 pr-1 sm:pl-1 sm:pr-3 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            class="flex items-center gap-2 rounded-full bg-gray-100 p-1 pr-3 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
                             <span
                                 class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-blue-900 text-white font-semibold">A</span>
                             <span class="hidden md:block text-sm font-medium text-gray-800">Abimelec Enoc</span>
@@ -157,7 +164,6 @@
                                 <p class="text-sm font-semibold text-gray-900">Abimelec Enoc</p>
                                 <p class="text-xs text-gray-500">Rol: Admisiones</p>
                             </div>
-
                             <div class="my-2 h-px bg-gray-200"></div>
                             <button
                                 class="inline-flex w-full items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-left text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300">
@@ -168,47 +174,55 @@
                 </div>
             </header>
 
-
             <!-- Contenido -->
-            <section class="w-full bg-white rounded-2xl shadow-sm border p-4 sm:p-6 lg:p-8">
-                <h2 class="text-lg sm:text-xl font-semibold text-gray-900 mb-6">
-                    Seleccione el Proceso
-                </h2>
+            <section class="rounded-2xl border bg-white p-6 shadow-sm">
+                <div class="mx-auto max-w-5xl">
+                    <h3 class="text-base font-semibold text-gray-900 mb-6">Seleccione un Proceso</h3>
 
-                <!-- Campo de selección -->
-                <div>
-                    <label for="proceso" class="block text-sm font-medium text-gray-800 mb-2">Proceso Activo</label>
-                    <select id="proceso" name="proceso" class="w-full rounded-xl border px-4 py-3 text-sm bg-white shadow-sm
-                    focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-400">
-                        <option selected disabled>Seleccione un proceso</option>
-                        <option>Proceso de grado 2025-1 - POSTGRADO</option>
-                        <option>Proceso de grado 2025-2 - PREGRADO</option>
-                        <option>Proceso de grado 2024-2 - POSTGRADO</option>
-                        <option>Proceso de grado 2024-1 - PREGRADO</option>
-                    </select>
+                    <div>
+                        <label for="proceso" class="block text-sm font-medium text-gray-800 mb-2">
+                            Procesos disponibles
+                        </label>
+
+                        <select id="proceso" name="proceso" class="w-full rounded-xl border px-4 py-3 text-sm bg-white shadow-sm
+                     focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-400">
+                            <option selected disabled>-- Seleccione un proceso --</option>
+                            <option>Proceso de grado 2025-1</option>
+                            <option>Proceso de grado 2025-2</option>
+                            <option>Proceso de grado 2024-2</option>
+                            <option>Proceso de grado 2024-1</option>
+                            <option>Proceso especial Posgrados</option>
+                            <option>Proceso de admisión extraordinaria</option>
+                            <option>Proceso de convalidación externa</option>
+                            <option>Proceso de prácticas 2025</option>
+                        </select>
+                    </div>
                 </div>
             </section>
+
+
+
+
 
 
             <!-- Footer -->
             <footer class="rounded-2xl border bg-white p-4 text-center text-xs text-gray-600 shadow-sm">
                 © 2025 Universidad Colegio Mayor de Cundinamarca - Todos los derechos reservados
             </footer>
-
         </main>
     </div>
 
-    <!-- JS mínimo para dropdowns y cierre por click fuera -->
-
+    <!-- JS base (sidebar + menús del header) -->
     <script src="../../src/assets/app.js" defer></script>
-    <script src="../assets/sidebar-active.js"></script>
+    <script src="../assets/sidebar-active.js" defer></script>
+
     <script>
         document.getElementById("proceso").addEventListener("change", function () {
-            // Redirige siempre al mismo documento
-            window.location.href = "seguimiento_proceso.html";
+            if (this.value !== "-- Seleccione un proceso --") {
+                window.location.href = "notificaciones_proceso.html";
+            }
         });
     </script>
-
 
 </body>
 
