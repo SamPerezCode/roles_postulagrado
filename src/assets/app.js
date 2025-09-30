@@ -1,5 +1,3 @@
-
-
 (() => {
     // -------- Utils --------
     const $ = (s, r = document) => r.querySelector(s);
@@ -9,15 +7,17 @@
 
     const cls = {
         hidden: "hidden",
-        drawerClosed: "translate-x-[-100%]",
-        overlayShift: "left-72",
-        // dropdown
+        // Drawer cerrado (soporta ambas variantes usadas en tus vistas)
+        drawerClosed: ["-translate-x-full", "translate-x-[-100%]"],
+
+        // Dropdown helpers
         ddInvisible: ["invisible", "pointer-events-none", "opacity-0"],
-        ddVisible: ["opacity-100"],
-        // desktop collapse
-        mdW64: "md:w-64",
-        mdW0: "md:w-0",
+        ddVisible: ["opacity-100", "translate-y-1"],
     };
+
+    // Util: ¿el drawer está abierto?
+    const isDrawerOpen = (sidebar) =>
+        !cls.drawerClosed.some((c) => sidebar.classList.contains(c));
 
     // -------- Dropdowns (campana / usuario) --------
     function initDropdowns() {
@@ -25,7 +25,6 @@
         const menuBell = $("#menuBell");
         const btnUser = $("#btnUser");
         const menuUser = $("#menuUser");
-
         if (!btnBell || !menuBell || !btnUser || !menuUser) return;
 
         const closeMenu = (menu, btn) => {
@@ -63,49 +62,32 @@
         });
     }
 
-    // -------- Sidebar (desktop collapse + mobile drawer) --------
+    // -------- Sidebar (mobile drawer) --------
     function initSidebar() {
         const btnSidebar = $("#btnSidebar");
         const sidebar = $("#sidebar");
         const overlay = $("#overlay");
-
         if (!btnSidebar || !sidebar || !overlay) return;
 
-        let collapsed = false;
-
         const openMobileSidebar = () => {
-            sidebar.classList.remove(cls.drawerClosed);
+            sidebar.classList.remove(...cls.drawerClosed);
             overlay.classList.remove(cls.hidden);
-            overlay.classList.add(cls.overlayShift); // no cubre el sidebar
+            // fade in
+            requestAnimationFrame(() => overlay.classList.replace("opacity-0", "opacity-100"));
             document.body.classList.add("overflow-hidden");
         };
 
         const closeMobileSidebar = () => {
-            sidebar.classList.add(cls.drawerClosed);
-            overlay.classList.add(cls.hidden);
-            overlay.classList.remove(cls.overlayShift);
+            // fade out
+            overlay.classList.replace("opacity-100", "opacity-0");
+            sidebar.classList.add(...cls.drawerClosed);
+            setTimeout(() => overlay.classList.add(cls.hidden), 300); // mismo duration que el overlay
             document.body.classList.remove("overflow-hidden");
         };
 
-        const toggleDesktopSidebar = () => {
-            collapsed = !collapsed;
-            if (collapsed) {
-                sidebar.classList.remove(cls.mdW64);
-                sidebar.classList.add(cls.mdW0);
-            } else {
-                sidebar.classList.remove(cls.mdW0);
-                sidebar.classList.add(cls.mdW64);
-            }
-        };
-
         on(btnSidebar, "click", () => {
-            if (mqDesktop.matches) {
-                toggleDesktopSidebar();
-            } else {
-                const isOpen = !sidebar.classList.contains(cls.drawerClosed);
-                isOpen ? closeMobileSidebar() : openMobileSidebar();
-            }
-            // quita el focus visual
+            if (mqDesktop.matches) return; // en desktop no hacemos nada
+            isDrawerOpen(sidebar) ? closeMobileSidebar() : openMobileSidebar();
             btnSidebar.blur();
         });
 
@@ -114,13 +96,14 @@
         // reset por cambio de breakpoint
         mqDesktop.addEventListener("change", (e) => {
             if (e.matches) {
-                // entramos a desktop
+                // Entramos a desktop: aseguramos cerrado y limpiamos bloqueo de scroll
                 closeMobileSidebar();
-                sidebar.classList.add(cls.mdW64);
-                sidebar.classList.remove(cls.mdW0);
+                sidebar.classList.remove(...cls.drawerClosed);
             } else {
-                // entramos a móvil
-                collapsed = false;
+                // Entramos a móvil: que inicie cerrado
+                if (!cls.drawerClosed.some((c) => sidebar.classList.contains(c))) {
+                    sidebar.classList.add("-translate-x-full");
+                }
             }
         });
     }
@@ -141,17 +124,15 @@
             const isOpen = trigger.getAttribute("aria-expanded") === "true";
 
             // cerrar todos
-            $$
-                ('[data-accordion="item"]', root)
-                .forEach((el) => {
-                    const t = $('[data-accordion="trigger"]', el);
-                    const p = $('[data-accordion="panel"]', el);
-                    const c = $('[data-accordion="chevron"]', el);
-                    el.dataset.open = "false";
-                    t && t.setAttribute("aria-expanded", "false");
-                    if (p) p.style.maxHeight = null;
-                    c && c.classList.remove("rotate-180");
-                });
+            $$('[data-accordion="item"]', root).forEach((el) => {
+                const t = $('[data-accordion="trigger"]', el);
+                const p = $('[data-accordion="panel"]', el);
+                const c = $('[data-accordion="chevron"]', el);
+                el.dataset.open = "false";
+                t && t.setAttribute("aria-expanded", "false");
+                if (p) p.style.maxHeight = null;
+                c && c.classList.remove("rotate-180");
+            });
 
             // abrir seleccionado si estaba cerrado
             if (!isOpen) {
@@ -178,7 +159,6 @@
         initAccordion();
     }
 
-    // monta cuando el DOM esté listo
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", init, { once: true });
     } else {
