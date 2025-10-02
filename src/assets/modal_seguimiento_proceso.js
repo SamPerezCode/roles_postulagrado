@@ -64,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // 👇 añade esto:
+    window.openStudentsModal = openModal;   // alias global para usarlo desde otros scripts
+
     function closeModal() {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
@@ -129,25 +132,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function rowToData(row) {
         const tds = row.querySelectorAll('td');
-        if (tds.length < 8) return null;
+        if (tds.length < 7) return null;                 // ahora 7 es el mínimo
 
-        const pensum = tds[0].innerText.trim();
-        const codigo = tds[1].innerText.trim();
-        const documento = tds[2].innerText.trim();
-        const nombre = tds[3].innerText.trim();
-        const categoria = tds[4].innerText.trim();
-        const situacion = tds[5].innerText.trim();
-        const credPend = tds[6].innerText.trim();
-        const accionesTD = tds[7];
+        // Si hay 8 columnas, la 0 es "pensum"; si hay 7, empieza en "código"
+        const base = (tds.length >= 8) ? 1 : 0;
 
-        const btnVer = accionesTD.querySelector('button, a');           // primero
-        const btnQuitar = accionesTD.querySelectorAll('button, a')[1] || null;
+        const pensum = (tds.length >= 8) ? tds[0].innerText.trim() : '';
+        const codigo = tds[0 + base].innerText.trim();
+        const documento = tds[1 + base].innerText.trim();
+        const nombre = tds[2 + base].innerText.trim();
+        const categoria = tds[3 + base].innerText.trim();
+        const situacion = tds[4 + base].innerText.trim();
+        const credPend = tds[5 + base].innerText.trim();
+        const accionesTD = tds[6 + base];
+
+        const btns = accionesTD ? accionesTD.querySelectorAll('button, a') : [];
+        const btnVer = btns[0] || null;
+        const btnQuitar = btns[1] || null;
 
         return {
             row, pensum, codigo, documento, nombre,
             categoria, situacion, credPend, btnVer, btnQuitar
         };
     }
+
     window.rowToData = rowToData; // (por si lo necesitas afuera)
 
     function buildCardHTML(d) {
@@ -379,10 +387,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Oculta paginador
         togglePaginator(false);
 
-        // Oculta listado (tabla y cards)
+        // Oculta listado (wrapper tabla + cards)
+        const wrapEl = document.getElementById('listado-estudiantes');
         const tableEl = document.getElementById(TABLE_ID);
         const cardsEl = document.getElementById(CARDS_ID);
-        tableEl?.classList.add('hidden');
+
+        wrapEl?.classList.add('hidden');          // evita que md:table reaparezca
+        tableEl?.classList.add('hidden', 'md:hidden');
         cardsEl?.classList.add('hidden');
 
         // Oculta buscador y encabezados
@@ -390,16 +401,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('encabezado-contextual')?.classList.add('hidden');
 
         // Oculta form si está abierto
-        if (formBox && !formBox.classList.contains('hidden')) toggleAddForm('hide');
+        if (formBox && !formBox.classList.contains('hidden')) {
+            toggleAddForm('hide');
+        }
 
         // Muestra detalle
         document.getElementById('detalle-estudiante')?.classList.remove('hidden');
         scrollModalTop();
 
-        document.getElementById('detalle-estudiante')?.classList.remove('hidden');
-        scrollModalTop();
-
-        // ⬇️ Lanza el init en el próximo tick
+        // Inicializa checklist en el próximo tick
         setTimeout(() => {
             if (typeof window.initFormularioChecklist === 'function') {
                 window.initFormularioChecklist();
@@ -412,9 +422,20 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
+
     window.volverAListadoEstudiantes = function () {
         // Oculta detalle
         document.getElementById('detalle-estudiante')?.classList.add('hidden');
+
+        // Muestra el wrapper del listado y limpia bloqueos que pusimos
+        const wrapEl = document.getElementById('listado-estudiantes');
+        const tableEl = document.getElementById(TABLE_ID);
+        const cardsEl = document.getElementById(CARDS_ID);
+
+        wrapEl?.classList.remove('hidden');
+        tableEl?.classList.remove('md:hidden');   // habilita que el breakpoint decida
+        tableEl?.classList.remove('hidden');      // luego el sync decide si ocultar/mostrar
+        cardsEl?.classList.remove('hidden');
 
         // Según breakpoint, muestra tabla o cards
         syncListViewToBreakpoint();
@@ -433,6 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         scrollModalTop();
     };
+
 
     // Botón “volver al listado” (si existe)
     document.getElementById('btn-volver-listado')?.addEventListener('click', window.volverAListadoEstudiantes);
