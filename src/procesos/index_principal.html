@@ -22,10 +22,11 @@
   w-72 -translate-x-full
   bg-blue-900 text-white flex flex-col
   transition-transform duration-300 ease-out
-  md:static md:z-auto md:translate-x-0
+  md:sticky md:top-0 md:z-auto md:translate-x-0
   md:w-20 md:hover:w-64
   md:transition-all md:duration-300 md:ease-in-out
-  md:shrink-0 md:overflow-hidden" style="will-change: width, transform;">
+  md:shrink-0 md:h-screen md:max-h-screen
+  md:overflow-y-auto md:overflow-x-hidden" style="will-change: width, transform;">
 
             <!-- Brand -->
             <div class="px-4 pt-5 pb-3 flex items-center gap-3">
@@ -198,46 +199,257 @@
             </header>
 
 
-            <!-- Contenido -->
-            <!-- Información del programa académico -->
-            <section class="rounded-2xl border bg-white p-6 shadow-sm">
-                <h3 class="text-base font-semibold text-gray-900 mb-4">Programa académico</h3>
+            <!-- CONTENIDO -->
+            <section class="space-y-8 sm:space-y-10">
 
-                <!-- Card -->
-                <article class="rounded-2xl border bg-white p-5 shadow-sm">
-                    <!-- Título -->
-                    <h2 class="text-xl sm:text-2xl font-semibold leading-snug text-blue-900">
-                        Especialización Derecho Internacional Público
-                    </h2>
-
-                    <!-- Detalles -->
-                    <div class="mt-3 space-y-2 text-sm sm:text-base">
-                        <p class="text-gray-800">
-                            <span class="font-medium text-gray-600">Unidad Regional:</span>
-                            <span class="ml-1">
-                                <span class="font-semibold">Sede Principal</span> - Bogotá D.C. -
-                                Calle 28 Nº 5B - 02
-                            </span>
-                        </p>
-
-                        <p class="text-gray-800">
-                            <span class="font-medium text-gray-600">Código SNIES:</span>
-                            <span class="ml-1 font-semibold">109908</span>
-                        </p>
+                <!-- Header -->
+                <header class="rounded-2xl border bg-white p-6 sm:p-7 shadow-sm">
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                        <div>
+                            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-blue-900">Programa Académico
+                            </h1>
+                            <p class="text-sm text-gray-600">Especialización Derecho Internacional Público</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="./index_procesos.html"
+                                class="inline-flex items-center rounded-xl bg-blue-900 px-3 py-2 text-sm font-semibold text-white hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                Ver procesos
+                            </a>
+                        </div>
                     </div>
-                </article>
+                </header>
+
+                <!-- KPIs -->
+                <section class="rounded-2xl border bg-white p-6 sm:p-7 shadow-sm">
+                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <!-- Aspirantes vinculados -->
+                        <article class="rounded-xl border bg-white p-4 sm:p-5 shadow-sm">
+                            <p class="text-xs font-medium text-gray-600">Aspirantes vinculados</p>
+                            <div class="mt-1 flex items-end gap-2">
+                                <span class="text-2xl font-semibold text-gray-900">126</span>
+                                <span class="text-xs text-emerald-700 font-medium">+8 esta semana</span>
+                            </div>
+                        </article>
+
+                        <!-- Avance del proceso -->
+                        <article class="rounded-xl border bg-white p-4 sm:p-5 shadow-sm">
+                            <p class="text-xs font-medium text-gray-600">Avance del proceso</p>
+                            <div class="mt-2" role="region" aria-label="Progreso del proceso">
+                                <div class="flex items-center justify-between text-xs text-gray-600">
+                                    <span>Completado</span><span class="font-medium text-gray-800">42%</span>
+                                </div>
+                                <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden" role="progressbar"
+                                    aria-valuenow="42" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="h-full bg-blue-600 rounded-full" style="width:42%"></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Pendientes críticos -->
+                        <article class="rounded-xl border bg-white p-4 sm:p-5 shadow-sm">
+                            <p class="text-xs font-medium text-gray-600">Pendientes críticos</p>
+                            <div class="mt-1 flex items-end gap-2">
+                                <span class="text-2xl font-semibold text-gray-900">17</span>
+                                <span class="text-xs text-red-600 font-medium">+3 hoy</span>
+                            </div>
+                            <p class="mt-1 text-[11px] text-gray-500">Paz y Salvo / Biblioteca / Idiomas</p>
+                        </article>
+
+                        <!-- Próxima fecha -->
+                        <article class="rounded-xl border bg-white p-4 sm:p-5 shadow-sm">
+                            <p class="text-xs font-medium text-gray-600">Próxima fecha clave</p>
+                            <div class="mt-1">
+                                <p class="text-sm font-semibold text-gray-900">Cierre de postulaciones</p>
+                                <p class="text-xs text-gray-600">14 oct 2025</p>
+                            </div>
+                            <p class="mt-2 text-[11px] text-gray-500">Faltan <span class="font-medium text-gray-700">9
+                                    días</span></p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Distribución + Tendencia -->
+                <section class="rounded-2xl border bg-white p-6 sm:p-7 shadow-sm">
+                    <div class="grid gap-6 lg:grid-cols-12">
+                        <!-- Distribución -->
+                        <article class="lg:col-span-7 rounded-2xl border p-4 sm:p-5 shadow-sm">
+                            <header class="mb-3 flex items-center justify-between">
+                                <h2 class="text-base sm:text-lg font-semibold text-gray-900">Distribución de estados
+                                </h2>
+                                <span class="text-xs text-gray-500">Total 126</span>
+                            </header>
+                            <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                                <!-- En curso -->
+                                <div class="rounded-xl border p-3 bg-gray-50">
+                                    <p class="text-xs text-gray-600">En curso</p>
+                                    <p class="mt-1 text-xl font-semibold text-gray-900">44</p>
+                                    <div class="mt-2 h-2 rounded-full bg-gray-200 overflow-hidden">
+                                        <div class="h-full bg-gray-400" style="width:35%"></div>
+                                    </div>
+                                </div>
+                                <!-- Finalizadas -->
+                                <div class="rounded-xl border p-3 bg-emerald-50">
+                                    <p class="text-xs text-emerald-700">Finalizadas</p>
+                                    <p class="mt-1 text-xl font-semibold text-gray-900">58</p>
+                                    <div class="mt-2 h-2 rounded-full bg-gray-200 overflow-hidden">
+                                        <div class="h-full bg-emerald-500" style="width:46%"></div>
+                                    </div>
+                                </div>
+                                <!-- Programadas -->
+                                <div class="rounded-xl border p-3 bg-amber-50">
+                                    <p class="text-xs text-amber-700">Programadas</p>
+                                    <p class="mt-1 text-xl font-semibold text-gray-900">18</p>
+                                    <div class="mt-2 h-2 rounded-full bg-gray-200 overflow-hidden">
+                                        <div class="h-full bg-amber-400" style="width:14%"></div>
+                                    </div>
+                                </div>
+                                <!-- Próximas -->
+                                <div class="rounded-xl border p-3 bg-orange-50">
+                                    <p class="text-xs text-orange-700">Próximas</p>
+                                    <p class="mt-1 text-xl font-semibold text-gray-900">6</p>
+                                    <div class="mt-2 h-2 rounded-full bg-gray-200 overflow-hidden">
+                                        <div class="h-full bg-orange-400" style="width:5%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Tendencia -->
+                        <article class="lg:col-span-5 rounded-2xl border p-4 sm:p-5 shadow-sm">
+                            <header class="mb-3">
+                                <h2 class="text-base sm:text-lg font-semibold text-gray-900">Tendencia de vinculaciones
+                                </h2>
+                                <p class="text-xs text-gray-600">Últimos 7 días</p>
+                            </header>
+                            <div class="rounded-xl border bg-gray-50 p-3">
+                                <svg viewBox="0 0 120 40" class="w-full h-16">
+                                    <polyline fill="none" stroke="currentColor" stroke-width="2" class="text-blue-600"
+                                        points="0,28 20,24 40,26 60,20 80,14 100,18 120,10" />
+                                </svg>
+                                <div class="mt-2 flex items-center justify-between text-xs text-gray-600">
+                                    <span>+12% vs semana pasada</span>
+                                    <a href="../seguimientos/seguimientos.html"
+                                        class="font-medium text-blue-700 hover:underline">Ver detalle</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Resumen / Hitos / Actividad -->
+                <section class="rounded-2xl border bg-white p-6 sm:p-7 shadow-sm">
+                    <div class="grid gap-6 xl:grid-cols-12">
+                        <!-- Resumen Paz y Salvo -->
+                        <article class="xl:col-span-4 rounded-2xl border p-4 sm:p-5 shadow-sm">
+                            <header class="mb-3 flex items-center justify-between">
+                                <h2 class="text-base sm:text-lg font-semibold text-gray-900">Paz y Salvo — Resumen</h2>
+                                <a href="../seguimientos/seguimientos.html"
+                                    class="text-xs font-medium text-blue-700 hover:underline">Ver módulo</a>
+                            </header>
+                            <ul class="space-y-3">
+                                <li class="rounded-xl border bg-gray-50 p-3">
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="font-medium text-gray-800">Financiera</span>
+                                        <span class="text-xs text-gray-600">90% OK</span>
+                                    </div>
+                                    <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden">
+                                        <div class="h-full bg-blue-600 rounded-full" style="width:90%"></div>
+                                    </div>
+                                    <p class="mt-1 text-[11px] text-gray-500">Pendientes: <span
+                                            class="text-red-600 font-medium">10</span></p>
+                                </li>
+                                <li class="rounded-xl border bg-gray-50 p-3">
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="font-medium text-gray-800">Biblioteca</span>
+                                        <span class="text-xs text-gray-600">77% OK</span>
+                                    </div>
+                                    <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden">
+                                        <div class="h-full bg-blue-600 rounded-full" style="width:77%"></div>
+                                    </div>
+                                    <p class="mt-1 text-[11px] text-gray-500">Pendientes: <span
+                                            class="text-red-600 font-medium">23</span></p>
+                                </li>
+                                <li class="rounded-xl border bg-gray-50 p-3">
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="font-medium text-gray-800">Idiomas</span>
+                                        <span class="text-xs text-gray-600">70% OK</span>
+                                    </div>
+                                    <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden">
+                                        <div class="h-full bg-blue-600 rounded-full" style="width:70%"></div>
+                                    </div>
+                                    <p class="mt-1 text-[11px] text-gray-500">Pendientes: <span
+                                            class="text-red-600 font-medium">30</span></p>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <!-- Próximos hitos -->
+                        <article class="xl:col-span-4 rounded-2xl border p-4 sm:p-5 shadow-sm">
+                            <header class="mb-3 flex items-center justify-between">
+                                <h2 class="text-base sm:text-lg font-semibold text-gray-900">Próximos hitos</h2>
+                                <a href="../procesos/index.html"
+                                    class="text-xs font-medium text-blue-700 hover:underline">Cronograma</a>
+                            </header>
+                            <ul class="space-y-3 text-sm">
+                                <li class="rounded-xl border bg-gray-50 p-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-medium text-gray-800">Cierre de postulaciones</span>
+                                        <span class="text-xs text-gray-600">14 oct</span>
+                                    </div>
+                                    <p class="mt-1 text-gray-600">Recordatorio a estudiantes con pendientes de pago.</p>
+                                </li>
+                                <li class="rounded-xl border bg-gray-50 p-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-medium text-gray-800">Consolidado final de elegibles</span>
+                                        <span class="text-xs text-gray-600">22 oct</span>
+                                    </div>
+                                    <p class="mt-1 text-gray-600">Validación por Secretaría/Consejo.</p>
+                                </li>
+                                <li class="rounded-xl border bg-gray-50 p-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-medium text-gray-800">Generación de actas y diplomas</span>
+                                        <span class="text-xs text-gray-600">8 nov</span>
+                                    </div>
+                                    <p class="mt-1 text-gray-600">Cruce de nombres y títulos.</p>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <!-- Actividad reciente -->
+                        <article class="xl:col-span-4 rounded-2xl border p-4 sm:p-5 shadow-sm">
+                            <header class="mb-3 flex items-center justify-between">
+                                <h2 class="text-base sm:text-lg font-semibold text-gray-900">Actividad reciente</h2>
+                                <a href="../seguimientos/seguimientos.html"
+                                    class="text-xs font-medium text-blue-700 hover:underline">Ver todo</a>
+                            </header>
+                            <ul class="space-y-3 text-sm">
+                                <li class="rounded-xl border bg-gray-50 p-3">
+                                    ✅ 12 estudiantes completaron requisitos de Admisiones <span
+                                        class="text-xs text-gray-500">hoy 09:10</span>
+                                </li>
+                                <li class="rounded-xl border bg-gray-50 p-3">
+                                    ⚠️ 3 estudiantes con bloqueo financiero <span class="text-xs text-gray-500">ayer
+                                        17:22</span>
+                                </li>
+                                <li class="rounded-xl border bg-gray-50 p-3">
+                                    📢 Se publicó ajuste en línea de tiempo <span class="text-xs text-gray-500">ayer
+                                        10:05</span>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer class="rounded-2xl border bg-white p-4 text-center text-xs text-gray-600 shadow-sm">
+                    © 2025 Universidad Colegio Mayor de Cundinamarca - Todos los derechos reservados
+                </footer>
             </section>
 
 
-            <!-- Footer -->
-            <footer class="rounded-2xl border bg-white p-4 text-center text-xs text-gray-600 shadow-sm">
-                © 2025 Universidad Colegio Mayor de Cundinamarca - Todos los derechos reservados
-            </footer>
-
-        </main>
     </div>
 
-    <!-- JS mínimo para dropdowns y cierre por click fuera -->
+
 
     <script src="../../src/assets/app.js" defer></script>
     <script src="../../src/assets/sidebar-active.js"></script>

@@ -20,12 +20,12 @@
         <!-- Sidebar -->
         <aside id="sidebar" class="group fixed inset-y-0 left-0 z-40
   w-72 -translate-x-full  /* drawer cerrado en móvil */
-  bg-blue-900 text-white flex flex-col
-  transition-transform duration-300 ease-out
-  md:sticky md:top-0 md:translate-x-0
-  md:w-20 md:hover:w-64           /* compacto -> expandido al hover */
-  md:transition-all md:duration-300 md:ease-in-out
-  md:shrink-0 md:overflow-hidden" style="will-change: width, transform;">
+    bg-blue-900 text-white flex flex-col
+    transition-transform duration-300 ease-out
+    md:sticky md:top-0 md:translate-x-0
+    md:w-20 md:hover:w-64           /* compacto -> expandido al hover */
+    md:transition-all md:duration-300 md:ease-in-out
+    md:shrink-0 md:overflow-hidden" style="will-change: width, transform;">
 
             <!-- Brand -->
             <div class="px-4 pt-5 pb-3 flex items-center gap-3">
@@ -120,8 +120,10 @@
             <!-- Header -->
             <header class="relative z-30 flex items-center justify-between rounded-2xl border bg-white p-4 shadow-sm">
                 <div class="flex min-w-0 items-center gap-2 sm:gap-3">
-                    <button id="btnSidebar" class="rounded-lg p-2 text-blue-900 hover:bg-blue-50 focus:outline-none"
+                    <button id="btnSidebar"
+                        class="rounded-lg p-2 text-blue-900 hover:bg-blue-50 focus:outline-none md:hidden"
                         aria-label="Abrir menú">
+                        <!-- ícono -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z" />

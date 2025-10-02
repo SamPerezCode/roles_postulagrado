@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PostulaGrado — Programa Academico</title>
     <link rel="stylesheet" href="../../dist/output.css" />
+
+
 </head>
 
 <body class="min-h-screen bg-gray-100 text-gray-900 overflow-x-hidden">
@@ -259,7 +261,7 @@
                         </div>
                         <div class="w-full h-2 sm:h-3 rounded-full bg-gray-200 overflow-hidden" role="progressbar"
                             aria-valuenow="28" aria-valuemin="0" aria-valuemax="100" aria-label="Avance del programa">
-                            <div class="h-full bg-blue-600 rounded-full" style="width:28%"></div>
+                            <div class="h-full bg-emerald-400 rounded-full" style="width:28%"></div>
                         </div>
                     </div>
 
@@ -497,6 +499,13 @@
                                         <dt class="text-gray-600">Pendientes</dt>
                                         <dd class="font-semibold text-red-600">10</dd>
                                     </div>
+                                    <div class="mt-3">
+                                        <button
+                                            class="btn-pendientes inline-flex items-center gap-2 rounded-md bg-white ring-1 ring-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                                            data-count="10">
+                                            Ver pendientes <span class="opacity-70">(10)</span>
+                                        </button>
+                                    </div>
                                 </dl>
 
                                 <div class="mt-4">
@@ -530,6 +539,13 @@
                                         <dt class="text-gray-600">Pendientes</dt>
                                         <dd class="font-semibold text-red-600">5</dd>
                                     </div>
+                                    <div class="mt-3">
+                                        <button
+                                            class="btn-pendientes inline-flex items-center gap-2 rounded-md bg-white ring-1 ring-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                                            data-count="10">
+                                            Ver pendientes <span class="opacity-70">(5)</span>
+                                        </button>
+                                    </div>
                                 </dl>
 
                                 <div class="mt-4">
@@ -562,6 +578,13 @@
                                     <div>
                                         <dt class="text-gray-600">Pendientes</dt>
                                         <dd class="font-semibold text-red-600">23</dd>
+                                    </div>
+                                    <div class="mt-3">
+                                        <button
+                                            class="btn-pendientes inline-flex items-center gap-2 rounded-md bg-white ring-1 ring-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                                            data-count="10">
+                                            Ver pendientes <span class="opacity-70">(23)</span>
+                                        </button>
                                     </div>
                                 </dl>
 
@@ -597,6 +620,13 @@
                                         <dt class="text-gray-600">Pendientes</dt>
                                         <dd class="font-semibold text-red-600">15</dd>
                                     </div>
+                                    <div class="mt-3">
+                                        <button
+                                            class="btn-pendientes inline-flex items-center gap-2 rounded-md bg-white ring-1 ring-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                                            data-count="10">
+                                            Ver pendientes <span class="opacity-70">(15)</span>
+                                        </button>
+                                    </div>
                                 </dl>
 
                                 <div class="mt-4">
@@ -630,6 +660,13 @@
                                         <dt class="text-gray-600">Pendientes</dt>
                                         <dd class="font-semibold text-red-600">30</dd>
                                     </div>
+                                    <div class="mt-3">
+                                        <button
+                                            class="btn-pendientes inline-flex items-center gap-2 rounded-md bg-white ring-1 ring-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                                            data-count="10">
+                                            Ver pendientes <span class="opacity-70">(30)</span>
+                                        </button>
+                                    </div>
                                 </dl>
 
                                 <div class="mt-4">
@@ -659,6 +696,69 @@
         </main>
     </div>
 
+    <!-- MODAL: Pendientes por área -->
+    <div id="modal-pendientes" class="fixed inset-0 z-[10050] hidden">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative mx-auto mt-16 w-full max-w-3xl px-4">
+            <div class="rounded-xl bg-white shadow-xl ring-1 ring-gray-200 overflow-hidden">
+                <!-- Header -->
+                <div class="flex items-center justify-between px-4 py-3 border-b">
+                    <h3 id="mp-title" class="text-base font-semibold text-gray-900">Pendientes</h3>
+                    <button id="mp-close"
+                        class="inline-flex h-8 w-8 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">✕</button>
+                </div>
+
+                <!-- Filtros -->
+                <div class="px-4 py-3 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+                    <div class="text-sm text-gray-600">
+                        <span id="mp-total" class="font-medium">0</span> pendientes
+                    </div>
+                    <div class="flex gap-2">
+                        <input id="mp-search" type="text" placeholder="Buscar por nombre o código"
+                            class="w-full sm:w-72 rounded-md border-gray-300 text-sm focus:ring-blue-400 focus:border-blue-400" />
+                        <select id="mp-filtro"
+                            class="rounded-md border-gray-300 text-sm focus:ring-blue-400 focus:border-blue-400">
+                            <option value="">Todos</option>
+                            <option value="ENLACE">Enlace</option>
+                            <option value="RESP">Resp.</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Lista -->
+                <div class="px-4 pb-4 max-h-[60vh] overflow-y-auto">
+                    <table class="w-full text-sm">
+                        <thead class="text-xs text-slate-600 uppercase">
+                            <tr class="[&>th]:py-2 [&>th]:px-2">
+                                <th class="text-left">Código</th>
+                                <th class="text-left">Documento</th>
+                                <th class="text-left">Nombre</th>
+                                <th class="text-left">Situación</th>
+                                <th class="text-center">Créd. pend.</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mp-tbody" class="divide-y"></tbody>
+                    </table>
+
+                    <div id="mp-empty"
+                        class="hidden rounded-lg bg-slate-50 ring-1 ring-slate-200 px-3 py-3 text-sm text-gray-600 mt-3">
+                        Sin pendientes en esta área.
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="px-4 py-3 border-t flex items-center justify-end">
+                    <button id="mp-cerrar"
+                        class="rounded-lg bg-white ring-1 ring-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Modal Destinatarios -->
     <div id="modalDest" class="fixed inset-0 hidden items-center justify-center bg-black/40 p-4 z-50">
         <div class="w-full max-w-md rounded-2xl bg-white p-5 shadow-xl">
@@ -675,309 +775,425 @@
 
 
     <!-- MODAL: Estudiantes vinculados al proceso -->
-    <div id="modal-estudiantes" class="fixed inset-0 bg-black/40 hidden justify-center items-start z-[9999] pt-10">
+    <div id="modal-estudiantes" class="fixed inset-0 hidden z-[9999] md:pt-10">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60" aria-hidden="true"></div>
+
         <!-- Caja -->
-        <div
-            class="relative bg-white max-w-7xl w-full mx-auto rounded-lg shadow-lg p-6 max-h-[90vh] overflow-y-auto z-[10000]">
-            <!-- Cerrar -->
-            <button id="btnCloseStudents" type="button" class="absolute top-3 right-4 text-gray-500 hover:text-red-600"
-                aria-label="Cerrar">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="m6.4 4.98 6.01 6.01 6-6 1.42 1.42-6 6 6 6-1.41 1.41-6-6-6 6-1.41-1.41 6-6-6.01-6.01 1.41-1.41Z" />
-                </svg>
-            </button>
+        <div class="relative mx-auto w-full max-w-7xl
+           h-full md:h-[90vh] md:max-h-[90vh]
+           flex flex-col overflow-hidden
+           bg-white md:rounded-2xl md:shadow-2xl md:ring-1 md:ring-black/10
+           z-[10000]">
 
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">Estudiantes vinculados al proceso</h3>
+            <!-- Header modal -->
+            <div class="sticky top-0 z-10
+             bg-white/95 backdrop-blur supports-[backdrop-filter]:backdrop-blur
+             border-b md:rounded-t-2xl">
+                <div class="px-4 sm:px-6 py-3 relative">
+                    <div class="flex items-center gap-3 pr-12">
+                        <h3 class="flex-1 text-base sm:text-lg font-semibold text-blue-900">
+                            Estudiantes vinculados al proceso
+                        </h3>
 
-            <!-- Acciones (derecha) -->
-            <div class="flex justify-between items-center mb-4 mt-2">
-                <div></div>
-                <div class="flex items-center gap-3">
-                    <button onclick="openConfirmSendModal()"
-                        class="inline-flex items-center gap-2 rounded-md bg-amber-600 px-4 py-2 text-white text-sm font-semibold hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-400">
-                        <span class="inline-block -ml-0.5">≡</span>
-                        Enviar enlace de actualización
-                    </button>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <!-- Enviar enlace -->
+                            <button onclick="openConfirmSendModal()" class="inline-flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2
+                     text-xs sm:text-sm font-semibold text-white shadow-sm
+                     hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 -mt-0.5" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z" />
+                                </svg>
+                                <span class="whitespace-nowrap">Enviar enlace de actualización</span>
+                            </button>
+
+                            <!-- Agregar -->
+                            <button id="btnToggleAddForm" type="button" class="inline-flex items-center gap-2 rounded-lg bg-blue-900 px-4 py-2
+                     text-xs sm:text-sm font-semibold text-white shadow-sm
+                     hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 -mt-0.5" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M11 2h2v9h9v2h-9v9h-2v-9H2v-2h9V2Z" />
+                                </svg>
+                                <span class="whitespace-nowrap">Agregar estudiante</span>
+                            </button>
+                        </div>
+
+                    </div>
 
 
-
-                    <button id="btnToggleAddForm" type="button"
-                        class="bg-green-600 text-white text-sm font-medium px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline -mt-0.5 mr-1" viewBox="0 0 24 24"
-                            fill="currentColor">
-                            <path d="M11 2h2v9h9v2h-9v9h-2v-9H2v-2h9V2Z" />
+                    <!-- Cerrar -->
+                    <button id="btnCloseStudents" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 inline-flex h-8 w-8 items-center justify-center
+                 rounded-full text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                        aria-label="Cerrar">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="m6.4 4.98 6.01 6.01 6-6 1.42 1.42-6 6 6 6-1.41 1.41-6-6-6 6-1.41-1.41 6-6-6.01-6.01 1.41-1.41Z" />
                         </svg>
-                        Agregar estudiante
                     </button>
                 </div>
-            </div>
 
-            <!-- Formulario oculto para agregar estudiante -->
-            <div id="form-add-student" class="hidden mb-4 border border-green-200 p-4 rounded bg-green-50 relative">
-                <!-- <button type="button" id="btnCloseAddForm"
-                    class="absolute right-3 top-3 text-gray-500 hover:text-red-600" title="Cerrar">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="m6.4 4.98 6.01 6.01 6-6 1.42 1.42-6 6 6 6-1.41 1.41-6-6-6 6-1.41-1.41 6-6-6.01-6.01 1.41-1.41Z" />
-                    </svg>
-                </button> -->
+                <!-- Formulario: Agregar estudiante (oculto por defecto) -->
+                <div id="form-add-student" class="mb-4 hidden">
+                    <div class="rounded-xl border bg-white shadow-sm px-3 py-3 sm:px-4 sm:py-3">
+                        <div class="flex items-start gap-3">
+                            <!-- Campo + Buscar -->
+                            <div class="flex-1">
+                                <label for="inputAddStudent" class="block text-xs font-medium text-gray-600 mb-1">
+                                    Documento o código del estudiante
+                                </label>
 
-                <div class="flex justify-center">
-                    <div class="flex items-center gap-3 w-full md:w-2/3 lg:w-1/2">
-                        <input id="inputAddStudent" type="text" placeholder="Ingrese código o documento"
-                            class="w-full border border-gray-300 rounded px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-400">
-                        <button type="button"
-                            class="bg-blue-600 text-white px-4 py-2 text-sm rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                            Buscar
-                        </button>
-                        <button type="button" id="btnCancelAddForm"
-                            class="border border-gray-300 text-gray-700 px-3 py-2 text-sm rounded hover:bg-gray-100">
-                            Cancelar
-                        </button>
+                                <div class="flex items-center gap-2">
+                                    <input id="inputAddStudent" type="text" inputmode="numeric" autocomplete="off"
+                                        placeholder="Ej: 1122334455 o 605041789" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+                   focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+                                    <button id="btnDoAddSearch" type="button" class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-2
+                   text-sm font-semibold text-white shadow-sm
+                   hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 -mt-0.5"
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.49 21.49 20 15.5 14Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z" />
+                                        </svg>
+                                        Buscar
+                                    </button>
+                                </div>
+
+                                <!-- Área de resultados/mensajes -->
+                                <div id="addStudentResult" class="mt-2 text-sm text-gray-600"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-3 flex justify-end">
+                            <button id="btnCancelAddForm" type="button" class="inline-flex items-center gap-2 rounded-lg bg-white ring-1 ring-gray-300 px-4 py-2
+               text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+                                Cancelar
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div id="addStudentResult" class="mt-3 text-sm text-gray-800"></div>
             </div>
 
-            <!-- Encabezado contextual -->
-            <!-- Nota: En el original los iconos tendran el color verde -->
-            <div class="bg-gray-50 border-l-4 border-green-500 p-4 rounded-md mb-4 text-sm text-gray-700 shadow-sm">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="flex items-center gap-2">
-                        <span class="text-green-600">🎓</span>
-                        <p><strong>Programa:</strong> Especialización Derecho Internacional Público</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-green-600">🆔</span>
-                        <p><strong>Código SNIES:</strong> 109908</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-green-600">👥</span>
-                        <p><strong>Total vinculados:</strong> <span id="total-vinculados">4</span></p>
+            <!-- Body scrollable -->
+            <div class="flex-1 overflow-y-auto px-4 sm:px-6 py-4 bg-white md:bg-slate-50">
+                <!-- Encabezado contextual -->
+                <div id="encabezado-contextual" class="mb-4 md:rounded-xl md:border md:bg-white md:shadow-sm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm px-2 md:px-4 py-2 md:py-3">
+                        <!-- Programa -->
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 text-indigo-600">🎓</span>
+                            <p><strong class="text-gray-900">Programa:</strong> Especialización Derecho Internacional
+                                Público</p>
+                        </div>
+                        <!-- Código SNIES -->
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-purple-50 text-purple-600">🆔</span>
+                            <p><strong class="text-gray-900">Código SNIES:</strong> 109908</p>
+                        </div>
+                        <!-- Total vinculados -->
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-violet-50 text-violet-600">👥</span>
+                            <p><strong class="text-gray-900">Total vinculados:</strong> <span id="total-vinculados"
+                                    class="font-semibold">6</span></p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Buscador tabla -->
-            <div class="flex justify-end mb-4 mt-2">
-                <input id="buscarModalEst" type="text" placeholder="Buscar por nombre, código o documento"
-                    class="border border-gray-300 rounded px-4 py-2 text-sm w-full md:w-1/2 lg:w-1/3 focus:outline-none focus:ring-2 focus:ring-green-400">
-            </div>
+                <!-- Buscador -->
+                <div class="mb-4 flex justify-end">
+                    <input id="buscarModalEst" type="text" placeholder="Buscar por nombre, código o documento" class="w-full md:w-1/2 lg:w-1/3 rounded-lg border border-gray-300 px-4 py-2 text-sm
+                      focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                </div>
 
-            <!-- Tabla -->
-            <!-- Lista móvil (cards) -->
-            <!-- CARDS (móvil) -->
-            <div id="cards-estudiantes" class="grid gap-3 md:hidden"></div>
-            <div class="hidden md:table overflow-x-auto border rounded-lg">
-                <table class="min-w-full text-sm text-left border-collapse" id="tabla-estudiantes-vinculados-proceso">
-                    <thead class="bg-green-100 text-green-900 text-xs uppercase tracking-wide">
-                        <tr>
-                            <th class="px-4 py-3">Tot. cr. pensum</th>
-                            <th class="px-4 py-3">Código</th>
-                            <th class="px-4 py-3">Documento</th>
-                            <th class="px-4 py-3">Nombre</th>
-                            <th class="px-4 py-3">Categoría</th>
-                            <th class="px-4 py-3">Situación</th>
-                            <th class="px-2 py-3 text-center whitespace-nowrap">Créditos<br>Pend.</th>
-                            <th class="px-4 py-3 text-center">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-800">
-                        <!-- Filas demo -->
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="px-4 py-2">24</td>
-                            <td class="px-4 py-2">605030223</td>
-                            <td class="px-4 py-2">1073721918</td>
-                            <td class="px-4 py-2">BELTRAN CANO LEIDY JOHANA</td>
-                            <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
-                            <td class="px-4 py-2">
-                                <div class="flex flex-col items-start gap-1">
-                                    <span
-                                        class="inline-block px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">ACTIVO</span>
-                                    <div class="flex items-center gap-4 text-[11px] text-gray-500">
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Resp.</span>
+
+
+                <!-- Tabla (desktop) -->
+                <div id="listado-estudiantes" class="hidden md:block overflow-x-auto rounded-2xl border shadow-sm">
+                    <table id="tabla-estudiantes-vinculados-proceso"
+                        class="min-w-full text-sm text-left border-collapse">
+                        <!-- Header con estilo pill y primeras/últimas esquinas redondeadas -->
+                        <thead class="bg-slate-50 text-slate-600 text-xs uppercase">
+                            <tr class="[&>th]:px-4 [&>th]:py-3 [&>th]:font-medium">
+                                <th class="first:rounded-l-xl">Tot. cr. pensum</th>
+                                <th>Código</th>
+                                <th>Documento</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Situación</th>
+                                <th class="text-center whitespace-nowrap">Créditos<br>Pend.</th>
+                                <th class="last:rounded-r-xl text-center">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="text-gray-800">
+                            <!-- === Filas demo (mismas que tenías, con data-codigo) === -->
+                            <tr class="border-t hover:bg-gray-50">
+                                <td class="px-4 py-2">24</td>
+                                <td class="px-4 py-2">605030223</td>
+                                <td class="px-4 py-2">1073721918</td>
+                                <td class="px-4 py-2">BELTRAN CANO LEIDY JOHANA</td>
+                                <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex flex-col items-start gap-1">
+                                        <span
+                                            class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700">
+                                            ACTIVO
+                                        </span>
+                                        <div class="flex items-center gap-4 text-[11px] text-gray-500">
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Resp.</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-2 py-2 text-center">0</td>
-                            <td class="px-4 py-2 text-center">
-                                <div class="flex justify-center gap-2">
-                                    <button data-codigo="<!-- aquí el código del estudiante "
-                                        onclick="verDetalleEstudiante(this.dataset.codigo)"
-                                        class="btn-ver inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-blue-600 text-white rounded hover:bg-blue-700">
-                                        Ver
-                                    </button>
-                                    <button
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-red-600 text-white rounded hover:bg-red-700">
-                                        Quitar
-                                    </button>
-                                </div>
-                            </td>
+                                </td>
+                                <td class="px-2 py-2 text-center">0</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex justify-center gap-2">
+                                        <!-- Ver -->
+                                        <button data-codigo="605034223"
+                                            onclick="verDetalleEstudiante(this.dataset.codigo)"
+                                            class="rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                                            Ver
+                                        </button>
 
-                        </tr>
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="px-4 py-2">24</td>
-                            <td class="px-4 py-2">605032223</td>
-                            <td class="px-4 py-2">1030599627</td>
-                            <td class="px-4 py-2">CALDERÓN BARRIOS ROBINSON DANIEL</td>
-                            <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
-                            <td class="px-4 py-2">
-                                <div class="flex flex-col items-start gap-1">
-                                    <span
-                                        class="inline-block px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">ACTIVO</span>
-                                    <div class="flex items-center gap-4 text-[11px] text-gray-500">
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Resp.</span>
+                                        <!-- Quitar -->
+                                        <button
+                                            class="rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+                                            Quitar
+                                        </button>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-2 py-2 text-center">0</td>
-                            <td class="px-4 py-2 text-center">
-                                <div class="flex justify-center gap-2">
-                                    <button data-codigo="1073721918"
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-blue-600 text-white rounded hover:bg-blue-700">Ver</button>
-                                    <button
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-red-600 text-white rounded hover:bg-red-700">Quitar</button>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
 
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="px-4 py-2">24</td>
-                            <td class="px-4 py-2">605034223</td>
-                            <td class="px-4 py-2">1026304707</td>
-                            <td class="px-4 py-2">CORTES HERNÁNDEZ MICHEL DAYANNA</td>
-                            <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
-                            <td class="px-4 py-2">
-                                <div class="flex flex-col items-start gap-1">
-                                    <span
-                                        class="inline-block px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">ACTIVO</span>
-                                    <div class="flex items-center gap-4 text-[11px] text-gray-500">
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Resp.</span>
+                            </tr>
+
+                            <tr class="border-t hover:bg-gray-50">
+                                <td class="px-4 py-2">24</td>
+                                <td class="px-4 py-2">605032223</td>
+                                <td class="px-4 py-2">1030599627</td>
+                                <td class="px-4 py-2">CALDERÓN BARRIOS ROBINSON DANIEL</td>
+                                <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex flex-col items-start gap-1">
+                                        <span
+                                            class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700">
+                                            ACTIVO
+                                        </span>
+                                        <div class="flex items-center gap-4 text-[11px] text-gray-500">
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Resp.</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-2 py-2 text-center">0</td>
-                            <td class="px-4 py-2 text-center">
-                                <div class="flex justify-center gap-2">
-                                    <button data-codigo="1073721918"
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-blue-600 text-white rounded hover:bg-blue-700">Ver</button>
-                                    <button
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-red-600 text-white rounded hover:bg-red-700">Quitar</button>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                                <td class="px-2 py-2 text-center">0</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex justify-center gap-2">
+                                        <!-- Ver -->
+                                        <button data-codigo="605034223"
+                                            onclick="verDetalleEstudiante(this.dataset.codigo)"
+                                            class="rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                                            Ver
+                                        </button>
 
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="px-4 py-2">24</td>
-                            <td class="px-4 py-2">605049223</td>
-                            <td class="px-4 py-2">1006507614</td>
-                            <td class="px-4 py-2">HURTADO NOVOA JULIÁN DARIO</td>
-                            <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
-                            <td class="px-4 py-2">
-                                <div class="flex flex-col items-start gap-1">
-                                    <span
-                                        class="inline-block px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">ACTIVO</span>
-                                    <div class="flex items-center gap-4 text-[11px] text-gray-500">
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-green-500"></span> Resp.</span>
+                                        <!-- Quitar -->
+                                        <button
+                                            class="rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+                                            Quitar
+                                        </button>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-2 py-2 text-center">0</td>
-                            <td class="px-4 py-2 text-center">
-                                <div class="flex justify-center gap-2">
-                                    <button data-codigo="1073721918"
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-blue-600 text-white rounded hover:bg-blue-700">Ver</button>
-                                    <button
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-red-600 text-white rounded hover:bg-red-700">Quitar</button>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
 
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="px-4 py-2">24</td>
-                            <td class="px-4 py-2">605040115</td>
-                            <td class="px-4 py-2">1012345678</td>
-                            <td class="px-4 py-2">RAMÍREZ LOZANO CAMILA SOFÍA</td>
-                            <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - ESTUDIANTE</td>
-                            <td class="px-4 py-2">
-                                <div class="flex flex-col items-start gap-1">
-                                    <span
-                                        class="inline-block px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-700">EN
-                                        PROCESO</span>
-                                    <div class="flex items-center gap-4 text-[11px] text-gray-500">
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Enlace</span>
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Resp.</span>
+                            </tr>
+
+                            <tr class="border-t hover:bg-gray-50">
+                                <td class="px-4 py-2">24</td>
+                                <td class="px-4 py-2">605034223</td>
+                                <td class="px-4 py-2">1026304707</td>
+                                <td class="px-4 py-2">CORTES HERNÁNDEZ MICHEL DAYANNA</td>
+                                <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex flex-col items-start gap-1">
+                                        <span
+                                            class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700">
+                                            ACTIVO
+                                        </span>
+                                        <div class="flex items-center gap-4 text-[11px] text-gray-500">
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Resp.</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-2 py-2 text-center">3</td>
-                            <td class="px-4 py-2 text-center">
-                                <div class="flex justify-center gap-2">
-                                    <button data-codigo="1073721918"
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-blue-600 text-white rounded hover:bg-blue-700">Ver</button>
-                                    <button
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-red-600 text-white rounded hover:bg-red-700">Quitar</button>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                                <td class="px-2 py-2 text-center">0</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex justify-center gap-2">
+                                        <!-- Ver -->
+                                        <button data-codigo="605034223"
+                                            onclick="verDetalleEstudiante(this.dataset.codigo)"
+                                            class="rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                                            Ver
+                                        </button>
 
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="px-4 py-2">24</td>
-                            <td class="px-4 py-2">605041789</td>
-                            <td class="px-4 py-2">1122334455</td>
-                            <td class="px-4 py-2">MORALES PÉREZ ANDRÉS FELIPE</td>
-                            <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
-                            <td class="px-4 py-2">
-                                <div class="flex flex-col items-start gap-1">
-                                    <span
-                                        class="inline-block px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">ACTIVO</span>
-                                    <div class="flex items-center gap-4 text-[11px] text-gray-500">
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
-                                        <span class="inline-flex items-center gap-1"><span
-                                                class="h-2.5 w-2.5 rounded-full bg-green-500"></span> Resp.</span>
+                                        <!-- Quitar -->
+                                        <button
+                                            class="rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+                                            Quitar
+                                        </button>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-2 py-2 text-center">1</td>
-                            <td class="px-4 py-2 text-center">
-                                <div class="flex justify-center gap-2">
-                                    <button data-codigo="1073721918"
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-blue-600 text-white rounded hover:bg-blue-700">Ver</button>
-                                    <button
-                                        class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium bg-red-600 text-white rounded hover:bg-red-700">Quitar</button>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
 
-                        <!-- /filas demo -->
-                    </tbody>
-                </table>
 
-                <!--Modal Detalle del estudiante -->
-                <div id="detalle-estudiante" class="hidden text-gray-800 space-y-10 px-4 py-6">
+                            </tr>
+
+                            <tr class="border-t hover:bg-gray-50">
+                                <td class="px-4 py-2">24</td>
+                                <td class="px-4 py-2">605049223</td>
+                                <td class="px-4 py-2">1006507614</td>
+                                <td class="px-4 py-2">HURTADO NOVOA JULIÁN DARIO</td>
+                                <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex flex-col items-start gap-1">
+                                        <span
+                                            class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700">
+                                            ACTIVO
+                                        </span>
+                                        <div class="flex items-center gap-4 text-[11px] text-gray-500">
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span> Resp.</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-2 py-2 text-center">0</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex justify-center gap-2">
+                                        <!-- Ver -->
+                                        <button data-codigo="605034223"
+                                            onclick="verDetalleEstudiante(this.dataset.codigo)"
+                                            class="rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                                            Ver
+                                        </button>
+
+                                        <!-- Quitar -->
+                                        <button
+                                            class="rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+                                            Quitar
+                                        </button>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                            <tr class="border-t hover:bg-gray-50">
+                                <td class="px-4 py-2">24</td>
+                                <td class="px-4 py-2">605040115</td>
+                                <td class="px-4 py-2">1012345678</td>
+                                <td class="px-4 py-2">RAMÍREZ LOZANO CAMILA SOFÍA</td>
+                                <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - ESTUDIANTE</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex flex-col items-start gap-1">
+                                        <span
+                                            class="rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-semibold text-yellow-800">
+                                            EN PROCESO
+                                        </span>
+                                        <div class="flex items-center gap-4 text=[11px] text-gray-500">
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Enlace</span>
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Resp.</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-2 py-2 text-center">3</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex justify-center gap-2">
+                                        <!-- Ver -->
+                                        <button data-codigo="605034223"
+                                            onclick="verDetalleEstudiante(this.dataset.codigo)"
+                                            class="rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                                            Ver
+                                        </button>
+
+                                        <!-- Quitar -->
+                                        <button
+                                            class="rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+                                            Quitar
+                                        </button>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                            <tr class="border-t hover:bg-gray-50">
+                                <td class="px-4 py-2">24</td>
+                                <td class="px-4 py-2">605041789</td>
+                                <td class="px-4 py-2">1122334455</td>
+                                <td class="px-4 py-2">MORALES PÉREZ ANDRÉS FELIPE</td>
+                                <td class="px-4 py-2">CONTINUIDAD ACADÉMICA - EGRESADO</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex flex-col items-start gap-1">
+                                        <span
+                                            class="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-700">
+                                            ACTIVO
+                                        </span>
+                                        <div class="flex items-center gap-4 text-[11px] text-gray-500">
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-blue-500"></span> Enlace</span>
+                                            <span class="inline-flex items-center gap-1"><span
+                                                    class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span> Resp.</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-2 py-2 text-center">1</td>
+                                <td class="px-4 py-2">
+                                    <div class="flex justify-center gap-2">
+                                        <!-- Ver -->
+                                        <button data-codigo="605034223"
+                                            onclick="verDetalleEstudiante(this.dataset.codigo)"
+                                            class="rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                                            Ver
+                                        </button>
+
+                                        <!-- Quitar -->
+                                        <button
+                                            class="rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 transition">
+                                            Quitar
+                                        </button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <!-- === /Filas demo === -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Cards móvil -->
+                <div id="cards-estudiantes" class="grid gap-3 md:hidden"></div>
+                <!-- Paginador -->
+                <div id="paginator-estudiantes" class="sticky bottom-0 z-10 bg-white/90 backdrop-blur px-4 py-3 border-t rounded-b-2xl
+            flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-600"></div>
+
+
+
+                <!-- ===================== DETALLE / CHECKLIST (Tailwind-only) ===================== -->
+                <div id="detalle-estudiante" class="hidden text-gray-800 space-y-8 px-1 sm:px-0 pt-2">
 
                     <!-- Volver -->
                     <div class="flex justify-end">
                         <button id="btn-volver-listado"
-                            class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-full hover:bg-gray-200 transition">
-                            <svg class="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            class="inline-flex items-center gap-2 rounded-full bg-white ring-1 ring-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 19l-7-7 7-7" />
                             </svg>
@@ -985,254 +1201,456 @@
                         </button>
                     </div>
 
-                    <!-- Métricas -->
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
-                        <div class="flex flex-col items-center">
-                            <div
-                                class="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center shadow-inner text-xl font-bold text-green-800">
-                                <span id="det-creditos">—</span>
+                    <!-- Encabezado del estudiante -->
+                    <div class="rounded-2xl border bg-white shadow-sm px-4 py-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                            <div>
+                                <h3 class="text-lg font-semibold text-blue-900" id="det-nombre">NOMBRE DEL ESTUDIANTE
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    <span class="font-medium">Código:</span> <span id="det-codigo">—</span>
+                                    <span class="mx-2">·</span>
+                                    <span class="font-medium">Documento:</span> <span id="det-documento">—</span>
+                                    <span class="mx-2">·</span>
+                                    <span class="font-medium">Programa:</span> <span id="det-programa">—</span>
+                                </p>
                             </div>
-                            <p class="mt-2 text-sm text-gray-600 font-medium">Créditos aprobados</p>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div
-                                class="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center shadow-inner text-xl font-bold text-blue-800">
-                                <span id="det-formulario">—</span>
-                            </div>
-                            <p class="mt-2 text-sm text-gray-600 font-medium">Formulario actualización de datos</p>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div
-                                class="w-24 h-24 rounded-full bg-purple-100 flex items-center justify-center shadow-inner text-xl font-bold text-purple-800">
-                                <span id="det-egresado">—</span>
-                            </div>
-                            <p class="mt-2 text-sm text-gray-600 font-medium">Egresado Unicolmayor</p>
+
+                            <!-- Estado global -->
+                            <span id="det-chip-global" class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs ring-1
+               bg-gray-100 text-gray-700 ring-gray-200">
+                                <span class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Proceso en curso
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Layout 2 columnas -->
-                    <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-stretch">
-                        <!-- Datos básicos -->
-                        <section class="xl:col-span-6 bg-white border border-gray-200 rounded-2xl p-6">
-                            <header class="flex items-center gap-2 mb-4">
-                                <span class="text-indigo-500">🧑‍🎓</span>
-                                <h4 class="font-semibold text-gray-800">Datos básicos</h4>
-                            </header>
-                            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-                                <div>
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-900">Primer nombre</p>
-                                    <p class="font-medium text-[13px] text-gray-500" id="det-primer-nombre">—</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+                        <!-- ========== Columna izquierda: Items ========== -->
+                        <div class="lg:col-span-8 space-y-6">
+
+                            <!-- ====== FORMULARIO (Checklist) ====== -->
+                            <section id="blk-formulario" class="rounded-2xl border bg-white shadow-sm px-4 py-4">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Formulario de datos personales</h4>
+                                        <p class="text-sm text-gray-600">Revisión de actualizaciones enviadas por el
+                                            estudiante (documento + “Solicitar revisión”).</p>
+                                    </div>
+
+                                    <!-- Pill estado global -->
+                                    <span id="st-formulario"
+                                        class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ring-1 bg-yellow-50 text-yellow-800 ring-yellow-200">
+                                        <span class="h-2 w-2 rounded-full bg-yellow-500"></span> Sin revisar
+                                    </span>
                                 </div>
-                                <div>
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-900">Segundo nombre</p>
-                                    <p class="font-medium text-[13px] text-gray-500" id="det-segundo-nombre">—</p>
+
+                                <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                                    <div class="rounded-xl bg-slate-50 ring-1 ring-slate-200 px-3 py-3">
+                                        <p class="text-xs text-gray-500">Última actualización</p>
+                                        <p id="form-ultima-actualizacion" class="text-sm font-medium text-gray-800">
+                                            2025-09-21 08:45</p>
+                                    </div>
+                                    <div class="rounded-xl bg-slate-50 ring-1 ring-slate-200 px-3 py-3">
+                                        <p class="text-xs text-gray-500">Origen</p>
+                                        <p id="form-origen" class="text-sm font-medium text-gray-800">Estudiante</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-900">Primer apellido</p>
-                                    <p class="font-medium text-[13px] text-gray-500" id="det-primer-apellido">—</p>
+
+                                <div class="mt-4 flex flex-wrap items-center gap-2">
+                                    <button id="btn-ver-form"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                        Ver formulario
+                                    </button>
+
+                                    <button id="btn-marcar-todo-revisado"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                                        Marcar todo como revisado
+                                    </button>
                                 </div>
-                                <div>
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-900">Segundo apellido</p>
-                                    <p class="font-medium text-[13px] text-gray-500" id="det-segundo-apellido">—</p>
+
+                                <!-- Aviso éxito -->
+                                <div id="alert-ok"
+                                    class="mt-3 hidden rounded-lg bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200 px-3 py-2 text-sm">
+                                    ✅ Formulario actualizado exitosamente.
                                 </div>
-                                <div class="sm:col-span-2">
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-900">Programa</p>
-                                    <p class="font-medium text-[13px] text-gray-500" id="det-programa">—</p>
+
+                                <div class="mt-6 flex items-center justify-between">
+                                    <h5 class="text-sm font-semibold text-gray-900">Observaciones / Solicitudes de
+                                        revisión</h5>
+                                    <span id="resumen-cant" class="text-xs text-gray-500">0 revisadas · 0
+                                        pendientes</span>
                                 </div>
-                                <div>
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-900">Género</p>
-                                    <p class="font-medium text-[13px] text-gray-500" id="det-genero">—</p>
-                                </div>
-                                <div>
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-900">¿Grupo de
-                                        investigación?</p>
-                                    <p class="font-medium text-[13px] text-gray-500" id="det-grupo-investigacion">—</p>
-                                </div>
-                                <div id="fila-nombre-grupo" class="hidden sm:col-span-2">
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-500">Nombre del grupo</p>
-                                    <p class="font-medium text-[13px] text-gray-900" id="det-nombre-grupo">—</p>
-                                </div>
-                                <div>
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-500">Hijo(a) de funcionario
-                                    </p>
-                                    <p class="font-medium text-[13px] text-gray-900" id="det-hijo-funcionario">—</p>
-                                </div>
-                                <div>
-                                    <p class="text-[12px] uppercase tracking-wide text-gray-500">Hijo(a) de docente</p>
-                                    <p class="font-medium text-[13px] text-gray-900" id="det-hijo-docente">—</p>
+
+                                <div id="lista-observaciones" class="mt-2 space-y-3"></div>
+                            </section>
+
+                            <!-- ====== MODAL: Revisar (ver observación) ====== -->
+                            <div id="modal-revision" class="fixed inset-0 z-[10050] hidden">
+                                <div class="absolute inset-0 bg-black/50"></div>
+                                <div class="relative mx-auto mt-20 w-full max-w-md">
+                                    <div class="rounded-xl bg-white shadow-xl ring-1 ring-gray-200">
+                                        <div class="flex items-center justify-between px-4 py-3 border-b">
+                                            <h6 id="modal-title" class="font-semibold text-gray-900">Revisar</h6>
+                                            <button id="modal-close"
+                                                class="inline-flex h-8 w-8 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">✕</button>
+                                        </div>
+                                        <div class="px-4 py-3 space-y-2">
+                                            <p class="text-xs text-gray-500">Observación del estudiante</p>
+                                            <div id="modal-obs"
+                                                class="rounded-lg bg-slate-50 ring-1 ring-slate-200 px-3 py-2 text-sm text-gray-800">
+                                            </div>
+                                            <p id="modal-recibido" class="text-xs text-gray-500"></p>
+                                        </div>
+                                        <div class="flex items-center justify-end gap-2 px-4 py-3 border-t">
+                                            <button id="modal-pendiente"
+                                                class="rounded-lg bg-white ring-1 ring-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                                Dejar pendiente
+                                            </button>
+                                            <button id="modal-revisado"
+                                                class="rounded-lg bg-emerald-600 px-3 py-2 text-sm font-semibold text-white hover:bg-emerald-700">
+                                                Marcar revisado
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </section>
 
-                        <!-- Documentación + Contacto -->
-                        <div class="xl:col-span-6 flex flex-col gap-6">
+                            <!-- ====== MODAL: Notificar estudiante ====== -->
+                            <div id="modal-notificar" class="fixed inset-0 z-[10050] hidden">
+                                <div class="absolute inset-0 bg-black/50"></div>
+                                <div class="relative mx-auto mt-20 w-full max-w-md">
+                                    <div class="rounded-xl bg-white shadow-xl ring-1 ring-gray-200">
+                                        <div class="flex items-center justify-between px-4 py-3 border-b">
+                                            <h6 id="notif-title" class="font-semibold text-gray-900">Notificar al
+                                                estudiante</h6>
+                                            <button id="notif-close"
+                                                class="inline-flex h-8 w-8 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">✕</button>
+                                        </div>
+                                        <div class="px-4 py-3">
+                                            <label class="block text-xs text-gray-500 mb-1">Mensaje /
+                                                Observación</label>
+                                            <textarea id="notif-text" rows="4"
+                                                class="w-full rounded-md border-gray-300 text-sm focus:ring-blue-400 focus:border-blue-400"
+                                                placeholder="Escribe la observación que se enviará al estudiante…"></textarea>
+                                        </div>
+                                        <div class="flex items-center justify-end gap-2 px-4 py-3 border-t">
+                                            <button id="notif-cancel"
+                                                class="rounded-lg bg-white ring-1 ring-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Cancelar</button>
+                                            <button id="notif-send"
+                                                class="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Enviar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <section class="bg-white border border-gray-200 rounded-2xl p-6">
-                                <header class="flex items-center gap-2 mb-4">
-                                    <span class="text-purple-500">🪪</span>
-                                    <h4 class="font-semibold text-gray-800">Documentación</h4>
-                                </header>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+                            <!-- ============= 2) Paz y Salvo (por áreas) ============= -->
+                            <section id="blk-pazysalvo" class="rounded-2xl border bg-white shadow-sm px-4 py-4">
+                                <div class="flex items-start justify-between gap-3">
                                     <div>
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Tipo de documento
-                                        </p>
-                                        <p class="font-medium text-[13px] text-gray-900" id="det-tipo-documento">—</p>
+                                        <h4 class="font-semibold text-gray-900">Paz y Salvo</h4>
+                                        <p class="text-sm text-gray-600">Estados por área y comunicaciones.</p>
                                     </div>
-                                    <div>
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Número de documento
-                                        </p>
-                                        <p class="font-medium text-[13px] text-gray-900" id="det-documento">—</p>
-                                    </div>
-                                    <div class="sm:col-span-2">
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Lugar de expedición
-                                        </p>
-                                        <p class="font-medium text-[13px] text-gray-900" id="det-lugar-expedicion">—</p>
-                                    </div>
-                                    <div class="sm:col-span-2 pt-2">
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Documento de
-                                            identidad</p>
-                                        <a id="det-link-documento" href="#"
-                                            class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline">
-                                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                                                <path
-                                                    d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
-                                            </svg>
-                                            Abrir archivo
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Código SaberPro/TyT
-                                        </p>
-                                        <p class="font-medium text-[13px] text-gray-900" id="det-codigo-saber">—</p>
-                                    </div>
-                                    <div class="pt-2 sm:pt-0">
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Certificado
-                                            asistencia</p>
-                                        <a id="det-cert-saber" href="#"
-                                            class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline">
-                                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M12 2 2 7v2h20V7L12 2Z" />
-                                            </svg>
-                                            Ver certificado
-                                        </a>
-                                    </div>
+
+                                    <!-- Pill general (se actualiza por JS) -->
+                                    <span id="st-pazysalvo"
+                                        class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ring-1 bg-yellow-50 text-yellow-800 ring-yellow-200">
+                                        <span class="h-2 w-2 rounded-full bg-yellow-500"></span> Pendiente
+                                    </span>
+                                </div>
+
+                                <!-- Tarjetas por área -->
+                                <div id="ps-areas" class="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                                    <!-- FinancierA -->
+                                    <article class="rounded-xl px-3 py-3 ring-1 bg-yellow-50 ring-yellow-200"
+                                        data-area="Financiera">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div>
+                                                <p class="font-medium text-gray-900">Financiera</p>
+                                                <p class="mt-0.5 text-xs text-gray-600">Paz y Salvo institucional</p>
+                                            </div>
+                                            <span
+                                                class="ps-chip inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium bg-yellow-100 text-yellow-800 ring-1 ring-yellow-200">Pendiente</span>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap gap-2">
+                                            <button
+                                                class="ps-detalle px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50">Ver
+                                                detalle</button>
+                                            <button
+                                                class="ps-notificar px-2 py-1 text-xs rounded-md bg-indigo-600 text-white hover:bg-indigo-700">Notificar
+                                                área</button>
+                                            <button
+                                                class="ps-pendientes px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50 hidden">
+                                                Pendientes <span class="count"></span>
+                                            </button>
+
+                                        </div>
+                                    </article>
+
+                                    <!-- Admisiones -->
+                                    <article class="rounded-xl px-3 py-3 ring-1 bg-emerald-50 ring-emerald-200"
+                                        data-area="Admisiones">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div>
+                                                <p class="font-medium text-gray-900">Admisiones</p>
+                                                <p class="mt-0.5 text-xs text-gray-600">Validación de requisitos</p>
+                                            </div>
+                                            <span
+                                                class="ps-chip inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200">OK</span>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap gap-2">
+                                            <button
+                                                class="ps-detalle px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50">Ver
+                                                detalle</button>
+                                            <button
+                                                class="ps-notificar px-2 py-1 text-xs rounded-md bg-indigo-600 text-white hover:bg-indigo-700">Notificar
+                                                área</button>
+                                            <button
+                                                class="ps-pendientes px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50 hidden">
+                                                Pendientes <span class="count"></span>
+                                            </button>
+                                        </div>
+                                    </article>
+
+                                    <!-- Biblioteca -->
+                                    <article class="rounded-xl px-3 py-3 ring-1 bg-orange-50 ring-orange-200"
+                                        data-area="Biblioteca">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div>
+                                                <p class="font-medium text-gray-900">Biblioteca</p>
+                                                <p class="mt-0.5 text-xs text-gray-600">Devoluciones y multas</p>
+                                            </div>
+                                            <span
+                                                class="ps-chip inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium bg-orange-100 text-orange-800 ring-1 ring-orange-200">Observación</span>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap gap-2">
+                                            <button
+                                                class="ps-detalle px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50">Ver
+                                                detalle</button>
+                                            <button
+                                                class="ps-notificar px-2 py-1 text-xs rounded-md bg-indigo-600 text-white hover:bg-indigo-700">Notificar
+                                                área</button>
+                                            <button
+                                                class="ps-pendientes px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50 hidden">
+                                                Pendientes <span class="count"></span>
+                                            </button>
+                                        </div>
+                                    </article>
+
+                                    <!-- Recursos educativos -->
+                                    <article class="rounded-xl px-3 py-3 ring-1 bg-yellow-50 ring-yellow-200"
+                                        data-area="Recursos educativos">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div>
+                                                <p class="font-medium text-gray-900">Recursos educativos</p>
+                                                <p class="mt-0.5 text-xs text-gray-600">Materiales y equipos</p>
+                                            </div>
+                                            <span
+                                                class="ps-chip inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium bg-yellow-100 text-yellow-800 ring-1 ring-yellow-200">Pendiente</span>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap gap-2">
+                                            <button
+                                                class="ps-detalle px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50">Ver
+                                                detalle</button>
+                                            <button
+                                                class="ps-notificar px-2 py-1 text-xs rounded-md bg-indigo-600 text-white hover:bg-indigo-700">Notificar
+                                                área</button>
+                                            <button
+                                                class="ps-pendientes px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50 hidden">
+                                                Pendientes <span class="count"></span>
+                                            </button>
+                                        </div>
+                                    </article>
+
+                                    <!-- Centro de idiomas -->
+                                    <article class="rounded-xl px-3 py-3 ring-1 bg-emerald-50 ring-emerald-200"
+                                        data-area="Centro de idiomas">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div>
+                                                <p class="font-medium text-gray-900">Centro de idiomas</p>
+                                                <p class="mt-0.5 text-xs text-gray-600">Exámenes y certificaciones</p>
+                                            </div>
+                                            <span
+                                                class="ps-chip inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200">OK</span>
+                                        </div>
+                                        <div class="mt-2 flex flex-wrap gap-2">
+                                            <button
+                                                class="ps-detalle px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50">Ver
+                                                detalle</button>
+                                            <button
+                                                class="ps-notificar px-2 py-1 text-xs rounded-md bg-indigo-600 text-white hover:bg-indigo-700">Notificar
+                                                área</button>
+                                            <button
+                                                class="ps-pendientes px-2 py-1 text-xs rounded-md bg-white ring-1 ring-gray-300 hover:bg-gray-50 hidden">
+                                                Pendientes <span class="count"></span>
+                                            </button>
+                                        </div>
+                                    </article>
+                                </div>
+
+                                <div class="mt-4 flex flex-wrap items-center gap-2">
+                                    <button id="btn-notificar-areas"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                        Notificar a todas las áreas
+                                    </button>
+
+                                    <!-- NUEVO -->
+                                    <button id="btn-ps-ok-todo"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                                        Marcar todo OK
+                                    </button>
+
+                                    <button id="btn-refrescar-areas"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs sm:text-sm font-semibold text-gray-700 ring-1 ring-gray-300 hover:bg-gray-50">
+                                        Refrescar estados
+                                    </button>
+
+
                                 </div>
                             </section>
 
-                            <section class="bg-white border border-gray-200 rounded-2xl p-6">
-                                <header class="flex items-center gap-2 mb-4">
-                                    <span class="text-blue-500">📒</span>
-                                    <h4 class="font-semibold text-gray-800">Contacto</h4>
-                                </header>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-                                    <div class="sm:col-span-2">
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Correo
-                                            institucional</p>
-                                        <p class="font-medium text-[13px] text-gray-900 break-words" id="det-correo">—
-                                        </p>
+                            <!-- ===== Modal: Notificar área ===== -->
+                            <div id="ps-modal" class="fixed inset-0 z-[10050] hidden">
+                                <div class="absolute inset-0 bg-black/50"></div>
+                                <div class="relative mx-auto mt-20 w-full max-w-md">
+                                    <div class="rounded-xl bg-white shadow-xl ring-1 ring-gray-200">
+                                        <div class="flex items-center justify-between px-4 py-3 border-b">
+                                            <h6 id="ps-modal-title" class="font-semibold text-gray-900">Notificar área
+                                            </h6>
+                                            <button id="ps-close"
+                                                class="inline-flex h-8 w-8 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">✕</button>
+                                        </div>
+                                        <div class="px-4 py-3 space-y-2">
+                                            <p class="text-xs text-gray-500">Mensaje para el responsable del área</p>
+                                            <textarea id="ps-text" rows="4"
+                                                class="w-full rounded-md border-gray-300 text-sm focus:ring-blue-400 focus:border-blue-400"
+                                                placeholder="Escribe la observación o solicitud…"></textarea>
+                                        </div>
+                                        <div class="flex items-center justify-end gap-2 px-4 py-3 border-t">
+                                            <button id="ps-cancel"
+                                                class="rounded-lg bg-white ring-1 ring-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Cancelar</button>
+                                            <button id="ps-send"
+                                                class="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Enviar</button>
+                                        </div>
                                     </div>
-                                    <div class="sm:col-span-2">
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Correo personal</p>
-                                        <p class="font-medium text-[13px] text-gray-900 break-words"
-                                            id="det-correo-personal">—</p>
+                                </div>
+                            </div>
+
+
+                            <!-- 3) Derecho a grado -->
+                            <section id="blk-derecho"
+                                class="rounded-2xl border bg-white shadow-sm px-4 py-4 opacity-60 pointer-events-none">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Derecho a grado</h4>
+                                        <p class="text-sm text-gray-600">Pago y descargables.</p>
                                     </div>
-                                    <div class="sm:col-span-2">
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Teléfono</p>
-                                        <p class="font-medium text-[13px] text-gray-900" id="det-telefono">—</p>
+
+                                    <span id="st-derecho" class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ring-1
+                 bg-yellow-50 text-yellow-800 ring-yellow-200">
+                                        <span class="h-2 w-2 rounded-full bg-yellow-500"></span> Pendiente
+                                    </span>
+                                </div>
+
+                                <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                                    <div class="rounded-xl bg-slate-50 ring-1 ring-slate-200 px-3 py-3">
+                                        <p class="text-xs text-gray-500">Valor a pagar</p>
+                                        <p id="dg-valor" class="text-sm font-medium text-gray-800">$ —</p>
                                     </div>
-                                    <div class="sm:col-span-2">
-                                        <p class="text-[12px] uppercase tracking-wide text-gray-500">Dirección</p>
-                                        <p class="font-medium text-[13px] text-gray-900" id="det-direccion">—</p>
+                                    <div class="rounded-xl bg-slate-50 ring-1 ring-slate-200 px-3 py-3">
+                                        <p class="text-xs text-gray-500">Fecha límite</p>
+                                        <p id="dg-fecha-limite" class="text-sm font-medium text-gray-800">—</p>
                                     </div>
+                                    <div class="rounded-xl bg-slate-50 ring-1 ring-slate-200 px-3 py-3">
+                                        <p class="text-xs text-gray-500">Comprobante</p>
+                                        <p id="dg-comprobante" class="text-sm font-medium text-gray-800">No cargado</p>
+                                    </div>
+                                    <div class="rounded-xl bg-slate-50 ring-1 ring-slate-200 px-3 py-3">
+                                        <p class="text-xs text-gray-500">Descargas</p>
+                                        <p id="dg-descargas" class="text-sm font-medium text-gray-800">0</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 flex flex-wrap items-center gap-2">
+                                    <button id="btn-enviar-instrucciones"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                        Notificar al estudiante: descargar y pagar
+                                    </button>
+                                    <button id="btn-ver-orden"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs sm:text-sm font-semibold text-gray-700 ring-1 ring-gray-300 hover:bg-gray-50">
+                                        Ver orden / Descargar PDF
+                                    </button>
+                                    <button id="btn-registrar-pago"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                                        Registrar pago
+                                    </button>
                                 </div>
                             </section>
 
-                        </div>
-                    </div>
 
-                    <!-- Vínculos -->
-                    <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-                        <h4 class="text-base font-semibold mb-4 text-gray-700 flex items-center gap-2">
-                            <span class="text-emerald-500">🏛️</span> Vínculos con la Universidad
-                        </h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                            <div>
-                                <p class="text-gray-500">Funcionario UCMC</p>
-                                <p class="font-medium" id="det-es-funcionario-uni">—</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Docente UCMC</p>
-                                <p class="font-medium" id="det-es-docente-uni">—</p>
-                            </div>
-                        </div>
-                    </div>
+                            <!-- 4) Graduado -->
+                            <section id="blk-graduado"
+                                class="rounded-2xl border bg-white shadow-sm px-4 py-4 opacity-60 pointer-events-none">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">Graduado</h4>
+                                        <p class="text-sm text-gray-600">Se habilita cuando los pasos previos estén OK.
+                                        </p>
+                                    </div>
+                                    <span id="st-graduado" class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ring-1
+                   bg-gray-100 text-gray-700 ring-gray-200">
+                                        <span class="h-2 w-2 rounded-full bg-gray-300"></span> Bloqueado
+                                    </span>
+                                </div>
 
-                    <!-- Pregrado (posgrado) -->
-                    <div id="bloque-pregrado" class="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hidden">
-                        <h4 class="text-base font-semibold mb-4 text-gray-700 flex items-center gap-2">
-                            <span class="text-purple-500">🎓</span> Información de pregrado (para posgrado)
-                        </h4>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                            <div>
-                                <p class="text-gray-500">Título de pregrado</p>
-                                <p class="font-medium" id="det-titulo-pregrado">—</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Universidad de egreso</p>
-                                <p class="font-medium" id="det-universidad-pregrado">—</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-500">Fecha de grado</p>
-                                <p class="font-medium" id="det-fecha-grado-pregrado">—</p>
-                            </div>
+                                <div class="mt-4">
+                                    <button id="btn-confirmar-graduado"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+                                        disabled>
+                                        Marcar como Graduado
+                                    </button>
+                                </div>
+                            </section>
                         </div>
-                    </div>
 
-                    <!-- Paz y salvo -->
-                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
-                        <h4 class="text-base font-semibold mb-4 text-gray-700 flex items-center gap-2">
-                            <span class="text-green-500">🛡️</span> Estado de Paz y Salvo
-                        </h4>
-                        <div class="mb-6">
-                            <div class="flex justify-between text-sm text-gray-500 mb-1">
-                                <span>Porcentaje de cumplimiento</span>
-                                <span id="det-pazsalvo-porcentaje">0%</span>
-                            </div>
-                            <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-                                <div id="barra-pazsalvo"
-                                    class="h-full bg-green-500 transition-all duration-500 ease-in-out"
-                                    style="width:0%"></div>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            <div>
-                                <p class="text-sm text-gray-500">Financiera</p>
-                                <p class="font-medium" id="det-financiera">—</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Admisiones</p>
-                                <p class="font-medium" id="det-admisiones">—</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Biblioteca</p>
-                                <p class="font-medium" id="det-biblioteca">—</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Recursos Educativos</p>
-                                <p class="font-medium" id="det-recursos">—</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Centro de Idiomas</p>
-                                <p class="font-medium" id="det-idiomas">—</p>
-                            </div>
-                        </div>
-                    </div>
+                        <!-- ========== Columna derecha: Bitácora ========== -->
+                        <aside class="lg:col-span-4 space-y-4">
+                            <div class="rounded-2xl border bg-white shadow-sm px-4 py-4">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-semibold text-gray-900">Bitácora</h4>
+                                    <button id="btn-nueva-nota"
+                                        class="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 ring-1 ring-gray-300 hover:bg-gray-50">
+                                        Añadir nota
+                                    </button>
+                                </div>
 
+                                <ol id="log-timeline" class="mt-3 space-y-3 text-sm">
+                                    <li class="relative pl-6">
+                                        <span class="absolute left-0 top-1.5 h-2 w-2 rounded-full bg-blue-600"></span>
+                                        <p class="text-gray-800"><span class="font-medium">Notificación enviada</span> ·
+                                            Instrucciones de derecho a grado.</p>
+                                        <p class="text-xs text-gray-500">2025-10-01 10:22</p>
+                                    </li>
+                                </ol>
+
+                                <div class="mt-3">
+                                    <button id="btn-ver-todas"
+                                        class="w-full rounded-lg bg-white px-3 py-2 text-xs font-semibold text-gray-700 ring-1 ring-gray-300 hover:bg-gray-50">
+                                        Ver todas las notificaciones
+                                    </button>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
                 </div>
+                <!-- ================== /DETALLE / CHECKLIST ================== -->
+
 
             </div>
         </div>
     </div>
+
+
 
     <!-- Confirmar envío de enlace -->
     <div id="confirmEnviar" class="fixed inset-0 z-[10050] hidden items-center justify-center">
@@ -1303,7 +1721,7 @@
         </div>
     </div>
 
-    <!-- ENVIADO -->
+    <!--MODAL ENVIADO -->
     <div id="md-sent" class="fixed inset-0 z-[10000] hidden items-start justify-center pt-10">
         <div class="absolute inset-0 bg-black/40" data-close="md-sent"></div>
         <div class="relative mx-auto w-[min(40rem,92vw)] rounded-xl bg-white p-8 shadow-xl text-center">
@@ -1332,6 +1750,10 @@
     <script src="../assets/modal_enviar_notificacion.js"></script>
     <script src="../assets/modales_mensaje_notificacion_enviada.js"></script>
     <script src="../assets/mostrar_modal_detalle_proceso_estudiante.js"></script>
+    <script src="../assets/areas_paz_salvo.js"></script>
+    <script src="../assets/check_list_datos_personales.js"></script>
+    <script src="../assets/bitacora_notificaciones_programas.js"></script>
+    <script src="../assets/estado_paz_salvo_seguimiento.js"></script>
     <script>
         document.querySelectorAll('[data-actividad-toggle]').forEach(btn => {
             const target = document.querySelector(btn.getAttribute('data-actividad-toggle'));
@@ -1348,8 +1770,13 @@
             }
         });
 
-
     </script>
+
+
+
+
+
+
 
 
 </body>
