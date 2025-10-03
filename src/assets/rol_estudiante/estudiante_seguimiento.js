@@ -233,3 +233,89 @@
     wireTasks();
     paintAreas();
 })();
+
+
+
+// ===== Información del grado (sección #sec-grado) =====
+(() => {
+    // Ponlo en true mientras lo pruebas (o calcula este valor según tu lógica real)
+    const aprobado = true; // demo
+
+    // Datos demo de la ceremonia
+    const gradoInfo = {
+        titulo: 'Ceremonia 2025-1',
+        fecha: '22 de noviembre de 2025',
+        hora: '10:00 a. m.',
+        lugar: 'Auditorio Principal — Sede 28 #5B-02, Bogotá D.C.',
+        direccion: 'Sede 28 #5B-02, Bogotá D.C.',
+        cupos: 2,
+        codigo: 'INV-25-605032223',
+        pasos: [
+            { text: 'Confirma tu asistencia al acto de grado', done: false },
+            { text: 'Reclama tu toga y birrete (si aplica)', done: true },
+            { text: 'Llega 60 minutos antes con documento de identidad', done: false },
+            { text: 'Verifica ortografía de tu nombre para diploma', done: true },
+        ]
+    };
+
+    const $ = s => document.querySelector(s);
+    const sec = $('#sec-grado');
+    const badge = $('#grado-badge');
+
+    if (!sec) return; // por si se reutiliza el JS en otra vista
+
+    function paintGrado() {
+        if (!aprobado) {
+            sec.classList.add('hidden');
+            badge?.classList.add('hidden');
+            return;
+        }
+        // Mostrar sección y badge
+        sec.classList.remove('hidden');
+        badge?.classList.remove('hidden');
+
+        // Relleno de datos
+        $('#cer-titulo').textContent = gradoInfo.titulo;
+        $('#cer-fecha').textContent = gradoInfo.fecha;
+        $('#cer-hora').textContent = gradoInfo.hora;
+        $('#cer-lugar').textContent = gradoInfo.lugar;
+        $('#cer-direccion').textContent = gradoInfo.direccion;
+        $('#cer-cupos').textContent = `${gradoInfo.cupos} acompañantes`;
+        $('#cer-codigo').textContent = gradoInfo.codigo;
+
+        // Pasos
+        const ul = $('#grado-pasos');
+        ul.innerHTML = gradoInfo.pasos.map(p => `
+      <li class="flex items-start gap-3 rounded-xl border bg-white p-3">
+        <span class="mt-0.5 h-2.5 w-2.5 rounded-full ${p.done ? 'bg-emerald-500' : 'bg-amber-500'}"></span>
+        <div class="min-w-0">
+          <p class="text-gray-800 ${p.done ? 'line-through text-gray-500' : ''}">${p.text}</p>
+          <span class="mt-1 inline-flex items-center gap-1 rounded-full ${p.done ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'} px-2 py-0.5 text-xs">
+            ${p.done ? 'Completado' : 'Pendiente'}
+          </span>
+        </div>
+      </li>
+    `).join('');
+    }
+
+    // Acciones (feedback usando tu modal md-ok)
+    $('#btnInvitacion')?.addEventListener('click', () => {
+        const md = document.getElementById('md-ok');
+        if (!md) return;
+        document.getElementById('md-ok-title').textContent = 'Invitación descargada';
+        document.getElementById('md-ok-text').innerHTML =
+            'Se descargará tu invitación con el código: <b>' + gradoInfo.codigo + '</b>.';
+        md.classList.remove('hidden');
+    });
+
+    $('#btnIndicaciones')?.addEventListener('click', () => {
+        const md = document.getElementById('md-ok');
+        if (!md) return;
+        document.getElementById('md-ok-title').textContent = 'Indicaciones para el día del grado';
+        document.getElementById('md-ok-text').innerHTML =
+            '• Presentarse 60 minutos antes.<br>• Llevar documento de identidad.<br>• Revisar sillas asignadas el día del evento.';
+        md.classList.remove('hidden');
+    });
+
+    paintGrado();
+})();
