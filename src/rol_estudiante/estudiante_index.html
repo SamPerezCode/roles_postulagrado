@@ -1,344 +1,326 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PostulaGrado — Programa Academico</title>
-    <!-- CSS compilado por Tailwind CLI -->
-    <link rel="stylesheet" href="../../dist/output.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Actualización de información personal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* helpers para etiquetas/chips */
+        .chip {
+            @apply inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium;
+        }
+
+        .chip-amber {
+            @apply border-amber-400 text-amber-700 bg-amber-50;
+        }
+
+        .chip-sky {
+            @apply border-sky-300 text-sky-700 bg-sky-50;
+        }
+
+        .req-dot::after {
+            content: " *";
+            color: #ef4444;
+        }
+
+        .hint {
+            @apply text-xs text-gray-500;
+        }
+
+        .section {
+            @apply rounded-xl border border-gray-200 bg-white p-4 sm:p-6 shadow-sm;
+        }
+
+        .field {
+            @apply space-y-1;
+        }
+
+        .label {
+            @apply block text-sm font-medium text-gray-800;
+        }
+
+        .input {
+            @apply w-full rounded-lg border-gray-300 shadow-sm focus:border-sky-500 focus:ring-sky-500;
+        }
+    </style>
 </head>
 
-<body class="min-h-screen bg-gray-100 text-gray-900">
-
-    <!-- DASHBOARD -->
-    <div class="min-h-[100dvh] md:flex">
-        <!-- Overlay móvil con fade (fuera del sidebar) -->
-        <div id="overlay"
-            class="hidden fixed inset-0 z-[40] bg-black/40 opacity-0 transition-opacity duration-300 md:hidden"></div>
-
-        <!-- Sidebar -->
-        <aside id="sidebar" class="group fixed inset-y-0 left-0 z-40
-            w-72 -translate-x-full  /* drawer cerrado en móvil */
-            bg-blue-900 text-white flex flex-col
-            transition-transform duration-300 ease-out
-            md:sticky md:top-0 md:translate-x-0
-            md:w-20 md:hover:w-64            /* compacto -> expandido al hover */
-            md:transition-all md:duration-300 md:ease-in-out
-            md:shrink-0 md:h-screen md:max-h-screen
-            md:overflow-y-auto md:overflow-x-hidden" style="will-change: width, transform;">
-
-            <!-- Brand -->
-            <div class="px-4 pt-5 pb-3 flex items-center gap-3">
-                <div class="h-9 w-9 rounded-xl bg-white/10 grid place-items-center shrink-0">
-                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor">
-                        <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Zm0 2.2 6.8 3.8v7.9L12 19.9 5.2 15.9V8.1L12 4.2Z" />
-                    </svg>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Top bar -->
+    <header class="border-b bg-white">
+        <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-sky-100 ring-1 ring-sky-200"></div>
+                <div>
+                    <p class="text-sm font-semibold">Universidad Colegio Mayor de Cundinamarca</p>
+                    <p class="text-xs text-gray-500">Proceso de postulación a grado</p>
                 </div>
-                <span class="text-lg font-semibold tracking-tight whitespace-nowrap overflow-hidden
-                    md:opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-200">
-                    PostulaGrado
-                </span>
+            </div>
+            <div class="ml-auto flex items-center gap-2 text-xs text-gray-500">
+                <span class="rounded-full bg-gray-100 px-2 py-1">SGC</span>
+                <span class="rounded-full bg-gray-100 px-2 py-1">ISO 9001</span>
+                <span class="rounded-full bg-gray-100 px-2 py-1">Acreditación</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-6 sm:py-8">
+        <!-- Title -->
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Actualización de información personal</h1>
+        <p class="mt-2 text-sm text-gray-600 max-w-3xl">Verifica y completa tu información. <span
+                class="font-semibold">IMPORTANTE:</span> Algunos datos de identificación están en solo lectura para que
+            la actualización se realice con base en el documento de identificación que adjuntes, dado que así serán
+            expedidos los documentos de grado.</p>
+
+        <!-- Blue advisory box -->
+        <div class="mt-4 rounded-xl border border-sky-200 bg-sky-50 p-4">
+            <p class="text-sm text-sky-900"><span class="font-semibold">¿Ves un dato de identificación
+                    incorrecto?</span> Marca <span class="chip chip-sky">Solicitar revisión</span> en ese campo. Podrás
+                dejar un comentario corto para el revisor. Estos datos no se editan aquí: el equipo los validará con el
+                documento que adjuntes.</p>
+        </div>
+
+        <!-- Campos marcados para revisión -->
+        <div class="mt-3 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm">
+            <p class="font-medium text-amber-900">Campos marcados para revisión</p>
+            <ul class="mt-1 list-inside list-disc text-amber-800">
+                <li>Correo electrónico institucional</li>
+            </ul>
+        </div>
+
+        <!-- Identificación -->
+        <section class="section mt-6">
+            <div class="mb-4 flex items-center justify-between">
+                <h2 class="text-lg font-semibold">Identificación</h2>
+                <p class="text-xs text-gray-500">Usa “Solicitar revisión” solo si el valor no coincide con tu documento
+                    de identidad.</p>
             </div>
 
-            <!-- NAV centrado -->
-            <nav class="flex-1 flex items-center px-2">
-                <ul class="w-full space-y-3"><!-- un poco más de aire -->
-
-                    <!-- Dashboard (ACTIVO) -->
-                    <li>
-                        <a href="../rol_estudiante/estudiante_index.html" class="group relative flex items-center gap-2 px-3 py-2 rounded-lg
-                    text-blue-100 hover:bg-white/10 transition-colors duration-200
-                    aria-[current=page]:bg-white/10 aria-[current=page]:font-semibold
-                    focus:outline-none focus:ring-4 ring-white/40" aria-current="page">
-
-                            <!-- chip del ícono (40px) -->
-                            <span class="relative grid place-items-center h-10 w-10 rounded-xl shrink-0
-                        bg-transparent group-hover:bg-white/10
-                        group-aria-[current=page]:bg-white/20 group-aria-[current=page]:ring-1 group-aria-[current=page]:ring-white/15
-                        transition-colors duration-200">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path d="M3 9.75 12 3l9 6.75V21a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V9.75Z" />
-                                    <path d="M9 21V12h6v9H9Z" class="fill-blue-100" />
-                                </svg>
-                            </span>
-
-                            <!-- label (solo al expandir) -->
-                            <span class="truncate font-medium
-                        md:opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-200">
-                                Dashboard
-                            </span>
-                        </a>
-                    </li>
-
-                    <!-- Procesos -->
-                    <li>
-                        <a href="../rol_estudiante/seguimiento_proceso_estudiante.html" class="group relative flex items-center gap-2 px-3 py-2 rounded-lg
-                    text-blue-100 hover:bg-white/10 transition-colors duration-200
-                    focus:outline-none focus:ring-4 ring-white/30">
-                            <span class="relative grid place-items-center h-10 w-10 rounded-xl shrink-0
-                        bg-transparent group-hover:bg-white/10 transition-colors duration-200">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path
-                                        d="M3 4.5A1.5 1.5 0 0 1 4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A.75.75 0 0 1 3 19.5v-15Z" />
-                                </svg>
-                            </span>
-                            <span class="truncate font-medium
-                        md:opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-200">
-                                Procesos
-                            </span>
-                        </a>
-                    </li>
-
-                </ul>
-            </nav>
-        </aside>
-
-        <!-- Main -->
-        <!-- 3 filas: header-local/toolbar (auto) | contenido (1fr) | footer (auto) -->
-        <main class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4 p-4 sm:p-6">
-            <!-- Header --> <!-- Header -->
-            <header class="relative z-30 flex items-center justify-between rounded-2xl border bg-white p-4 shadow-sm">
-                <div class="flex min-w-0 items-center gap-2 sm:gap-3">
-                    <button id="btnSidebar"
-                        class="rounded-lg p-2 text-blue-900 hover:bg-blue-50 focus:outline-none md:hidden"
-                        aria-label="Abrir menú">
-                        <!-- ícono -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24"
-                            fill="currentColor">
-                            <path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z" />
-                        </svg>
-                    </button>
-                    <h2 class="truncate text-base font-semibold text-blue-900 sm:text-lg">
-                        Dashboard
-                    </h2>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <!-- Nombre -->
+                <div class="field">
+                    <label class="label">Primer Nombre</label>
+                    <div class="flex gap-2">
+                        <input class="input" type="text" value="LEIDY" readonly />
+                        <button class="chip chip-amber whitespace-nowrap">Solicitar revisión</button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Segundo Nombre</label>
+                    <div class="flex gap-2">
+                        <input class="input" type="text" value="JOHANA" readonly />
+                        <button class="chip chip-amber">Solicitar revisión</button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Primer Apellido</label>
+                    <div class="flex gap-2">
+                        <input class="input" type="text" value="BELTRAN" readonly />
+                        <button class="chip chip-amber">Solicitar revisión</button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Segundo Apellido</label>
+                    <div class="flex gap-2">
+                        <input class="input" type="text" value="CANO" readonly />
+                        <button class="chip chip-amber">Solicitar revisión</button>
+                    </div>
                 </div>
 
-                <div class="flex shrink-0 items-center gap-2 sm:gap-4">
-                    <!-- Campana + dropdown -->
-                    <div class="relative"> <button id="btnBell" aria-expanded="false"
-                            class="relative rounded-full p-2 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-200">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path d="M10 21h4a2 2 0 1 1-4 0Zm10-5V11a8 8 0 1 0-16 0v5l-2 2v1h20v-1l-2-2Z" />
-                            </svg> <span
-                                class="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">7</span>
-                        </button>
-
-                        <div id="menuBell"
-                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-80 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
-                            role="menu" aria-label="Notificaciones" tabindex="-1">
-                            <div class="mb-2 flex items-center justify-between">
-                                <h3 class="text-sm font-semibold text-gray-900">Últimas notificaciones</h3>
-                                <span class="text-xs text-gray-500">hoy</span>
-                            </div>
-                            <ul class="max-h-64 space-y-2 overflow-y-auto text-sm">
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">📌 Nueva convocatoria abierta <span
-                                        class="ml-2 text-xs text-gray-500">08:20</span></li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">⚠️ Actualiza tus datos antes del 10
-                                    de marzo</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">✅ Revisión de postulaciones
-                                    completada</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔄 Mantenimiento programado el 15 de
-                                    marzo</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">📅 Cierre de postulaciones el 20 de
-                                    marzo</li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">🚀 Nueva actualización disponible
-                                </li>
-                                <li class="rounded-lg border p-2 hover:bg-gray-50">🔔 Recordatorio: Verificar documentos
-                                </li>
-                            </ul>
-                            <div class="mt-2 text-right">
-                                <button class="text-xs font-medium text-blue-700 hover:underline">Ver todas</button>
-                            </div>
-                        </div>
+                <div class="field">
+                    <label class="label">Tipo de documento</label>
+                    <div class="flex gap-2">
+                        <select class="input">
+                            <option>Cédula de ciudadanía colombiana</option>
+                        </select>
+                        <button class="chip chip-amber">Solicitar revisión</button>
                     </div>
+                </div>
+                <div class="field">
+                    <label class="label">Número de documento</label>
+                    <div class="flex gap-2">
+                        <input class="input" type="text" value="1073721918" readonly />
+                        <button class="chip chip-amber">Solicitar revisión</button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Lugar de expedición</label>
+                    <div class="flex gap-2">
+                        <input class="input" type="text" value="SOACHA" readonly />
+                        <button class="chip chip-amber">Solicitar revisión</button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Género</label>
+                    <div class="flex gap-2">
+                        <select class="input">
+                            <option>Femenino</option>
+                        </select>
+                        <button class="chip chip-amber">Solicitar revisión</button>
+                    </div>
+                </div>
+                <div class="field sm:col-span-2">
+                    <label class="label">Correo electrónico institucional <span
+                            class="text-amber-700 ml-2 chip chip-amber">Solicitar revisión</span></label>
+                    <input class="input" type="email" value="ljbeltran@universidadmayor.edu.co" />
+                    <input class="mt-2 input" placeholder="¿Qué debo revisar aquí? (opcional)" />
+                    <p class="hint mt-1">Estos datos están bloqueados porque se validarán y actualizarán según el
+                        documento de identificación que adjuntes. Si observas alguna inconsistencia, comunícate con
+                        Soporte Académico.</p>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Avatar + dropdown -->
+        <!-- Anexos prioritarios -->
+        <section class="section mt-6">
+            <div class="mb-4 flex items-center gap-2">
+                <h2 class="text-lg font-semibold">Anexos prioritarios</h2>
+                <span
+                    class="ml-2 rounded bg-indigo-50 px-2 py-0.5 text-xs font-semibold text-indigo-700">PRIORITARIO</span>
+            </div>
+
+            <h3 class="font-medium">Documento de identificación (PDF/JPG/PNG) <span class="text-red-500">*</span></h3>
+            <div class="mt-2 rounded-lg border-2 border-dashed border-gray-300 p-6 text-center">
+                <div class="mx-auto h-10 w-10 rounded-full bg-gray-100"></div>
+                <p class="mt-2 text-sm text-gray-600">Arrastra y suelta el archivo aquí</p>
+                <p class="text-xs text-gray-400">o haz clic para seleccionarlo desde tu equipo</p>
+            </div>
+            <p class="hint mt-2">Debe adjuntarse para corroborar identidad. Tamaño máximo recomendado: 3&nbsp;MB.</p>
+
+            <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div class="field">
+                    <label class="label">Certificado de asistencia a SaberPro/TYT (PDF)</label>
+                    <div class="flex gap-2">
+                        <button class="input text-left">Seleccionar archivo</button>
+                        <span class="self-center text-sm text-gray-500">Sin archivos seleccionados</span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Código SaberPro o TYT</label>
+                    <input class="input" placeholder="Ej: ABC 10 9 5 - 23 Apto 301" />
+                </div>
+            </div>
+            <p class="hint mt-1">Estos documentos pueden anexarse más adelante, antes de la fecha de graduación.</p>
+        </section>
+
+        <!-- Contacto y vínculos -->
+        <section class="section mt-6">
+            <h2 class="text-lg font-semibold">Contacto y vínculos</h2>
+            <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div class="field">
+                    <label class="label req-dot">¿Pertenece a grupo de investigación?</label>
+                    <select class="input">
+                        <option>Seleccione…</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="label req-dot">Número de teléfono</label>
                     <div class="relative">
-                        <button id="btnUser" aria-expanded="false"
-                            class="flex items-center gap-2 rounded-full bg-gray-100 p-1 pl-1 pr-1 sm:pl-1 sm:pr-3 hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-blue-200">
-                            <span
-                                class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-blue-900 text-white font-semibold">A</span>
-                            <span class="hidden md:block text-sm font-medium text-gray-800">Abimelec Enoc</span>
-                        </button>
-
-                        <div id="menuUser"
-                            class="invisible opacity-0 pointer-events-none absolute right-0 mt-2 w-64 rounded-2xl border bg-white p-3 shadow-lg transition-all duration-150 ease-out z-50"
-                            role="menu" aria-label="Cuenta" tabindex="-1">
-                            <div class="mb-2">
-                                <p class="text-sm font-semibold text-gray-900">Abimelec Enoc</p>
-                                <p class="text-xs text-gray-500">Rol: Admisiones</p>
-                            </div>
-
-                            <div class="my-2 h-px bg-gray-200"></div>
-                            <button
-                                class="inline-flex w-full items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-left text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300">
-                                Cerrar sesión
-                            </button>
-                        </div>
+                        <input class="input pr-10" value="3005759643" />
+                        <span
+                            class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">⌄</span>
                     </div>
                 </div>
-            </header>
-
-
-            <!-- Contenido -->
-            <!-- Bienvenida + ficha del estudiante -->
-            <section class="rounded-2xl border bg-white p-5 shadow-sm">
-                <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] md:items-center gap-4">
-                    <!-- izquierda -->
-                    <div class="flex items-start gap-4">
-                        <span
-                            class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-900 text-white text-xl font-semibold">E</span>
-                        <div class="min-w-0">
-                            <h1 class="text-lg sm:text-xl font-semibold text-blue-900">¡Hola, Estudiante Ejemplo!</h1>
-                            <p class="text-sm text-gray-700">
-                                <span class="font-medium">Programa:</span> Especialización Derecho Internacional Público
-                                ·
-                                <span class="font-medium">Proceso:</span> Grados 2025-1
-                            </p>
-                            <p class="text-xs text-gray-500 mt-1">Código: 605032223 · Documento: 1073721918</p>
-                        </div>
-                    </div>
-                    <!-- derecha -->
-                    <div class="w-full md:w-72 lg:w-80 rounded-xl border bg-gray-50 p-3 md:p-4 md:self-center">
-                        <div class="flex items-center justify-between text-sm">
-                            <span class="font-semibold text-gray-800">Avance general</span>
-                            <span class="text-xs text-gray-500" id="lbl-mini">45%</span>
-                        </div>
-                        <div class="mt-1 h-2.5 rounded-full bg-gray-200 overflow-hidden" role="progressbar"
-                            aria-valuemin="0" aria-valuemax="100" aria-valuenow="45">
-                            <div id="bar-mini" class="h-full bg-blue-600" style="width:45%"></div>
-                        </div>
+                <div class="field">
+                    <label class="label">Correo electrónico personal</label>
+                    <input class="input" placeholder="" />
+                </div>
+                <div class="field">
+                    <label class="label req-dot">Departamento</label>
+                    <select class="input">
+                        <option>Seleccione…</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="label req-dot">Ciudad o Municipio</label>
+                    <div class="flex gap-2">
+                        <select class="input">
+                            <option>Seleccione…</option>
+                        </select>
+                        <button class="chip chip-amber" title="Solicitar revisión">Solicitar revisión</button>
                     </div>
                 </div>
-            </section>
-
-
-            <!-- Atajos -->
-            <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                <a href="./seguimiento_proceso_estudiante.html#notificaciones"
-                    class="group rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Notificaciones</h3>
-                            <p class="text-sm text-gray-600">Tareas y avisos recientes</p>
-                        </div>
-                        <span
-                            class="rounded-xl bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-700 group-hover:bg-blue-100">3</span>
-                    </div>
-                </a>
-
-                <a href="./seguimiento_proceso_estudiante.html#pago"
-                    class="group rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Pago de grados</h3>
-                            <p class="text-sm text-gray-600">Descarga tu recibo / verifica pago</p>
-                        </div>
-                        <span
-                            class="rounded-xl bg-amber-50 px-3 py-1 text-sm font-semibold text-amber-700 group-hover:bg-amber-100">Pendiente</span>
-                    </div>
-                </a>
-
-                <a href="./seguimiento_proceso_estudiante.html#fechas"
-                    class="group rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Fecha y lugar</h3>
-                            <p class="text-sm text-gray-600">Detalles de la ceremonia</p>
-                        </div>
-                        <span
-                            class="rounded-xl bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700 group-hover:bg-emerald-100">Próx.</span>
-                    </div>
-                </a>
-
-                <a href="./seguimiento_proceso_estudiante.html#contacto"
-                    class="group rounded-2xl border bg-white p-5 shadow-sm hover:shadow-md transition">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="font-semibold text-gray-900">Dudas al programa</h3>
-                            <p class="text-sm text-gray-600">Envía un mensaje</p>
-                        </div>
-                        <span
-                            class="rounded-xl bg-purple-50 px-3 py-1 text-sm font-semibold text-purple-700 group-hover:bg-purple-100">Soporte</span>
-                    </div>
-                </a>
-            </section>
-
-            <!-- Qué me falta -->
-            <section class="rounded-2xl border bg-white p-5 shadow-sm">
-                <h2 class="text-lg font-semibold text-gray-900">Qué me falta completar</h2>
-                <div class="mt-3 grid gap-3 md:grid-cols-2">
-                    <article class="rounded-xl border bg-gray-50 p-4">
-                        <div class="flex items-start gap-3">
-                            <span
-                                class="h-8 w-8 inline-grid place-items-center rounded-lg bg-blue-100 text-blue-700">📄</span>
-                            <div class="min-w-0">
-                                <p class="text-sm text-gray-800">Subir certificado de asistencia</p>
-                                <p class="text-xs text-gray-500">Plazo recomendado: 10/10/2025</p>
-                                <a href="./seguimiento_proceso_estudiante.html#notificaciones"
-                                    class="mt-2 inline-block text-sm text-blue-700 underline">Ir al formulario</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="rounded-xl border bg-gray-50 p-4">
-                        <div class="flex items-start gap-3">
-                            <span
-                                class="h-8 w-8 inline-grid place-items-center rounded-lg bg-amber-100 text-amber-700">💳</span>
-                            <div class="min-w-0">
-                                <p class="text-sm text-gray-800">Pagar derechos de grado</p>
-                                <p class="text-xs text-gray-500">Estado: pendiente de pago</p>
-                                <a href="./seguimiento_proceso_estudiante.html#pago"
-                                    class="mt-2 inline-block text-sm text-blue-700 underline">Ir al pago</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-
-            </section>
-
-
-            <!-- MODALES simples -->
-            <div id="md-ok" class="fixed inset-0 hidden items-start justify-center pt-10 z-[10000]">
-                <div class="absolute inset-0 bg-black/40" data-close="md-ok"></div>
-                <div class="relative mx-auto w-[min(32rem,92vw)] rounded-xl bg-white p-6 shadow-xl text-center">
-                    <button class="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
-                        data-close="md-ok">✕</button>
-                    <div class="mb-4 grid h-20 w-20 mx-auto place-items-center rounded-full border-4 border-green-100">
-                        <svg viewBox="0 0 24 24" class="h-10 w-10 text-green-600">
-                            <path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
-                        </svg>
-                    </div>
-                    <h3 id="md-ok-title" class="text-xl font-semibold text-gray-800">Listo</h3>
-                    <p id="md-ok-text" class="mt-2 text-gray-700">Acción realizada correctamente.</p>
-                    <div class="mt-4">
-                        <button class="rounded-md bg-indigo-600 px-5 py-2 text-white font-semibold hover:bg-indigo-700"
-                            data-close="md-ok">OK</button>
-                    </div>
+                <div class="field">
+                    <label class="label">Dirección</label>
+                    <input class="input" placeholder="Ej: Calle 10 # 5-23 Apto 301" />
                 </div>
             </div>
 
+            <h3 class="mt-6 font-medium">Vínculos con la institución</h3>
+            <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div class="field">
+                    <label class="label">¿Es hijo(a) de funcionario?</label>
+                    <select class="input">
+                        <option>Seleccione…</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="label">¿Es hijo(a) de docente?</label>
+                    <select class="input">
+                        <option>Seleccione…</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="label">¿Es funcionario de la Universidad?</label>
+                    <select class="input">
+                        <option>Seleccione…</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="label">¿Es docente de la Universidad?</label>
+                    <select class="input">
+                        <option>Seleccione…</option>
+                    </select>
+                </div>
+            </div>
+        </section>
 
-            <!-- Footer -->
-            <footer class="rounded-2xl border bg-white p-4 text-center text-xs text-gray-600 shadow-sm">
-                © 2025 Universidad Colegio Mayor de Cundinamarca - Todos los derechos reservados
-            </footer>
+        <!-- Información adicional (postgrado) -->
+        <section class="section mt-6">
+            <h2 class="text-lg font-semibold">Información adicional (postgrado)</h2>
+            <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div class="field">
+                    <label class="label">Título de pregrado</label>
+                    <input class="input" placeholder="" />
+                </div>
+                <div class="field">
+                    <label class="label">Universidad de egreso (pregrado)</label>
+                    <select class="input">
+                        <option>Seleccione…</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="label">Fecha de grado (pregrado)</label>
+                    <input class="input" type="text" placeholder="dd/mm/aaaa" />
+                </div>
+            </div>
+        </section>
 
-        </main>
-    </div>
+        <!-- Actions -->
+        <div class="mt-6 flex justify-end">
+            <button
+                class="rounded-xl bg-emerald-600 px-5 py-2.5 text-white shadow hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">Guardar
+                actualización</button>
+        </div>
 
-    <!-- JS mínimo para dropdowns y cierre por click fuera -->
+        <footer class="mt-10 text-center text-xs text-gray-500">
+            <p>© 2025 Universidad Colegio Mayor de Cundinamarca · Sistema de Gestión de Calidad – ISO 9001 ·
+                Acreditación de Alta Calidad</p>
+        </footer>
+    </main>
 
-    <script src="../../src/assets/app.js" defer></script>
-    <script src="../assets/sidebar-active.js"></script>
-
-
+    <!-- JS opcional: efecto visual al pulsar "Solicitar revisión" -->
+    <script>
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.chip-amber');
+            if (!btn) return;
+            btn.classList.toggle('ring-2');
+            btn.classList.toggle('ring-amber-300');
+            btn.textContent = btn.textContent.includes('✓') ? 'Solicitar revisión' : 'Solicitar revisión ✓';
+        });
+    </script>
 </body>
 
 </html>

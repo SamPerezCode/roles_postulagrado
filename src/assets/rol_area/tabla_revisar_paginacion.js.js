@@ -17,6 +17,7 @@
     ];
 
     window.students = students;
+    localStorage.setItem('students_demo', JSON.stringify(window.students));
 
     // ====== refs ======
     const $tableBody = document.querySelector('#fin-table tbody');

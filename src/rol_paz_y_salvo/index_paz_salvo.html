@@ -382,17 +382,27 @@
                     </div>
 
                     <!-- Acciones de envío -->
-                    <div class="mt-4 flex items-center justify-center">
+                    <div class="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                         <button id="btn-enviar-ps"
                             class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-300">
-                            <!-- ícono -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24"
                                 fill="currentColor">
                                 <path d="M3 12 21 3l-9 18-2-7-7-2Z" />
                             </svg>
-                            Enviar paz y salvo
+                            Enviar paz y salvo (Estudiantes)
+                        </button>
+
+                        <!-- Secundario azul (sin morado) -->
+                        <button id="btn-enviar-ps-prog"
+                            class="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm ring-1 ring-blue-200 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path d="M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z" />
+                            </svg>
+                            Enviar lista a programas
                         </button>
                     </div>
+
 
 
                 </section>
@@ -505,7 +515,7 @@
         </div>
     </div>
 
-    <!-- MODAL: Enviar Paz y Salvo -->
+    <!-- MODAL: Enviar Paz y Salvo estudiantes -->
     <div id="modal-enviar-ps" class="fixed inset-0 z-[10060] hidden">
         <!-- backdrop -->
         <div class="absolute inset-0 bg-black/50"></div>
@@ -584,6 +594,97 @@
         </div>
 
     </div>
+    <!-- MODAL: Enviar lista de aprobados a Programas -->
+    <div id="modal-enviar-ps-prog" class="fixed inset-0 z-[10065] hidden">
+        <!-- backdrop -->
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <!-- contenedor -->
+        <div class="relative mx-auto mt-16 w-full max-w-2xl px-4">
+            <div class="rounded-xl bg-white shadow-xl ring-1 ring-gray-200 overflow-hidden">
+                <!-- header -->
+                <div class="flex items-center justify-between px-4 py-3 border-b">
+                    <h3 class="text-base font-semibold text-gray-900">Enviar lista de aprobados a Programas</h3>
+                    <button id="epsp-close"
+                        class="inline-flex h-8 w-8 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">✕</button>
+                </div>
+
+                <!-- contenido -->
+                <div class="px-4 py-4 space-y-4">
+                    <!-- modo de envío -->
+                    <fieldset class="space-y-2">
+                        <legend class="text-sm font-medium text-gray-900">Destino</legend>
+
+                        <label class="flex items-center gap-2 text-sm">
+                            <input type="radio" name="epsp-mode" value="todos" class="text-purple-600" checked>
+                            <span>Todos los <b id="epsp-prog-count">0</b> programas con aprobados</span>
+                        </label>
+
+                        <label class="flex items-center gap-2 text-sm">
+                            <input type="radio" name="epsp-mode" value="uno" class="text-purple-600">
+                            <span>Un programa específico</span>
+                        </label>
+                    </fieldset>
+
+                    <!-- buscador / selector (solo para “uno”) -->
+                    <div id="epsp-selector" class="hidden">
+                        <div class="relative">
+                            <input id="epsp-search" type="text" placeholder="Buscar programa"
+                                class="w-full rounded-md border-gray-300 pl-9 pr-3 py-2 text-sm shadow-sm focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder-gray-400">
+                            <svg viewBox="0 0 24 24"
+                                class="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400">
+                                <path fill="currentColor"
+                                    d="m21 20.3-5.8-5.8a7.2 7.2 0 1 0-1.7 1.7L20.3 22 21 20.3ZM4.8 10.2a5.4 5.4 0 1 1 10.8 0 5.4 5.4 0 0 1-10.8 0Z" />
+                            </svg>
+                        </div>
+
+                        <ul id="epsp-list" class="mt-3 max-h-56 overflow-y-auto divide-y rounded-md border">
+                            <!-- items renderizados por JS -->
+                        </ul>
+
+                        <p id="epsp-empty" class="hidden mt-3 text-sm text-gray-600">Sin coincidencias.</p>
+                    </div>
+
+                    <!-- mensaje opcional -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900 mb-1">Mensaje (opcional)</label>
+                        <textarea id="epsp-msg" rows="3"
+                            class="w-full rounded-md border-gray-300 text-sm focus:ring-purple-500 focus:border-purple-500"
+                            placeholder="Escribe un mensaje para los programas…"></textarea>
+                    </div>
+
+                    <!-- preview simple de conteos -->
+                    <div class="rounded-lg bg-slate-50 ring-1 ring-slate-200 p-3 text-xs text-gray-700">
+                        <span class="font-semibold">Resumen:</span>
+                        <span id="epsp-resumen" class="ml-1">—</span>
+                    </div>
+                </div>
+
+                <!-- footer -->
+                <div class="px-4 py-3 border-t flex items-center justify-end gap-2">
+                    <button id="epsp-cancel"
+                        class="rounded-lg bg-white ring-1 ring-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        Cancelar
+                    </button>
+                    <button id="epsp-send"
+                        class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+                        Enviar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estado de envío -->
+        <div id="epsp-status" class="hidden fixed inset-0 flex items-center justify-center bg-black/30 z-50">
+            <div class="rounded-xl bg-white px-6 py-4 shadow-lg flex flex-col items-center gap-2">
+                <div id="epsp-status-text" class="text-sm font-medium text-gray-700">Enviando...</div>
+                <div
+                    class="loader border-2 border-t-2 border-gray-200 border-t-purple-500 rounded-full w-5 h-5 animate-spin">
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- MODAL: Notificar estudiantes (pendientes / con observación) -->
     <div id="modal-notificar"
@@ -698,6 +799,9 @@
     <script src="../assets/rol_area/tabla_revisar_paginacion.js.js" defer></script>
     <script src="../assets/rol_area/modal_calendario.js" defer></script>
     <script src="../assets/rol_area/modal_pendiente_area.js"></script>
+    <script src="../assets/rol_area/enviar_paz_salvo_programas.js"></script>
+
+
 
 
 </body>
