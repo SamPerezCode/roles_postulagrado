@@ -15,7 +15,7 @@ async function verDetalleEstudiante(codigo) {
     document.getElementById('tabla-estudiantes-vinculados-proceso')?.classList.add('hidden');
     document.getElementById('detalle-estudiante')?.classList.remove('hidden');
 
-    // Aquí harías fetch(código). Yo dejo mock para que veas el flujo.
+    // Aquí se haria fetch(código).
     const d = {
         primerNombre: 'LEIDY', segundoNombre: 'JOHANA',
         primerApellido: 'BELTRAN', segundoApellido: 'CANO',

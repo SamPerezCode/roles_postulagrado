@@ -41,35 +41,9 @@
                 </span>
             </div>
 
-            <!-- NAV centrado -->
+            <!-- NAV  -->
             <nav class="flex-1 flex items-center px-2">
-                <ul class="w-full space-y-3"><!-- un poco más de aire -->
-
-                    <!-- Dashboard  -->
-                    <!-- <li> -->
-                    <!-- <a href="../rol_estudiante/estudiante_index.html" class="group relative flex items-center gap-2 px-3 py-2 rounded-lg
-                    text-blue-100 hover:bg-white/10 transition-colors duration-200
-                    focus:outline-none focus:ring-4 ring-white/30"> -->
-
-                    <!-- chip del ícono (40px) -->
-                    <!-- <span class="relative grid place-items-center h-10 w-10 rounded-xl shrink-0
-                        bg-transparent group-hover:bg-white/10
-                        group-aria-[current=page]:bg-white/20 group-aria-[current=page]:ring-1 group-aria-[current=page]:ring-white/15
-                        transition-colors duration-200">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path d="M3 9.75 12 3l9 6.75V21a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V9.75Z" />
-                                    <path d="M9 21V12h6v9H9Z" class="fill-blue-100" />
-                                </svg>
-                            </span> -->
-
-                    <!-- label (solo al expandir) -->
-                    <!-- <span class="truncate font-medium
-                        md:opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-200">
-                                Dashboard
-                            </span>
-                        </a> -->
-                    <!-- </li> -->
+                <ul class="w-full space-y-3">
 
                     <!-- Procesos (ACTIVO) -->
                     <li>
@@ -98,7 +72,7 @@
 
         <!-- Main -->
         <!-- 3 filas: header-local/toolbar (auto) | contenido (1fr) | footer (auto) -->
-        <main class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4 p-4 sm:p-6">
+        <div class="flex-1 grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-4 p-4 sm:p-6">
             <!-- Header -->
             <header class="relative z-30 flex items-center justify-between rounded-2xl border bg-white p-4 shadow-sm">
                 <div class="flex min-w-0 items-center gap-2 sm:gap-3">
@@ -183,235 +157,162 @@
                 </div>
             </header>
 
-
-
             <!-- Contenido -->
             <!-- Ahora (ancho completo, con padding responsive) -->
-            <main class="w-full px-4 sm:px-6 lg:px-8 py-6 grid gap-6">
+            <div class="min-h-0 grid gap-6 px-0 sm:px-0 py-6">
 
-                <!-- ===== Acciones rápidas ===== -->
-                <section class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
-                    <div class="flex flex-wrap items-center justify-between gap-3">
+                <!-- ===== Actualización de datos ===== -->
+                <section id="sec-actualiza" class="rounded-2xl border bg-white p-5 shadow-sm">
+                    <div class="flex items-start justify-between gap-3">
                         <div class="min-w-0">
-                            <h1 class="text-lg sm:text-xl font-semibold text-blue-900">Seguimiento de mi proceso</h1>
-                            <p class="text-sm text-gray-600">Revisa tus tareas, valida tus datos y consulta el estado
-                                por áreas.</p>
+                            <h2 class="text-lg font-semibold text-blue-800">Actualización de datos</h2>
+                            <p id="act-msg" class="mt-1 text-sm text-gray-700"></p>
+                            <p id="act-det" class="text-xs text-gray-500"></p>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <!-- Este botón abrirá luego el formulario (modal) de actualización -->
-                            <button id="btnActualizarDatos"
+
+                        <div class="shrink-0 flex items-center gap-2">
+                            <a id="btn-act" href="./estudiante_index.html"
                                 class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200">
-                                <a href="./estudiante_index.html">Actualizar mis datos</a>
-
-                            </button>
+                                Actualizar mis datos
+                            </a>
+                            <span id="badge-ok"
+                                class="hidden rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                                Actualizado
+                            </span>
                         </div>
                     </div>
                 </section>
 
-                <!-- ===== Mensaje SI NO ESTÁ EN PROCESO (por ahora oculto) ===== -->
-                <section id="no-proceso" class="hidden rounded-2xl border bg-amber-50 p-4 sm:p-5 shadow-sm">
-                    <h2 class="text-lg font-semibold text-amber-900">Aún no haces parte de un proceso de grado</h2>
-                    <p class="mt-1 text-sm text-amber-800">
-                        En este momento no encontramos una inscripción activa a un proceso de grado. Si consideras que
-                        es un error,
-                        comunícate con tu programa académico.
-                    </p>
-                </section>
-
-                <!-- ===== Información personal (verificación) ===== -->
-                <section class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
-                    <h2 class="text-lg font-semibold text-gray-900">Información personal</h2>
-                    <div class="mt-3 grid gap-4 md:grid-cols-2">
-                        <article class="rounded-xl border bg-gray-50/60 p-5">
-                            <h3 class="text-base font-semibold text-gray-900">Datos académicos</h3>
-                            <dl class="mt-3 grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
-                                <div>
-                                    <dt class="text-gray-600">Documento</dt>
-                                    <dd id="st-doc" class="font-semibold text-gray-900">—</dd>
-                                </div>
-                                <div>
-                                    <dt class="text-gray-600">Código</dt>
-                                    <dd id="st-cod" class="font-semibold text-gray-900">—</dd>
-                                </div>
-                                <div class="col-span-2">
-                                    <dt class="text-gray-600">Nombre</dt>
-                                    <dd id="st-nom" class="font-semibold text-gray-900">—</dd>
-                                </div>
-                                <div class="col-span-2">
-                                    <dt class="text-gray-600">Programa</dt>
-                                    <dd id="st-prog" class="font-semibold text-gray-900">—</dd>
-                                </div>
-                            </dl>
-                        </article>
-
-                        <article class="rounded-xl border bg-gray-50/60 p-5">
-                            <h3 class="text-base font-semibold text-gray-900">Contacto</h3>
-                            <dl class="mt-3 grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
-                                <div>
-                                    <dt class="text-gray-600">Correo institucional</dt>
-                                    <dd id="st-mail" class="font-semibold text-gray-900">—</dd>
-                                </div>
-                                <div>
-                                    <dt class="text-gray-600">Teléfono</dt>
-                                    <dd id="st-tel" class="font-semibold text-gray-900">—</dd>
-                                </div>
-                            </dl>
-                            <p class="mt-3 text-xs text-gray-500">Si encuentras datos incorrectos, usa el botón
-                                “Actualizar mis datos”.</p>
-                        </article>
-                    </div>
-                </section>
-
-                <!-- ===== Lista de chequeo (tareas/observaciones) ===== -->
-                <section class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-lg font-semibold text-gray-900">Tareas del proceso</h2>
-                        <span id="tareas-resumen" class="text-sm text-gray-500"></span>
-                    </div>
-
-                    <ul id="tareas-list" class="mt-3 grid gap-2"></ul>
-
-                    <p id="tareas-empty"
-                        class="hidden mt-3 rounded-lg bg-slate-50 ring-1 ring-slate-200 px-3 py-2 text-sm text-slate-600">
-                        No tienes tareas pendientes por ahora.
-                    </p>
-                </section>
-
-
-
-                <!-- ===== Estado por áreas (solo informativo) ===== -->
-                <section class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
-                    <h2 class="text-lg font-semibold text-gray-900">Estado de Paz y Salvo por áreas</h2>
-
-                    <div id="areas-grid" class="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                        <!-- Tarjetas renderizadas por JS -->
-                    </div>
-                </section>
-
-                <!-- ===== Información del grado (solo si aprobado) ===== -->
-                <section id="sec-grado" class="hidden rounded-2xl border bg-white p-5 shadow-sm">
+                <!-- ===== Verificación de datos enviados (resumen del form) ===== -->
+                <section id="sec-verificacion" class="rounded-2xl border bg-white p-5 shadow-sm">
                     <div class="flex items-start justify-between gap-3">
                         <div>
-                            <h2 class="text-lg font-semibold text-gray-900">Información del grado</h2>
-                            <p class="text-sm text-gray-600">Detalles de tu ceremonia y últimos pasos antes del acto.
+                            <h2 class="text-lg font-semibold text-blue-800">Verificación de datos enviados</h2>
+                            <p class="text-sm text-gray-600">
+                                Compara lo que reportaste en “Actualizar mis datos”. Cada campo indica si tuvo cambios.
                             </p>
                         </div>
-                        <span id="grado-badge"
-                            class="hidden rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">Aprobado
-                            para graduarse</span>
+                        <a href="./estudiante_index.html" target="_blank"
+                            class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200">
+                            Hacer una observación
+                        </a>
                     </div>
 
-                    <div class="mt-4 grid gap-4 lg:grid-cols-2">
-                        <!-- Ceremonia -->
-                        <article class="rounded-2xl border bg-gray-50/60 p-5">
-                            <header class="flex items-start gap-3">
-                                <span
-                                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 text-lg">🎓</span>
-                                <div class="min-w-0">
-                                    <h3 class="text-base font-semibold text-gray-900 leading-5" id="cer-titulo">
-                                        Ceremonia</h3>
-                                    <p class="text-xs text-gray-500">Fecha, lugar y logística</p>
-                                </div>
-                            </header>
-
-                            <dl class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3 text-sm">
-                                <div>
-                                    <dt class="text-gray-600">Fecha</dt>
-                                    <dd id="cer-fecha" class="font-semibold text-gray-900">—</dd>
-                                </div>
-                                <div>
-                                    <dt class="text-gray-600">Hora</dt>
-                                    <dd id="cer-hora" class="font-semibold text-gray-900">—</dd>
-                                </div>
-                                <div class="sm:col-span-2">
-                                    <dt class="text-gray-600">Lugar</dt>
-                                    <dd id="cer-lugar" class="font-semibold text-gray-900">—</dd>
-                                    <p id="cer-direccion" class="text-xs text-gray-500 mt-0.5">—</p>
-                                </div>
-                                <div>
-                                    <dt class="text-gray-600">Cupos de acompañantes</dt>
-                                    <dd id="cer-cupos" class="font-semibold text-gray-900">—</dd>
-                                </div>
-                                <div>
-                                    <dt class="text-gray-600">Código de invitación</dt>
-                                    <dd id="cer-codigo" class="font-semibold text-gray-900 tracking-wider">—</dd>
-                                </div>
-                            </dl>
-
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <button id="btnInvitacion"
-                                    class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200">
-                                    Descargar invitación
-                                </button>
-                                <button id="btnIndicaciones"
-                                    class="rounded-xl bg-gray-800 px-4 py-2 text-sm font-semibold text-white hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-gray-300">
-                                    Ver indicaciones
-                                </button>
-                            </div>
-                        </article>
-
-                        <!-- Pasos finales -->
-                        <article class="rounded-2xl border bg-gray-50/60 p-5">
-                            <header class="flex items-start gap-3">
-                                <span
-                                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700 text-lg">✅</span>
-                                <div class="min-w-0">
-                                    <h3 class="text-base font-semibold text-gray-900 leading-5">Pasos finales</h3>
-                                    <p class="text-xs text-gray-500">Completa estos últimos requisitos antes del grado.
-                                    </p>
-                                </div>
-                            </header>
-
-                            <ul id="grado-pasos" class="mt-4 space-y-2 text-sm">
-                                <!-- JS render -->
-                            </ul>
-
-                            <p class="mt-3 text-xs text-gray-500">Si tienes dudas, comunícate con tu programa.</p>
-                        </article>
+                    <div class="mt-4 space-y-3" id="verif-accordions">
+                        <!-- Bloques renderizados por JS -->
                     </div>
                 </section>
 
-            </main>
+                <!-- ===== Estado de Paz y Salvo por áreas ===== -->
+                <section class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
+                    <h2 class="text-lg font-semibold text-gray-900">Estado de Paz y Salvo por áreas</h2>
+                    <p class="mt-1 text-xs text-gray-500">Haz clic en <span class="font-semibold">“Pendiente”</span>
+                        para ver tús penidentes en el área.</p>
 
 
+                    <div class="mt-4 overflow-x-auto rounded-2xl border shadow-sm">
 
+                        <table class="min-w-full divide-y divide-gray-200 text-sm" id="areas-table">
+                            <thead class="bg-slate-50 text-slate-600 text-xs uppercase">
+                                <tr>
+                                    <th class="px-4 py-3 text-left font-medium">Área</th>
+                                    <th class="px-4 py-3 text-left font-medium">Paz y Salvo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ===== Derecho a grado ===== -->
+                <section id="sec-dg" class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <h2 class="text-lg font-semibold text-gray-900">Derecho a grado</h2>
+                            <p class="text-sm text-gray-600">Descarga tu recibo y realiza el pago antes de la fecha
+                                límite.</p>
+                        </div>
+                        <span id="dg-chip" class="rounded-full px-3 py-1 text-xs font-semibold ring-1">—</span>
+                    </div>
+
+                    <!-- Aviso de estado -->
+                    <div id="dg-alert" class="mt-3 rounded-xl px-3 py-2 text-sm ring-1" aria-live="polite"></div>
+
+                    <div class="mt-4 grid gap-4 sm:grid-cols-3">
+                        <!-- Monto -->
+                        <article id="dg-card-valor" class="rounded-xl border bg-gray-50/60 p-4">
+                            <p id="dg-valor-label" class="text-xs text-gray-600">Monto a pagar</p>
+                            <p id="dg-valor" class="mt-1 text-lg font-semibold text-gray-900">—</p>
+                        </article>
+
+                        <!-- Fecha máxima -->
+                        <article id="dg-card-fecha" class="rounded-xl border bg-gray-50/60 p-4">
+                            <p id="dg-fecha-label" class="text-xs text-gray-600">Fecha máxima para el pago</p>
+                            <p id="dg-fecha" class="mt-1 text-lg font-semibold text-gray-900">—</p>
+                            <p id="dg-count" class="text-xs mt-1 text-gray-500">—</p>
+                        </article>
+
+                        <!-- Recibo / Pagar -->
+                        <article id="dg-card-recibo" class="rounded-xl border bg-gray-50/60 p-4">
+                            <p class="text-xs text-gray-600">Recibo</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <a id="dg-btn-recibo" href="#" target="_blank" rel="noopener"
+                                    class="rounded-xl bg-white px-4 py-2 text-sm font-medium text-gray-700 ring-1 ring-gray-300 hover:bg-gray-50">
+                                    Descargar recibo
+                                </a>
+                                <a id="dg-btn-pagar" href="#"
+                                    class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+                                    Pagar en línea
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                </section>
+
+
+            </div>
 
             <!-- Footer -->
             <footer class="rounded-2xl border bg-white p-4 text-center text-xs text-gray-600 shadow-sm">
                 © 2025 Universidad Colegio Mayor de Cundinamarca - Todos los derechos reservados
             </footer>
 
-        </main>
-    </div>
+            </main>
+        </div>
 
-    <!-- Modal: Pendientes por área -->
-    <div id="md-area" class="fixed inset-0 hidden items-start justify-center pt-16 z-[10000]">
-        <div class="absolute inset-0 bg-black/40" data-close="md-area"></div>
-        <div class="relative mx-auto w-[min(28rem,92vw)] rounded-2xl bg-white p-5 shadow-xl">
-            <button class="absolute right-3 top-3 text-gray-500 hover:text-gray-700" data-close="md-area">✕</button>
-            <h3 id="area-pend-title" class="text-lg font-semibold text-gray-900">Pendientes</h3>
-            <ul id="area-pend-list" class="mt-3 space-y-2">
-                <!-- ítems generados por JS -->
-            </ul>
-            <div class="mt-4 text-right">
-                <button class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
-                    data-close="md-area">Entendido</button>
+        Modal: Pendientes por área
+        <div id="md-area" class="fixed inset-0 hidden items-start justify-center pt-16 z-[10000]">
+            <div class="absolute inset-0 bg-black/40" data-close="md-area"></div>
+            <div class="relative mx-auto w-[min(28rem,92vw)] rounded-2xl bg-white p-5 shadow-xl">
+                <button class="absolute right-3 top-3 text-gray-500 hover:text-gray-700" data-close="md-area">✕</button>
+                <h3 id="area-pend-title" class="text-lg font-semibold text-gray-900">Pendientes</h3>
+                <ul id="area-pend-list" class="mt-3 space-y-2">
+                    <!-- ítems generados por JS -->
+                </ul>
+                <div class="mt-4 text-right">
+                    <button
+                        class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
+                        data-close="md-area">Entendido</button>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- JS mínimo para dropdowns y cierre por click fuera -->
+        <!-- JS mínimo para dropdowns y cierre por click fuera -->
 
-    <script src="../../src/assets/app.js" defer></script>
-    <script src="../assets/sidebar-active.js"></script>
-    <script src="../assets/rol_estudiantes_seguimiento.js"></script>
-    <script src="../assets/rol_estudiante/estudiante_seguimiento.js"></script>
-    <script>
-        document.getElementById("proceso").addEventListener("change", function () {
-            window.location.href = "seguimiento_proceso.html";
-        });
-    </script>
+        <script src="../../src/assets/app.js" defer></script>
+        <script src="../assets/sidebar-active.js"></script>
+        <script src="../assets/rol_estudiantes_seguimiento.js"></script>
+        <script src="../assets/rol_estudiante/estudiante_seguimiento.js"></script>
+        <script src="../assets/rol_estudiante/seccion_actualizacion_datos.js"></script>
+        <script src="../assets/rol_estudiante/datos_personales.js"></script>
+        <script src="../assets/rol_estudiante/paz_salvo.js"></script>
+        <script src="../assets/rol_estudiante/derecho_grado.js" defer></script>
+
+
+
+
 
 
 </body>
