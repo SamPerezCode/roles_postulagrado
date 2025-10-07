@@ -124,7 +124,7 @@
             <option value="true"  ${r.ps ? 'selected' : ''}>Sí</option>
             <option value="false" ${!r.ps ? 'selected' : ''}>No</option>
           </select>
-          <span class="inline-block h-2.5 w-2.5 rounded-full ${r.ps ? 'bg-emerald-500' : 'bg-gray-300'}"></span>
+          
         </div>
       `;
 

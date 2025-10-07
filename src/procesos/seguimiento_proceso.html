@@ -1379,29 +1379,26 @@
 
                     <!-- Encabezado del estudiante -->
                     <div class="rounded-2xl border bg-white shadow-sm px-4 py-4">
-                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                            <div>
-                                <h3 class="text-lg font-semibold text-blue-900" id="det-nombre">NOMBRE: BELTRAN CANO
-                                    LEIDY JOHANA
-                                </h3>
-                                <p class="text-sm text-gray-600">
-                                    <span class="font-medium">Código: 605030223</span> <span id="det-codigo">—</span>
-                                    <!-- <span class="mx-2">·</span> -->
-                                    <span class="font-medium">Documento: 1073721918</span> <span
-                                        id="det-documento">—</span>
-                                    <!-- <span class="mx-2">·</span> -->
-                                    <span class="font-medium">Programa: Especialización Derecho Internacional
-                                        Público</span> <span id="det-programa"></span>
-                                </p>
-                            </div>
-
-                            <!-- Estado global -->
-                            <span id="det-chip-global" class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs ring-1
-               bg-gray-100 text-gray-700 ring-gray-200">
-                                <span class="h-2.5 w-2.5 rounded-full bg-gray-300"></span> Proceso en curso
-                            </span>
+                        <!-- Fila 1: nombre + datos básicos -->
+                        <div class="min-w-0">
+                            <h3 class="text-lg font-semibold text-blue-900" id="det-nombre">
+                                NOMBRE: BELTRAN CANO LEIDY JOHANA
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                <span class="font-medium">Código:</span> <span id="det-codigo">605030223</span>
+                                <span class="mx-2 text-gray-300">•</span>
+                                <span class="font-medium">Documento:</span> <span id="det-documento">1073721918</span>
+                                <span class="mx-2 text-gray-300">•</span>
+                                <span class="font-medium">Programa:</span>
+                                <span id="det-programa">Especialización Derecho Internacional Público</span>
+                            </p>
                         </div>
+
+                        <!-- Fila 2: el grid informativo a TODO el ancho -->
+                        <div id="det-extra" class="mt-4 w-full"><!-- lo rellena el JS --></div>
                     </div>
+
+
 
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
@@ -1411,112 +1408,25 @@
                             <!-- ====== FORMULARIO (Checklist) ====== -->
                             <section id="blk-formulario" class="rounded-2xl border bg-white shadow-sm px-4 py-4">
                                 <div class="flex items-start justify-between gap-3">
-                                    <div>
-                                        <h4 class="font-semibold text-gray-900">Formulario de datos personales</h4>
-                                        <p class="text-sm text-gray-600">Revisión de actualizaciones enviadas por el
-                                            estudiante (documento + “Solicitar revisión”).</p>
-                                    </div>
+                                    <h4 class="font-semibold text-gray-900">Formulario de datos personales</h4>
 
-                                    <!-- Pill estado global (solo Revisado / Sin revisar) -->
+                                    <!-- ÚNICO chip de estado -->
                                     <span id="st-formulario"
                                         class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ring-1 bg-yellow-50 text-yellow-800 ring-yellow-200">
                                         <span class="h-2 w-2 rounded-full bg-yellow-500"></span> Sin revisar
                                     </span>
                                 </div>
 
-                                <!-- Leyenda de estados (debajo del título) -->
-                                <div class="mt-1 flex items-center gap-4 text-xs font-medium">
-                                    <span class="inline-flex items-center gap-1.5 text-emerald-700">
-                                        <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-                                        Revisado
-                                    </span>
-                                    <span class="inline-flex items-center gap-1.5 text-yellow-700">
-                                        <span class="h-2.5 w-2.5 rounded-full bg-yellow-500"></span>
-                                        Sin revisar
-                                    </span>
-                                </div>
-
-
-
-
-                                <!-- Aviso éxito -->
+                                <!-- Mensaje de éxito (opcional) -->
                                 <div id="alert-ok"
                                     class="mt-3 hidden rounded-lg bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200 px-3 py-2 text-sm">
                                     ✅ Formulario actualizado exitosamente.
                                 </div>
 
-                                <div class="mt-6 flex items-center justify-between">
-                                    <h5 class="text-sm font-semibold text-gray-900">Observaciones / Solicitudes de
-                                        revisión</h5>
-                                    <span id="resumen-cant" class="text-xs text-gray-500">0 revisadas · 0
-                                        pendientes</span>
-                                </div>
-
-                                <!-- ====== Secciones (ambas plegables por defecto, cerradas) ====== -->
-                                <div class="mt-3 space-y-4">
-
-                                    <!-- Datos personales -->
-                                    <details class="rounded-xl ring-1 ring-slate-200">
-                                        <summary class="cursor-pointer list-none">
-                                            <div class="flex items-center justify-between px-3 py-2">
-                                                <h6 class="font-semibold text-gray-800 text-sm">Datos personales</h6>
-                                                <span class="text-xs text-gray-500">Mostrar / Ocultar</span>
-                                            </div>
-                                        </summary>
-                                        <div id="lista-personales" class="p-3 space-y-3"></div>
-                                    </details>
-
-                                    <!-- Secciones adicionales -->
-                                    <details class="rounded-xl ring-1 ring-slate-200">
-                                        <summary class="cursor-pointer list-none">
-                                            <div class="flex items-center justify-between px-3 py-2">
-                                                <h6 class="font-semibold text-gray-800 text-sm">Secciones adicionales
-                                                </h6>
-                                                <span class="text-xs text-gray-500">Mostrar / Ocultar</span>
-                                            </div>
-                                        </summary>
-                                        <div class="p-3 space-y-4">
-                                            <div class="rounded-lg ring-1 ring-slate-200">
-                                                <div class="flex items-center justify-between px-3 py-2 border-b">
-                                                    <p class="font-medium text-gray-800 text-sm">Anexos prioritarios</p>
-                                                </div>
-                                                <div id="lista-anexos" class="p-3 space-y-3"></div>
-                                            </div>
-
-                                            <div class="rounded-lg ring-1 ring-slate-200">
-                                                <div class="flex items-center justify-between px-3 py-2 border-b">
-                                                    <p class="font-medium text-gray-800 text-sm">Contacto y vínculos</p>
-                                                </div>
-                                                <div id="lista-contacto" class="p-3 space-y-3"></div>
-                                            </div>
-
-                                            <div class="rounded-lg ring-1 ring-slate-200">
-                                                <div class="flex items-center justify-between px-3 py-2 border-b">
-                                                    <p class="font-medium text-gray-800 text-sm">Vínculos con la
-                                                        institución</p>
-                                                </div>
-                                                <div id="lista-institucion" class="p-3 space-y-3"></div>
-                                            </div>
-
-                                            <div class="rounded-lg ring-1 ring-slate-200">
-                                                <div class="flex items-center justify-between px-3 py-2 border-b">
-                                                    <p class="font-medium text-gray-800 text-sm">Información adicional
-                                                        (postgrado)</p>
-                                                </div>
-                                                <div id="lista-postgrado" class="p-3 space-y-3"></div>
-                                            </div>
-                                        </div>
-                                    </details>
-                                </div>
-
-                                <!-- Botón final -->
-                                <div class="mt-6 flex justify-end">
-                                    <button id="btn-marcar-todo-revisado"
-                                        class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700">
-                                        Marcar revisado a todos los campos
-                                    </button>
-                                </div>
+                                <!-- Lista SIEMPRE visible (sin acordeón) -->
+                                <div id="lista-personales" class="mt-3 space-y-3"></div>
                             </section>
+
 
                             <!-- ====== MODAL: Revisar (ver observación) ====== -->
                             <div id="modal-revision" class="fixed inset-0 z-[10050] hidden">

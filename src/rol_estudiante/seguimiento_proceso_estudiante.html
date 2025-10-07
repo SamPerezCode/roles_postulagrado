@@ -171,10 +171,11 @@
                         </div>
 
                         <div class="shrink-0 flex items-center gap-2">
-                            <a id="btn-act" href="./estudiante_index.html"
+                            <a id="btn-act" href="./estudiante_index.html" target="_blank" rel="noopener"
                                 class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200">
                                 Actualizar mis datos
                             </a>
+
                             <span id="badge-ok"
                                 class="hidden rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
                                 Actualizado
@@ -184,7 +185,7 @@
                 </section>
 
                 <!-- ===== Verificación de datos enviados (resumen del form) ===== -->
-                <section id="sec-verificacion" class="rounded-2xl border bg-white p-5 shadow-sm">
+                <section id="sec-verificacion" class="rounded-2xl border bg-white p-5 shadow-sm hidden">
                     <div class="flex items-start justify-between gap-3">
                         <div>
                             <h2 class="text-lg font-semibold text-blue-800">Verificación de datos enviados</h2>
@@ -192,10 +193,6 @@
                                 Compara lo que reportaste en “Actualizar mis datos”. Cada campo indica si tuvo cambios.
                             </p>
                         </div>
-                        <a href="./estudiante_index.html" target="_blank"
-                            class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200">
-                            Hacer una observación
-                        </a>
                     </div>
 
                     <div class="mt-4 space-y-3" id="verif-accordions">
@@ -205,18 +202,18 @@
 
                 <!-- ===== Estado de Paz y Salvo por áreas ===== -->
                 <section class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
-                    <h2 class="text-lg font-semibold text-gray-900">Estado de Paz y Salvo por áreas</h2>
-                    <p class="mt-1 text-xs text-gray-500">Haz clic en <span class="font-semibold">“Pendiente”</span>
-                        para ver tús penidentes en el área.</p>
-
+                    <h2 class="text-lg font-semibold text-blue-800">Estado de Paz y Salvo por áreas</h2>
+                    <p class="mt-1 text-xs text-gray-500">
+                        Haz clic en <span class="font-semibold">“Pendiente”</span> para ver tus pendientes en el área.
+                    </p>
 
                     <div class="mt-4 overflow-x-auto rounded-2xl border shadow-sm">
-
                         <table class="min-w-full divide-y divide-gray-200 text-sm" id="areas-table">
                             <thead class="bg-slate-50 text-slate-600 text-xs uppercase">
                                 <tr>
                                     <th class="px-4 py-3 text-left font-medium">Área</th>
                                     <th class="px-4 py-3 text-left font-medium">Paz y Salvo</th>
+                                    <th class="px-4 py-3 text-left font-medium">Observaciones</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100"></tbody>
@@ -224,11 +221,12 @@
                     </div>
                 </section>
 
+
                 <!-- ===== Derecho a grado ===== -->
                 <section id="sec-dg" class="rounded-2xl border bg-white p-4 sm:p-5 shadow-sm">
                     <div class="flex items-start justify-between gap-3">
                         <div>
-                            <h2 class="text-lg font-semibold text-gray-900">Derecho a grado</h2>
+                            <h2 class="text-lg font-semibold text-blue-800">Derecho a grado</h2>
                             <p class="text-sm text-gray-600">Descarga tu recibo y realiza el pago antes de la fecha
                                 límite.</p>
                         </div>
